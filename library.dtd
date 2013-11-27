@@ -1,0 +1,25 @@
+<!ELEMENT library (series|book|template)*>
+<!ELEMENT series (book*)>
+<!ATTLIST series title CDATA #REQUIRED>
+<!ELEMENT book (page|section)*>
+<!ATTLIST book title CDATA #IMPLIED>
+<!ELEMENT page (section*)>
+<!ATTLIST page num CDATA #REQUIRED>
+<!ELEMENT section ((text|set|if|choice|chance)*, goto)>
+<!ATTLIST section id CDATA #REQUIRED title CDATA #REQUIRED>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT goto (#PCDATA)>
+<!ATTLIST goto to CDATA #REQUIRED>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT set ((value|var|id|op), text)>
+<!ATTLIST set var CDATA #REQUIRED>
+<!ELEMENT if ((value|var|id|op), text, (text|set|goto|if|choice|chance)*)>
+<!ATTLIST if var CDATA #REQUIRED comp CDATA #REQUIRED>
+<!ELEMENT choice (text, (text|set|goto|if|choice|chance)*)>
+<!ELEMENT chance (text, (text|set|goto|if|choice|chance)*)>
+<!ELEMENT op ((value|var|id),(value|var|id|op))>
+<!ATTLIST op op CDATA #REQUIRED>
+<!ELEMENT var (#PCDATA)>
+<!ELEMENT value (#PCDATA)>
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT template (series|title|book|template|page|section|text|set|goto|if|choice|chance)*>

@@ -1,0 +1,17 @@
+<!ELEMENT book (page?, section?)*>
+<!ATTLIST book title CDATA #IMPLIED>
+<!ELEMENT page (section*)>
+<!ATTLIST page id CDATA #REQUIRED>
+<!ELEMENT section (title, (text?, set?, if?,choice?,chance?)*, goto?)>
+<!ATTLIST section id CDATA #REQUIRED>
+<!ELEMENT title (#PCDATA)>
+<!ELEMENT goto (text?)>
+<!ATTLIST goto to CDATA #REQUIRED>
+<!ELEMENT text (#PCDATA)>
+<!ELEMENT set (value, text)>
+<!ATTLIST set var CDATA #REQUIRED>
+<!ELEMENT if (var, value, text, (text?, set?, goto?, if?,choice?,chance?)*)>
+<!ELEMENT choice (text, (text?, set?, goto?, if?,choice?,chance?)*)>
+<!ELEMENT chance (text, (text?, set?, goto?, if?,choice?,chance?)*)>
+<!ELEMENT var (#PCDATA)>
+<!ELEMENT value (#PCDATA)>

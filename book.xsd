@@ -1,0 +1,93 @@
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  
+  <xsd:element name ="book" type ="bookType"/>  
+  <xsd:complexType name ="bookType">
+    <xsd:choice minOccurs="0" maxOccurs="unbounded">
+      <xsd:element name="page" type ="pageType"/>
+      <xsd:element name="section" type ="sectionType"/>
+    </xsd:choice>
+    <xsd:attribute name="title" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name ="pageType">   
+    <xsd:sequence>
+      <xsd:element name="section" type ="sectionType" minOccurs="0" maxOccurs="unbounded" />
+    </xsd:sequence>
+    <xsd:attribute name="id" id="pageId"/>
+  </xsd:complexType>
+
+  <xsd:complexType name ="sectionType">
+    <xsd:sequence>
+      <xsd:element name="title" type ="xsd:string"/>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="text" type ="xsd:string" maxOccurs="unbounded"/>
+        <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="choice" type ="choiceType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="chance" type ="chanceType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+      <xsd:element name="goto" type ="gotoType"/>
+    </xsd:sequence>
+    <xsd:attribute name="id" id="sectionId"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="setType">
+    <xsd:sequence>
+      <xsd:element name="value" type="xsd:string"/>
+      <xsd:element name="text" type="xsd:string" minOccurs="0" />
+    </xsd:sequence>
+    <xsd:attribute name="var" type="xsd:string"/>
+  </xsd:complexType>
+
+  <xsd:complexType name="ifType">
+    <xsd:sequence>
+      <xsd:element name="var" type="xsd:string"/>
+      <xsd:element name="value" type="xsd:string"/>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="text" type ="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="choice" type ="choiceType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="chance" type ="chanceType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="goto" type ="gotoType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="choiceType">
+    <xsd:sequence>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="text" type ="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="choice" type ="choiceType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="chance" type ="chanceType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="goto" type ="gotoType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="chanceType">
+    <xsd:sequence>
+      <xsd:element name="text" type="xsd:string"/>
+      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+        <xsd:element name="text" type ="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="choice" type ="choiceType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="chance" type ="chanceType" minOccurs="0" maxOccurs="unbounded"/>
+        <xsd:element name="goto" type ="gotoType" minOccurs="0" maxOccurs="unbounded"/>
+      </xsd:choice>
+    </xsd:sequence>
+  </xsd:complexType>
+
+  <xsd:complexType name="gotoType">
+    <xsd:sequence>
+      <xsd:element name="text" type="xsd:string" minOccurs="0"/>
+    </xsd:sequence>
+    <xsd:attribute name="to"/>
+  </xsd:complexType>
+  
+</xsd:schema>
