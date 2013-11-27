@@ -8,39 +8,38 @@ import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.fragment.Set;
 
 public class SetIO implements Loadable {
-	
 
 	@Override
-	public ModelItem loadFromXML(Element element) {	
+	public ModelItem loadFromXML(Element element) {
 		Set set = new Set();
 		set.var = element.getAttribute("var");
 		set.value = xmlLoader.getText(element, "value");
-		set.text = xmlLoader.getText(element, "text");	
+		set.text = xmlLoader.getText(element, "text");
 		return set;
 	}
 
 	@Override
 	public Element saveToXML(ModelItem modelItem) {
-	  Set set = (Set) modelItem;
-    Element setElement = xmlLoader.doc.createElement("set");
-    setElement.setAttribute("var", set.var); 
-    Element valueElement = xmlLoader.doc.createElement("value");
-    valueElement.appendChild(xmlLoader.doc.createTextNode(set.value));
-    setElement.appendChild(valueElement);
-    Element textElement = xmlLoader.doc.createElement("text");
-    textElement.appendChild(xmlLoader.doc.createTextNode(set.text));
-    setElement.appendChild(textElement);
-    
-    return setElement;
+		Set set = (Set) modelItem;
+		Element setElement = xmlLoader.doc.createElement("set");
+		setElement.setAttribute("var", set.var);
+		Element valueElement = xmlLoader.doc.createElement("value");
+		valueElement.appendChild(xmlLoader.doc.createTextNode(set.value));
+		setElement.appendChild(valueElement);
+		Element textElement = xmlLoader.doc.createElement("text");
+		textElement.appendChild(xmlLoader.doc.createTextNode(set.text));
+		setElement.appendChild(textElement);
+
+		return setElement;
 	}
 
 	@Override
 	public ModelItem loadFromEma(ArrayList<String> content) {
-		//Set desc = new Set();
+		// Set desc = new Set();
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
-		for(String str:content){
-			if(lineBlank || str != ""){
+		for (String str : content) {
+			if (lineBlank || str != "") {
 				sb.append(str);
 				sb.append('\n');
 				lineBlank = false;
@@ -57,8 +56,5 @@ public class SetIO implements Loadable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-	
 
 }

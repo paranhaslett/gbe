@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import org.w3c.dom.Element;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.PageController;
 import com.paranhaslett.gamebook.controller.SectionController;
 import com.paranhaslett.gamebook.model.Book;
@@ -22,13 +23,15 @@ public class BookIO implements Loadable {
 
 	public ModelItem loadFromXML(Element element) {
 		Book gameBook = new Book();
+		gameBook.title = xmlLoader.load("title");
 		gameBook.title = element.getAttribute("title");// Manditory name
-		PageController pc = (PageController) gc.getController("Page");
+		PageController pc = (PageController) gc.getController(Item.PAGE);
 		for (Element pageElement : xmlLoader.getElements(element, "page")) {
 			Page page = (Page) pc.loader.loadFromXML(pageElement);
 			gameBook.pages.add(page);
 		}
-		SectionController sc = (SectionController) gc.getController("Section");
+		SectionController sc = (SectionController) gc
+				.getController(Item.SECTION);
 		for (Element sectionElement : xmlLoader.getElements(element, "section")) {
 			Section section = (Section) sc.loader.loadFromXML(sectionElement);
 			gameBook.freeSections.add(section);
@@ -43,11 +46,12 @@ public class BookIO implements Loadable {
 		if (gameBook.title != null) {
 			nodeElement.setAttribute("name", gameBook.title);
 		}
-		PageController pc = (PageController) gc.getController("Page");
+		PageController pc = (PageController) gc.getController(Item.PAGE);
 		for (Page page : gameBook.pages) {
 			nodeElement.appendChild(pc.loader.saveToXML(page));
 		}
-		SectionController sc = (SectionController) gc.getController("Section");
+		SectionController sc = (SectionController) gc
+				.getController(Item.SECTION);
 		for (Section section : gameBook.freeSections) {
 			nodeElement.appendChild(sc.loader.saveToXML(section));
 		}
@@ -68,7 +72,8 @@ public class BookIO implements Loadable {
 		}
 		File[] files = new File(path).listFiles();
 
-		SectionController sc = (SectionController) gc.getController("Section");
+		SectionController sc = (SectionController) gc
+				.getController(Item.SECTION);
 		for (File file : files) {
 			String entryname = file.getName();
 			if (entryname.endsWith(".txt")

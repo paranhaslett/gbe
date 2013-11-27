@@ -12,7 +12,7 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 public class PageController implements Controller {
 	public Loadable loader = new PageIO();
 	private PanelUI panel = PageUI.getPanelUI();
-	private Editor gc=Editor.getEd();
+	private Editor gc = Editor.getEd();
 	private int pgnum = 1;
 
 	@Override
@@ -24,9 +24,9 @@ public class PageController implements Controller {
 				// change to page controller
 				// add newPage to parent of selection
 			}
-			
+
 			if (added instanceof Section) {
-				page.sections.add((Section)added);
+				page.sections.add((Section) added);
 				gc.tree.addToSel(added);
 			}
 		}
@@ -56,13 +56,13 @@ public class PageController implements Controller {
 		return (mi instanceof Section);
 	}
 
-  @Override
-  public void setup(ModelItem modelItem) {
-    Page section =(Page) modelItem;
-    section.id = "" + pgnum;
-    
-    pgnum ++;
+	@Override
+	public void setup(ModelItem modelItem) {
+		Page section = (Page) modelItem;
+		section.id = "" + pgnum;
 
-  }
-	
+		pgnum++;
+
+	}
+
 }

@@ -42,9 +42,9 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
 	public TreeRendererUI() {
 		setTextSelectionColor(Color.white);
 		setBackgroundSelectionColor(Color.blue);
-		libraryIcon= createImageIcon("/icons/tree/library.png");
-	  seriesIcon= createImageIcon("/icons/tree/series.png");
-	  templateIcon= createImageIcon("/icons/tree/template.png");
+		libraryIcon = createImageIcon("/icons/tree/library.png");
+		seriesIcon = createImageIcon("/icons/tree/series.png");
+		templateIcon = createImageIcon("/icons/tree/template.png");
 		gameBookIcon = createImageIcon("/icons/tree/gamebook.png");
 		pageIcon = createImageIcon("/icons/tree/page.png");
 		sectionIcon = createImageIcon("/icons/tree/section.png");
@@ -56,7 +56,7 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
 		ifIcon = createImageIcon("/icons/tree/if.png");
 		varIcon = createImageIcon("/icons/tree/var.png");
 		varIcon = createImageIcon("/icons/tree/var.png");
-		
+
 	}
 
 	public Component getTreeCellRendererComponent(JTree tree, Object value,
@@ -66,17 +66,17 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf,
 				row, hasFocus);
 		DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
-		
+
 		Object nodeInfo = node.getUserObject();
 		if (nodeInfo instanceof Library) {
-      setIcon(libraryIcon);
-    }
-    if (nodeInfo instanceof Series) {
-      setIcon(seriesIcon);
-    }
-    if (nodeInfo instanceof Template) {
-      setIcon(templateIcon);
-    }
+			setIcon(libraryIcon);
+		}
+		if (nodeInfo instanceof Series) {
+			setIcon(seriesIcon);
+		}
+		if (nodeInfo instanceof Template) {
+			setIcon(templateIcon);
+		}
 		if (nodeInfo instanceof Book) {
 			setIcon(gameBookIcon);
 		}
@@ -93,7 +93,7 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
 		if (nodeInfo instanceof Choice) {
 			setIcon(choiceIcon);
 		}
-		
+
 		if (nodeInfo instanceof Chance) {
 			setIcon(chanceIcon);
 		}

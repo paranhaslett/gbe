@@ -14,6 +14,7 @@ import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.controller.LibraryController;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.tree.TreeUI;
 import java.awt.Toolkit;
@@ -27,9 +28,9 @@ public class EditorUI extends JFrame {
 	 * Create the frame.
 	 */
 	public EditorUI() {
-		setIconImage(Toolkit.getDefaultToolkit().getImage(EditorUI.class.getResource("/icons/book.png")));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(
+				EditorUI.class.getResource("/icons/book.png")));
 		setTitle("Game Book Editor");
-			
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 640, 400);
@@ -43,7 +44,8 @@ public class EditorUI extends JFrame {
 		JMenuItem mntmNew = new JMenuItem("New");
 		mntmNew.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Editor.getEd().create();
+				LibraryController lc = (LibraryController)Editor.getEd().lc;
+				lc.createBook(Editor.getEd());
 			}
 		});
 		mnFile.add(mntmNew);
@@ -51,15 +53,29 @@ public class EditorUI extends JFrame {
 		JMenuItem mntmOpen = new JMenuItem("Open");
 		mntmOpen.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Editor.getEd().load();
+				LibraryController lc = (LibraryController)Editor.getEd().lc;
+				lc.loadBook(Editor.getEd());
 			}
 		});
+		
+		JMenu mnNew = new JMenu("New");
+		mnFile.add(mnNew);
+		
+		JMenuItem mntmGamebook = new JMenuItem("Gamebook");
+		mnNew.add(mntmGamebook);
+		
+		JMenuItem mntmSeries = new JMenuItem("Series");
+		mnNew.add(mntmSeries);
+		
+		JMenuItem mntmTemplate = new JMenuItem("Template");
+		mnNew.add(mntmTemplate);
 		mnFile.add(mntmOpen);
 
 		JMenuItem mntmSave = new JMenuItem("Save");
 		mntmSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Editor.getEd().save();
+				LibraryController lc = (LibraryController)Editor.getEd().lc;
+				lc.saveBook(Editor.getEd());
 			}
 		});
 		mnFile.add(mntmSave);
@@ -84,14 +100,13 @@ public class EditorUI extends JFrame {
 		scrollPane = new JScrollPane();
 		splitPane.setLeftComponent(scrollPane);
 	}
-	
-	public void updateTree(TreeUI tree){
+
+	public void updateTree(TreeUI tree) {
 		scrollPane.setViewportView(tree);
 	}
-	
-	public void updatePanel(PanelUI panel){
+
+	public void updatePanel(PanelUI panel) {
 		splitPane.setRightComponent(panel);
 	}
-	
-	
+
 }

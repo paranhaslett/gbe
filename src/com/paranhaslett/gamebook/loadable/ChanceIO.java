@@ -8,10 +8,9 @@ import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.fragment.Text;
 
 public class ChanceIO implements Loadable {
-	
 
 	@Override
-	public ModelItem loadFromXML(Element element) {	
+	public ModelItem loadFromXML(Element element) {
 		Text desc = new Text();
 		desc.text = element.getTextContent();
 		return desc;
@@ -19,10 +18,10 @@ public class ChanceIO implements Loadable {
 
 	@Override
 	public Element saveToXML(ModelItem modelItem) {
-	  Text desc = (Text) modelItem;
-    Element descElement = xmlLoader.doc.createElement("text");
-    descElement.appendChild(xmlLoader.doc.createTextNode(desc.text));
-    return descElement;
+		Text desc = (Text) modelItem;
+		Element descElement = xmlLoader.doc.createElement("text");
+		descElement.appendChild(xmlLoader.doc.createTextNode(desc.text));
+		return descElement;
 	}
 
 	@Override
@@ -30,8 +29,8 @@ public class ChanceIO implements Loadable {
 		Text desc = new Text();
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
-		for(String str:content){
-			if(lineBlank || str != ""){
+		for (String str : content) {
+			if (lineBlank || str != "") {
 				sb.append(str);
 				sb.append('\n');
 				lineBlank = false;
@@ -39,7 +38,7 @@ public class ChanceIO implements Loadable {
 				lineBlank = true;
 			}
 		}
-		desc.text=sb.toString();
+		desc.text = sb.toString();
 		return null;
 
 	}
@@ -49,8 +48,5 @@ public class ChanceIO implements Loadable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-	
 
 }

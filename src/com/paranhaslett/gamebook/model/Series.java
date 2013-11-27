@@ -3,6 +3,7 @@ package com.paranhaslett.gamebook.model;
 import java.util.ArrayList;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.Controller;
 
 public class Series implements LibraryItem {
@@ -13,10 +14,9 @@ public class Series implements LibraryItem {
 		return title;
 	}
 
-
 	@Override
 	public Controller getController() {
-		return Editor.getEd().getController("Series");
+		return Editor.getEd().getController(Item.SERIES);
 	}
-	
+
 }

@@ -8,21 +8,21 @@ import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
-public class TextController implements Controller{
+public class TextController implements Controller {
 	public Loadable loader = new TextIO();
 	private PanelUI panel = TextUI.getPanelUI();
-	private Editor ed=Editor.getEd();
+	private Editor ed = Editor.getEd();
 
 	@Override
 	public void add(ModelItem item, ModelItem to) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeMainLabel(ModelItem item, String newLabel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class TextController implements Controller{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	public void update(ModelItem item) {
 		if (item instanceof Text) {
 			Text set = (Text) item;
@@ -39,9 +39,9 @@ public class TextController implements Controller{
 		}
 	}
 
-  @Override
-  public void setup(ModelItem modelItem) {
+	@Override
+	public void setup(ModelItem modelItem) {
 
-  }
+	}
 
 }

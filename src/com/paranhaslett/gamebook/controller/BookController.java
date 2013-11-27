@@ -1,8 +1,12 @@
 package com.paranhaslett.gamebook.controller;
 
+import java.io.File;
+
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.loadable.BookIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
+import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
@@ -13,7 +17,7 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 public class BookController implements Controller {
 	public Loadable loader = new BookIO();
 	private PanelUI panel = GameBookUI.getPanelUI();
-	private Editor gc=Editor.getEd();
+	private Editor gc = Editor.getEd();
 
 	@Override
 	public void add(ModelItem item, ModelItem added) {
@@ -25,19 +29,19 @@ public class BookController implements Controller {
 				// add newPage to parent of selection
 			}
 			if (added instanceof Page) {
-				gameBook.pages.add((Page)added);
+				gameBook.pages.add((Page) added);
 				gc.tree.addToSel(added);
-				Controller controller = gc.getController("Page");
+				Controller controller = gc.getController(Item.PAGE);
 				controller.update(added);
-				
+
 			}
 			if (added instanceof Section) {
-				gameBook.freeSections.add((Section)added);
+				gameBook.freeSections.add((Section) added);
 				gc.tree.addToSel(added);
-				Controller controller = gc.getController("Section");
+				Controller controller = gc.getController(Item.SECTION);
 				controller.update(added);
 			}
-			
+
 		}
 
 	}
@@ -65,10 +69,10 @@ public class BookController implements Controller {
 		return (mi instanceof Page || mi instanceof Section);
 	}
 
-  @Override
-  public void setup(ModelItem modelItem) {
-    Book gameBook = (Book) modelItem;
-    gameBook.title = "New";
-  }
+	@Override
+	public void setup(ModelItem modelItem) {
+		Book gameBook = (Book) modelItem;
+		gameBook.title = "New";
+	}
 
 }

@@ -16,8 +16,8 @@ import com.paranhaslett.gamebook.ui.panel.SectionUI;
 public class SectionController implements Controller {
 	public Loadable loader = new SectionIO();
 	private PanelUI panel = SectionUI.getPanelUI();
-	private Editor gc=Editor.getEd();
-	private long secnum =1;
+	private Editor gc = Editor.getEd();
+	private long secnum = 1;
 
 	@Override
 	public void add(ModelItem item, ModelItem added) {
@@ -64,25 +64,25 @@ public class SectionController implements Controller {
 		return (mi instanceof Fragment || mi instanceof Section);
 	}
 
-  @Override
-  public void setup(ModelItem modelItem) {
-   
-    Section section =(Section) modelItem;
-    section.id = "" + secnum;
-    section.title = "< New >";
-    
-    Text desc = new Text();
-    desc.getController().setup(desc);
-    section.fragments.add(desc);
-    Goto secgoto = new Goto();
-    secgoto.getController().setup(secgoto);
-    section.gotoid=secgoto;
-    TreePath path = gc.tree.getSelectLoc();
-    gc.tree.addToPath(path, section);
-    path = gc.tree.getSelectLoc();
-    gc.tree.addToPath(path,desc);
-    gc.tree.addToPath(path, secgoto);
-    secnum ++;
-  }
+	@Override
+	public void setup(ModelItem modelItem) {
+
+		Section section = (Section) modelItem;
+		section.id = "" + secnum;
+		section.title = "< New >";
+
+		Text desc = new Text();
+		desc.getController().setup(desc);
+		section.fragments.add(desc);
+		Goto secgoto = new Goto();
+		secgoto.getController().setup(secgoto);
+		section.gotoid = secgoto;
+		TreePath path = gc.tree.getSelectLoc();
+		gc.tree.addToPath(path, section);
+		path = gc.tree.getSelectLoc();
+		gc.tree.addToPath(path, desc);
+		gc.tree.addToPath(path, secgoto);
+		secnum++;
+	}
 
 }

@@ -8,21 +8,21 @@ import com.paranhaslett.gamebook.model.fragment.Goto;
 import com.paranhaslett.gamebook.ui.panel.GotoUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
-public class GotoController implements Controller{
+public class GotoController implements Controller {
 	public Loadable loader = new GotoIO();
 	private PanelUI panel = GotoUI.getPanelUI();
-	private Editor gc=Editor.getEd();
+	private Editor gc = Editor.getEd();
 
 	@Override
 	public void add(ModelItem item, ModelItem to) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeMainLabel(ModelItem item, String newLabel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class GotoController implements Controller{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	public void update(ModelItem item) {
 		if (item instanceof Goto) {
 			Goto gotoob = (Goto) item;
@@ -39,9 +39,9 @@ public class GotoController implements Controller{
 		}
 	}
 
-  @Override
-  public void setup(ModelItem modelItem) {
-    
-  }
+	@Override
+	public void setup(ModelItem modelItem) {
+
+	}
 
 }

@@ -6,6 +6,7 @@ import java.util.List;
 import org.w3c.dom.Element;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.ChanceController;
 import com.paranhaslett.gamebook.controller.ChoiceController;
 import com.paranhaslett.gamebook.controller.TextController;
@@ -25,22 +26,24 @@ public class IfIO implements Loadable {
 	private Editor gc = Editor.getEd();
 
 	@Override
-	public ModelItem loadFromXML(Element element) {	
+	public ModelItem loadFromXML(Element element) {
 		If ifob = new If();
 		ifob.lhs = xmlLoader.getText(element, "var");
 		ifob.rhs = xmlLoader.getText(element, "value");
 		ifob.text = xmlLoader.getText(element, "text");
 		List<Element> fragmentElements = xmlLoader.getAllElements(element,
 				"fragments");
-		TextController descC = (TextController)gc.getController("Text");
-		SetController setC = (SetController)gc.getController("Set");
-		ChoiceController choiceC = (ChoiceController)gc.getController("Choice");
-		ChanceController chanceC = (ChanceController)gc.getController("Chance");
-		IfController ifC = (IfController)gc.getController("If");
-		GotoController gotoC = (GotoController)gc.getController("Goto");
-		
+		TextController descC = (TextController) gc.getController(Item.TEXT);
+		SetController setC = (SetController) gc.getController(Item.SET);
+		ChoiceController choiceC = (ChoiceController) gc
+				.getController(Item.CHOICE);
+		ChanceController chanceC = (ChanceController) gc
+				.getController(Item.CHANCE);
+		IfController ifC = (IfController) gc.getController(Item.IF);
+		GotoController gotoC = (GotoController) gc.getController(Item.GOTO);
+
 		for (Element fragmentElement : fragmentElements) {
-			Fragment frag = null;	
+			Fragment frag = null;
 			if (fragmentElement.getNodeName().equals("text")) {
 				frag = (Text) descC.loader.loadFromXML(fragmentElement);
 			}
@@ -57,13 +60,13 @@ public class IfIO implements Loadable {
 				frag = (If) ifC.loader.loadFromXML(fragmentElement);
 			}
 			if (fragmentElement.getNodeName().equals("goto")) {
-				frag = (Goto)gotoC.loader.loadFromXML(fragmentElement);
+				frag = (Goto) gotoC.loader.loadFromXML(fragmentElement);
 			}
-	
+
 			if (frag != null) {
 				ifob.fragments.add(frag);
 			}
-	
+
 		}
 		return ifob;
 	}
@@ -81,8 +84,8 @@ public class IfIO implements Loadable {
 		Text desc = new Text();
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
-		for(String str:content){
-			if(lineBlank || str != ""){
+		for (String str : content) {
+			if (lineBlank || str != "") {
 				sb.append(str);
 				sb.append('\n');
 				lineBlank = false;
@@ -90,7 +93,7 @@ public class IfIO implements Loadable {
 				lineBlank = true;
 			}
 		}
-		desc.text=sb.toString();
+		desc.text = sb.toString();
 		return null;
 
 	}
@@ -100,8 +103,5 @@ public class IfIO implements Loadable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-	
 
 }

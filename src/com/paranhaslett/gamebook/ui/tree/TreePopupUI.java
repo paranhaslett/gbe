@@ -19,31 +19,32 @@ import javax.swing.JMenu;
 
 public class TreePopupUI extends JPopupMenu {
 	private static final long serialVersionUID = -3362291340967409194L;
-	
-	public TreePopupUI(final TreeUI tree){
+
+	public TreePopupUI(final TreeUI tree) {
 		JMenuItem mntmAdd = new JMenuItem("Add");
 		mntmAdd.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree.getLastSelectedPathComponent();
+				DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree
+						.getLastSelectedPathComponent();
 				if (node == null) {
 					return;
 				} // nothing is selected
 
 				Object nodeInfo = node.getUserObject();
 				if (nodeInfo instanceof ModelItem) {
-					ModelItem item = (ModelItem)nodeInfo; 
+					ModelItem item = (ModelItem) nodeInfo;
 					Controller controller = item.getController();
-					//TODO figure out how to specify items
+					// TODO figure out how to specify items
 					controller.add(item, new Section());
 				}
-				
+
 			}
 		});
 		add(mntmAdd);
-		
+
 		JMenu mnAdd = new JMenu("Add");
 		add(mnAdd);
-		
+
 		JMenuItem mntmPage = new JMenuItem("Page");
 		mntmPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
@@ -53,37 +54,35 @@ public class TreePopupUI extends JPopupMenu {
 
 		JMenuItem mntmDelete = new JMenuItem("Delete");
 		add(mntmDelete);
-		
+
 		addPopup(tree, this);
 	}
-	
-	
+
 	private static void addPopup(Component component, final TreePopupUI popup) {
 		final TreeUI tree = (TreeUI) component;
 		component.addMouseListener(new MouseAdapter() {
 			public void mousePressed(MouseEvent e) {
 				if (e.isPopupTrigger()) {
 					Point loc = e.getPoint();
-	                TreePath path  = tree.getPathForLocation(loc.x, loc.y);
-	                //System.out.printf("path = %s%n", path);
-	                if(path == null) {
-	                    e.consume();
-	                    return;
-	                }
-	                tree.setSelectionPath(path);
+					TreePath path = tree.getPathForLocation(loc.x, loc.y);
+					// System.out.printf("path = %s%n", path);
+					if (path == null) {
+						e.consume();
+						return;
+					}
+					tree.setSelectionPath(path);
 					showMenu(e);
 				}
 			}
-		    
 
 			public void mouseReleased(MouseEvent e) {
 				Point loc = e.getPoint();
-                TreePath path  = tree.getPathForLocation(loc.x, loc.y);
-                System.out.printf("path = %s%n", path);
-                if(path == null) {
-                    e.consume();
-                    return;
-                }
+				TreePath path = tree.getPathForLocation(loc.x, loc.y);
+				System.out.printf("path = %s%n", path);
+				if (path == null) {
+					e.consume();
+					return;
+				}
 				if (e.isPopupTrigger()) {
 					showMenu(e);
 				}
@@ -94,7 +93,5 @@ public class TreePopupUI extends JPopupMenu {
 			}
 		});
 	}
-
-
 
 }

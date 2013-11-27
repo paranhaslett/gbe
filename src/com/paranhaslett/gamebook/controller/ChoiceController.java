@@ -9,21 +9,21 @@ import com.paranhaslett.gamebook.model.fragment.branch.Choice;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
-public class ChoiceController implements Controller{
+public class ChoiceController implements Controller {
 	public Loadable loader = new ChoiceIO();
 	private PanelUI panel = TextUI.getPanelUI();
-	private Editor gc=Editor.getEd();
+	private Editor gc = Editor.getEd();
 
 	@Override
 	public void add(ModelItem item, ModelItem to) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeMainLabel(ModelItem item, String newLabel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -31,7 +31,7 @@ public class ChoiceController implements Controller{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	public void update(ModelItem item) {
 		if (item instanceof Choice) {
 			Text set = (Text) item;
@@ -40,9 +40,9 @@ public class ChoiceController implements Controller{
 		}
 	}
 
-  @Override
-  public void setup(ModelItem modelItem) {
+	@Override
+	public void setup(ModelItem modelItem) {
 
-  }
+	}
 
 }

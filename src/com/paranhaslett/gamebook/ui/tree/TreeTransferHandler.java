@@ -30,8 +30,8 @@ public class TreeTransferHandler extends TransferHandler {
 		try {
 			String mimeType = DataFlavor.javaJVMLocalObjectMimeType
 					+ ";class=\""
-					+ com.paranhaslett.gamebook.ui.tree.TreeNodeUI[].class.getName()
-					+ "\"";
+					+ com.paranhaslett.gamebook.ui.tree.TreeNodeUI[].class
+							.getName() + "\"";
 			nodesFlavor = new DataFlavor(mimeType);
 			flavors[0] = nodesFlavor;
 		} catch (ClassNotFoundException e) {
@@ -47,9 +47,10 @@ public class TreeTransferHandler extends TransferHandler {
 		if (!support.isDataFlavorSupported(nodesFlavor)) {
 			return false;
 		}
-		//TODO get all the children of the selected node if not already selected 
-		//as it is a bit of a bugger having to select them manually
-		
+		// TODO get all the children of the selected node if not already
+		// selected
+		// as it is a bit of a bugger having to select them manually
+
 		// Do not allow a drop on the drag source selections.
 		JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
 		JTree tree = (JTree) support.getComponent();
@@ -62,17 +63,19 @@ public class TreeTransferHandler extends TransferHandler {
 		}
 		TreeNodeUI sourceRoot = (TreeNodeUI) tree.getPathForRow(selRows[0])
 				.getLastPathComponent();
-		TreeNodeUI targetRoot =(TreeNodeUI) dl.getPath().getLastPathComponent();
-		ModelItem sourceComponent = (ModelItem)sourceRoot.getUserObject();
-		ModelItem targetComponent = (ModelItem)targetRoot.getUserObject();
+		TreeNodeUI targetRoot = (TreeNodeUI) dl.getPath()
+				.getLastPathComponent();
+		ModelItem sourceComponent = (ModelItem) sourceRoot.getUserObject();
+		ModelItem targetComponent = (ModelItem) targetRoot.getUserObject();
 		System.out.println(sourceComponent + " x " + targetComponent);
-		if(!targetComponent.getController().isDropOn(sourceComponent)){
+		if (!targetComponent.getController().isDropOn(sourceComponent)) {
 			return false;
 		}
 		// Do not allow MOVE-action drops if a non-leaf node is
 		// selected unless all of its children are also selected.
 		int action = support.getDropAction();
-		if (targetComponent instanceof Goto &&  sourceComponent instanceof Section){
+		if (targetComponent instanceof Goto
+				&& sourceComponent instanceof Section) {
 			action = LINK;
 		}
 		if (action == MOVE) {
@@ -81,24 +84,21 @@ public class TreeTransferHandler extends TransferHandler {
 		// Do not allow a non-leaf node to be copied to a level
 		// which is less than its source level.
 		TreePath dest = dl.getPath();
-		TreeNodeUI target = (TreeNodeUI) dest
-				.getLastPathComponent();
+		TreeNodeUI target = (TreeNodeUI) dest.getLastPathComponent();
 		TreePath path = tree.getPathForRow(selRows[0]);
-		TreeNodeUI firstNode = (TreeNodeUI) path
-				.getLastPathComponent();
+		TreeNodeUI firstNode = (TreeNodeUI) path.getLastPathComponent();
 		if (firstNode.getChildCount() > 0
 				&& target.getLevel() < firstNode.getLevel()) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
 	private boolean haveCompleteNode(JTree tree) {
 		int[] selRows = tree.getSelectionRows();
 		TreePath path = tree.getPathForRow(selRows[0]);
-		TreeNodeUI first = (TreeNodeUI) path
-				.getLastPathComponent();
+		TreeNodeUI first = (TreeNodeUI) path.getLastPathComponent();
 		int childCount = first.getChildCount();
 		// first has children and no children are selected.
 		if (childCount > 0 && selRows.length == 1)
@@ -106,8 +106,7 @@ public class TreeTransferHandler extends TransferHandler {
 		// first may have children.
 		for (int i = 1; i < selRows.length; i++) {
 			path = tree.getPathForRow(selRows[i]);
-			TreeNodeUI next = (TreeNodeUI) path
-					.getLastPathComponent();
+			TreeNodeUI next = (TreeNodeUI) path.getLastPathComponent();
 			if (first.isNodeChild(next)) {
 				// Found a child of first.
 				if (childCount > selRows.length - 1) {
@@ -128,14 +127,12 @@ public class TreeTransferHandler extends TransferHandler {
 			// exportDone after a successful drop.
 			List<TreeNodeUI> copies = new ArrayList<TreeNodeUI>();
 			List<TreeNodeUI> toRemove = new ArrayList<TreeNodeUI>();
-			TreeNodeUI node = (TreeNodeUI) paths[0]
-					.getLastPathComponent();
+			TreeNodeUI node = (TreeNodeUI) paths[0].getLastPathComponent();
 			TreeNodeUI copy = copy(node);
 			copies.add(copy);
 			toRemove.add(node);
 			for (int i = 1; i < paths.length; i++) {
-				TreeNodeUI next = (TreeNodeUI) paths[i]
-						.getLastPathComponent();
+				TreeNodeUI next = (TreeNodeUI) paths[i].getLastPathComponent();
 				// Do not allow higher level nodes to be added to list.
 				if (next.getLevel() < node.getLevel()) {
 					break;
@@ -147,10 +144,8 @@ public class TreeTransferHandler extends TransferHandler {
 					toRemove.add(next);
 				}
 			}
-			TreeNodeUI[] nodes = copies
-					.toArray(new TreeNodeUI[copies.size()]);
-			nodesToRemove = toRemove
-					.toArray(new TreeNodeUI[toRemove.size()]);
+			TreeNodeUI[] nodes = copies.toArray(new TreeNodeUI[copies.size()]);
+			nodesToRemove = toRemove.toArray(new TreeNodeUI[toRemove.size()]);
 			return new NodesTransferable(nodes);
 		}
 		return null;
@@ -158,7 +153,7 @@ public class TreeTransferHandler extends TransferHandler {
 
 	/** Defensive copy used in createTransferable. */
 	private TreeNodeUI copy(TreeNode node) {
-		return (TreeNodeUI)(((TreeNodeUI)node).clone());
+		return (TreeNodeUI) (((TreeNodeUI) node).clone());
 	}
 
 	protected void exportDone(JComponent source, Transferable data, int action) {
@@ -166,7 +161,7 @@ public class TreeTransferHandler extends TransferHandler {
 			JTree tree = (JTree) source;
 			DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 			// Remove nodes saved in nodesToRemove in createTransferable.
-			for (TreeNodeUI nodeToRemove: nodesToRemove) {
+			for (TreeNodeUI nodeToRemove : nodesToRemove) {
 				model.removeNodeFromParent(nodeToRemove);
 			}
 		}
@@ -194,8 +189,7 @@ public class TreeTransferHandler extends TransferHandler {
 		JTree.DropLocation dl = (JTree.DropLocation) support.getDropLocation();
 		int childIndex = dl.getChildIndex();
 		TreePath dest = dl.getPath();
-		TreeNodeUI parent = (TreeNodeUI) dest
-				.getLastPathComponent();
+		TreeNodeUI parent = (TreeNodeUI) dest.getLastPathComponent();
 		JTree tree = (JTree) support.getComponent();
 		DefaultTreeModel model = (DefaultTreeModel) tree.getModel();
 		// Configure for drop mode.
@@ -203,7 +197,7 @@ public class TreeTransferHandler extends TransferHandler {
 		if (childIndex == -1) { // DropMode.ON
 			index = parent.getChildCount();
 		}
-		
+
 		// Add data to model.
 		for (int i = 0; i < nodes.length; i++) {
 			model.insertNodeInto(nodes[i], parent, index++);

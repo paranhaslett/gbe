@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.w3c.dom.Element;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.SectionController;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
@@ -18,7 +19,8 @@ public class PageIO implements Loadable {
 		Page page = new Page();
 		// Manditory page_id
 		page.id = element.getAttribute("id");
-		SectionController sc = (SectionController)gc.getController("Section");
+		SectionController sc = (SectionController) gc
+				.getController(Item.SECTION);
 		for (Element sectionEl : xmlLoader.getElements(element, "section")) {
 			Section section = (Section) sc.loader.loadFromXML(sectionEl);
 			page.sections.add(section);
@@ -28,10 +30,11 @@ public class PageIO implements Loadable {
 
 	@Override
 	public Element saveToXML(ModelItem modelItem) {
-		Page page = (Page)modelItem;
+		Page page = (Page) modelItem;
 		Element nodeElement = xmlLoader.doc.createElement("page");
 		nodeElement.setAttribute("id", "" + page.id);
-		SectionController sc = (SectionController)gc.getController("Section");
+		SectionController sc = (SectionController) gc
+				.getController(Item.SECTION);
 		for (Section section : page.sections) {
 			nodeElement.appendChild(sc.loader.saveToXML(section));
 		}

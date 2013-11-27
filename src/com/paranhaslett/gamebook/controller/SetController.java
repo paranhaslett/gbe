@@ -8,21 +8,21 @@ import com.paranhaslett.gamebook.model.fragment.Set;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.SetUI;
 
-public class SetController implements Controller{
+public class SetController implements Controller {
 	public Loadable loader = new SetIO();
 	private PanelUI panel = SetUI.getPanelUI();
-	private Editor gc=Editor.getEd();
+	private Editor gc = Editor.getEd();
 
 	@Override
 	public void add(ModelItem item, ModelItem to) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void changeMainLabel(ModelItem item, String newLabel) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
@@ -30,7 +30,7 @@ public class SetController implements Controller{
 		// TODO Auto-generated method stub
 		return false;
 	}
-	
+
 	public void update(ModelItem item) {
 		if (item instanceof Set) {
 			Set set = (Set) item;
@@ -39,9 +39,9 @@ public class SetController implements Controller{
 		}
 	}
 
-  @Override
-  public void setup(ModelItem modelItem) {
+	@Override
+	public void setup(ModelItem modelItem) {
 
-  }
+	}
 
 }

@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.BookController;
 import com.paranhaslett.gamebook.model.Book;
 
@@ -16,16 +17,17 @@ public class EmaLoader implements Loader {
 
 	@Override
 	public Book load(File file) {
-		
+
 		Book gameBook = new Book();
-		BookController gbController = (BookController)gc.getController("Book");
+		BookController gbController = (BookController) gc
+				.getController(Item.BOOK);
 		BufferedReader reader;
 		ArrayList<String> content = new ArrayList<String>();
 		content.add(file.getParent());
 		try {
 			reader = new BufferedReader(new FileReader(file));
 			String line = null;
-			
+
 			while ((line = reader.readLine()) != null) {
 				content.add(line);
 			}

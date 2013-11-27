@@ -9,13 +9,12 @@ import com.paranhaslett.gamebook.model.fragment.Goto;
 import com.paranhaslett.gamebook.model.fragment.Text;
 
 public class GotoIO implements Loadable {
-	
 
 	@Override
-	public ModelItem loadFromXML(Element element) {	
+	public ModelItem loadFromXML(Element element) {
 		Goto gotoob = new Goto();
 		gotoob.to = element.getAttribute("to");
-		gotoob.text =  element.getTextContent();
+		gotoob.text = element.getTextContent();
 		return gotoob;
 	}
 
@@ -24,8 +23,9 @@ public class GotoIO implements Loadable {
 		Goto gotoob = (Goto) modelItem;
 		Element gotoElement = xmlLoader.doc.createElement("goto");
 		gotoElement.setAttribute("to", gotoob.to);
-		if(gotoob.text != null && !gotoob.text.equals("")){
-		  xmlLoader.setTextElement(xmlLoader.doc, gotoElement, "text", gotoob.text);
+		if (gotoob.text != null && !gotoob.text.equals("")) {
+			xmlLoader.setTextElement(xmlLoader.doc, gotoElement, "text",
+					gotoob.text);
 		}
 		return gotoElement;
 	}
@@ -35,8 +35,8 @@ public class GotoIO implements Loadable {
 		Text desc = new Text();
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
-		for(String str:content){
-			if(lineBlank || str != ""){
+		for (String str : content) {
+			if (lineBlank || str != "") {
 				sb.append(str);
 				sb.append('\n');
 				lineBlank = false;
@@ -44,7 +44,7 @@ public class GotoIO implements Loadable {
 				lineBlank = true;
 			}
 		}
-		desc.text=sb.toString();
+		desc.text = sb.toString();
 		return null;
 
 	}
@@ -54,8 +54,5 @@ public class GotoIO implements Loadable {
 		// TODO Auto-generated method stub
 		return null;
 	}
-
-
-	
 
 }

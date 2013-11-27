@@ -4,9 +4,16 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
+import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.ModelItem;
 
 public class LibraryIO implements Loadable {
+
+	public ModelItem load(Element element) {
+		Library library = new Library();
+
+		return library;
+	}
 
 	@Override
 	public ModelItem loadFromXML(Element element) {
