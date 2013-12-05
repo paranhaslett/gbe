@@ -19,6 +19,7 @@ import com.paranhaslett.gamebook.controller.SetController;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Book;
+import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.ui.EditorUI;
 import com.paranhaslett.gamebook.ui.FileChooserUI;
 import com.paranhaslett.gamebook.ui.FileChooserUI.EmaFilter;
@@ -28,6 +29,7 @@ import com.paranhaslett.gamebook.ui.tree.TreeUI;
 public class Editor {
 	private HashMap<Item, Controller> controllers = new HashMap<Item, Controller>();
 	public Book book;
+	public Library library;
 	public LibraryController lc;
 	private static Editor editor = null;
 	public TreeUI tree;

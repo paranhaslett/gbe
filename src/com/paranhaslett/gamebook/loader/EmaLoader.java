@@ -11,12 +11,13 @@ import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.BookController;
 import com.paranhaslett.gamebook.model.Book;
+import com.paranhaslett.gamebook.model.Library;
 
 public class EmaLoader implements Loader {
 	private Editor gc = Editor.getEd();
 
 	@Override
-	public Book load(File file) {
+	public Book loadBook(File file) {
 
 		Book gameBook = new Book();
 		BookController gbController = (BookController) gc
@@ -47,6 +48,12 @@ public class EmaLoader implements Loader {
 	public void save(Book gameBook, File file) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public Library loadLibrary(File file) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

@@ -20,6 +20,7 @@ import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.BookController;
 import com.paranhaslett.gamebook.model.Book;
+import com.paranhaslett.gamebook.model.Library;
 
 public class XMLLoader implements Loader {
 	public Document doc;
@@ -27,7 +28,7 @@ public class XMLLoader implements Loader {
 	private Element currentElement;
 
 	@Override
-	public Book load(File file) {
+	public Book loadBook(File file) {
 		Book gameBook = null;
 		BookController gbController = (BookController) gc
 				.getController(Item.BOOK);
@@ -170,6 +171,12 @@ public class XMLLoader implements Loader {
 	}
 
 	public String load(String string) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Library loadLibrary(File file) {
 		// TODO Auto-generated method stub
 		return null;
 	}

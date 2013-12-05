@@ -15,8 +15,10 @@ import javax.swing.border.EmptyBorder;
 
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.controller.LibraryController;
+import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.tree.TreeUI;
+
 import java.awt.Toolkit;
 
 public class EditorUI extends JFrame {
@@ -57,18 +59,6 @@ public class EditorUI extends JFrame {
 				lc.loadBook(Editor.getEd());
 			}
 		});
-		
-		JMenu mnNew = new JMenu("New");
-		mnFile.add(mnNew);
-		
-		JMenuItem mntmGamebook = new JMenuItem("Gamebook");
-		mnNew.add(mntmGamebook);
-		
-		JMenuItem mntmSeries = new JMenuItem("Series");
-		mnNew.add(mntmSeries);
-		
-		JMenuItem mntmTemplate = new JMenuItem("Template");
-		mnNew.add(mntmTemplate);
 		mnFile.add(mntmOpen);
 
 		JMenuItem mntmSave = new JMenuItem("Save");
@@ -79,6 +69,15 @@ public class EditorUI extends JFrame {
 			}
 		});
 		mnFile.add(mntmSave);
+		
+		JMenuItem mntmNewLibrary = new JMenuItem("New Library");
+		mntmNewLibrary.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Library lib = new Library();
+				lib.loadLibrary(Editor.getEd());
+			}
+		});
+		mnFile.add(mntmNewLibrary);
 
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);

@@ -21,7 +21,7 @@ public class FileChooserUI extends JFileChooser {
 		setApproveButtonText("Save");
 		if (true) {// debug only
 			setCurrentDirectory(new File(
-					"C:/Users/OWNER/Paran/Study/SWEN422 HCI/Coursework/Visual Assign/workspace/gamebook"));
+					"C:/Users/OWNER/Paran/workspace/GameBookEditor"));
 		}
 		int rVal = showSaveDialog(editorUI);
 		if (rVal == JFileChooser.APPROVE_OPTION) {
@@ -33,7 +33,7 @@ public class FileChooserUI extends JFileChooser {
 	public File loadGameBook(EditorUI editorUI) {
 		if (true) {// debug only
 			setCurrentDirectory(new File(
-					"C:/Users/OWNER/Paran/Study/SWEN422 HCI/Coursework/Visual Assign/workspace/gamebook"));
+					"C:/Users/OWNER/Paran/workspace/GameBookEditor"));
 		}
 		int rVal = showOpenDialog(editorUI);
 		if (rVal == JFileChooser.APPROVE_OPTION) {

@@ -54,7 +54,7 @@ public class LibraryController implements Controller {
 		if (file != null) {
 			Loader loader = Editor.getEd().getLoader();
 			if (loader != null) {
-				editor.book = loader.load(file);
+				editor.book = loader.loadBook(file);
 				Editor.getEd().getController(Item.BOOK).update(editor.book);
 				editor.setupTree();
 			} else {
