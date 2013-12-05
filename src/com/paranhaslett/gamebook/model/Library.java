@@ -4,19 +4,21 @@ import java.io.File;
 import java.util.ArrayList;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.loadable.LibraryIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loader.Loader;
-import com.paranhaslett.gamebook.ui.panel.GameBookUI;
+import com.paranhaslett.gamebook.loader.XMLLoader;
+import com.paranhaslett.gamebook.ui.panel.LibraryUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
 public class Library implements ModelItem, com.paranhaslett.gamebook.controller.Controller {
-	private Loadable loadable = new LibraryIO();
-	private PanelUI panel = GameBookUI.getPanelUI();
+	public Loadable loadable = new LibraryIO();
+	private PanelUI panel = LibraryUI.getPanelUI();
 	private Editor ed = Editor.getEd();
-	private ArrayList<LibraryItem> items = new ArrayList<LibraryItem>();
-	private Loader loader;
+	public ArrayList<LibraryItem> items = new ArrayList<LibraryItem>();
+	public Loader loader = new XMLLoader();
 
 	public String toString() {
 		return "Gamebook Library";
@@ -54,6 +56,13 @@ public class Library implements ModelItem, com.paranhaslett.gamebook.controller.
 	public void setup(ModelItem modelItem) {
 		// library is already setup cant create a new one
 	}
+	
+	public void createBook(Editor editor) {
+		editor.book = new Book();
+		editor.book.title = "New";
+		editor.getController(Item.BOOK).update(editor.book);
+		editor.setupOldTree();
+	}
 
 	public void loadLibrary(Editor editor) {
 		File file = new File ("./library.xml");
@@ -61,13 +70,11 @@ public class Library implements ModelItem, com.paranhaslett.gamebook.controller.
 			Loader loader = Editor.getEd().getLoader();
 			if (loader != null) {
 				editor.library = loader.loadLibrary(file);
-			} else {
-				editor.library = new Library();	
-			}
-			update(editor.library);
-			editor.setupTree();
-		}
-	}
+			} 
+		} 
+		update(editor.library);
+		editor.setupLibraryTree();
+	}	
 
 	public void saveLibrary(Editor editor) {
 		File file = editor.fileChooser.loadGameBook(editor.editorUI);

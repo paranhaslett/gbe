@@ -67,15 +67,8 @@ public class Editor {
 		fileChooser = new FileChooserUI();
 		editorUI = new EditorUI();
 		editorUI.setVisible(true);
-		// load library file silently
-		create();
-	}
-
-	/**
-	 * @deprecated Use {@link com.paranhaslett.gamebook.controller.LibraryController#createBook(com.paranhaslett.gamebook.Editor)} instead
-	 */
-	public void create() {
-		lc.createBook(this);
+		library = new Library();
+		library.loadLibrary(editor);
 	}
 
 	public Loader getLoader() {
@@ -90,8 +83,14 @@ public class Editor {
 		return loader;
 	}
 
-	public void setupTree() {
-		tree.setup(book);
+	@Deprecated
+	public void setupOldTree() {
+		tree.book(book);
+		editorUI.updateTree(tree);
+	}
+	
+	public void setupLibraryTree() {
+		tree.setup(library);
 		editorUI.updateTree(tree);
 	}
 

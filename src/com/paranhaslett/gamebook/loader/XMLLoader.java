@@ -175,16 +175,33 @@ public class XMLLoader implements Loader {
 		return null;
 	}
 
-	@Override
-	public Library loadLibrary(File file) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+	
 
 	/*
 	 * load from attribute load from text load from sub element load from sub
 	 * elements load from open file open and close appropriate file load from
 	 * file chooser
 	 */
+	
+	@Override
+	public Library loadLibrary(File file) {
+		Library library = new Library();
+		try {
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.parse(file);
+			doc.getDocumentElement().normalize();
+			Node nNode = doc.getDocumentElement();
+			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+				Element element = (Element) nNode;
+				library = (Library) library.loadable.loadFromXML(element);
+			}
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return library;
+	}
 
 }

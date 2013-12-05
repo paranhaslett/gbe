@@ -11,6 +11,8 @@ import javax.swing.tree.TreePath;
 import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.model.Fragment;
 import com.paranhaslett.gamebook.model.Book;
+import com.paranhaslett.gamebook.model.Library;
+import com.paranhaslett.gamebook.model.LibraryItem;
 import com.paranhaslett.gamebook.model.ModelContainer;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
@@ -49,8 +51,22 @@ public class TreeUI extends JTree {
 		setEditable(true);
 		new TreePopupUI(this);
 	}
+	
+	public void setup(Library gameBook) {
+		TreeNodeUI library = new TreeNodeUI(gameBook);
 
-	public void setup(Book gameBook) {
+		for (LibraryItem item : gameBook.items) {
+			TreeNodeUI itemNode = book((Book) item);	
+			library.add(itemNode);
+		}
+	
+		setModel(new DefaultTreeModel(library));
+		selectedPath = new TreePath(library.getPath());
+		setSelectionPath(selectedPath);
+		selection = gameBook;
+	}
+
+	public TreeNodeUI book(Book gameBook) {
 		TreeNodeUI root = new TreeNodeUI(gameBook);
 
 		for (Page page : gameBook.pages) {
@@ -77,6 +93,7 @@ public class TreeUI extends JTree {
 		selectedPath = new TreePath(root.getPath());
 		setSelectionPath(selectedPath);
 		selection = gameBook;
+		return root;
 	}
 
 	private TreeNodeUI fragments(ModelContainer section) {

@@ -56,7 +56,7 @@ public class LibraryController implements Controller {
 			if (loader != null) {
 				editor.book = loader.loadBook(file);
 				Editor.getEd().getController(Item.BOOK).update(editor.book);
-				editor.setupTree();
+				editor.setupOldTree();
 			} else {
 				createBook(editor);
 			}
@@ -80,7 +80,7 @@ public class LibraryController implements Controller {
 		editor.book = new Book();
 		editor.book.title = "New";
 		editor.getController(Item.BOOK).update(editor.book);
-		editor.setupTree();
+		editor.setupOldTree();
 	}
 
 }
