@@ -19,8 +19,8 @@ import org.w3c.dom.NodeList;
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.BookController;
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.Library;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class XMLLoader implements Loader {
 	public Document doc;

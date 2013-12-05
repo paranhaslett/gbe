@@ -1,10 +1,13 @@
-package com.paranhaslett.gamebook.model;
+package com.paranhaslett.gamebook.model.libraryitem;
 
 import java.util.ArrayList;
 
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.Controller;
+import com.paranhaslett.gamebook.model.LibraryItem;
+import com.paranhaslett.gamebook.model.Page;
+import com.paranhaslett.gamebook.model.Section;
 
 public class Book implements LibraryItem {
 	public String title;

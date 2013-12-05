@@ -9,18 +9,18 @@ import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
 
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
-import com.paranhaslett.gamebook.model.Series;
-import com.paranhaslett.gamebook.model.Template;
 import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.Goto;
 import com.paranhaslett.gamebook.model.fragment.Set;
 import com.paranhaslett.gamebook.model.fragment.branch.Chance;
 import com.paranhaslett.gamebook.model.fragment.branch.Choice;
 import com.paranhaslett.gamebook.model.fragment.branch.If;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.libraryitem.Series;
+import com.paranhaslett.gamebook.model.libraryitem.Template;
 
 public class TreeRendererUI extends DefaultTreeCellRenderer {
 	private static final long serialVersionUID = -4221259711269183060L;

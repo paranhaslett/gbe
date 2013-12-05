@@ -13,10 +13,10 @@ import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.PageController;
 import com.paranhaslett.gamebook.controller.SectionController;
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class BookIO implements Loadable {
 	private Editor gc = Editor.getEd();

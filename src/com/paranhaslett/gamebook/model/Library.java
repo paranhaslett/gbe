@@ -10,6 +10,7 @@ import com.paranhaslett.gamebook.loadable.LibraryIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.loader.XMLLoader;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 import com.paranhaslett.gamebook.ui.panel.LibraryUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 

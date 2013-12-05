@@ -7,10 +7,10 @@ import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.loadable.LibraryIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loader.Loader;
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.LibraryItem;
 import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 import com.paranhaslett.gamebook.ui.panel.GameBookUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 

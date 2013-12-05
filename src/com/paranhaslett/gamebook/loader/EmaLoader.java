@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.Editor.Item;
 import com.paranhaslett.gamebook.controller.BookController;
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.Library;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class EmaLoader implements Loader {
 	private Editor gc = Editor.getEd();

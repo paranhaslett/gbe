@@ -2,8 +2,8 @@ package com.paranhaslett.gamebook.loader;
 
 import java.io.File;
 
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.Library;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public interface Loader {
 

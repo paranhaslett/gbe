@@ -10,13 +10,13 @@ import javax.swing.tree.TreePath;
 
 import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.model.Fragment;
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.LibraryItem;
 import com.paranhaslett.gamebook.model.ModelContainer;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class TreeUI extends JTree {
 	private static final long serialVersionUID = -4252742793844024659L;

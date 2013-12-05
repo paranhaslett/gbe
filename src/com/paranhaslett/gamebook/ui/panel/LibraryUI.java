@@ -12,10 +12,10 @@ import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.paranhaslett.gamebook.controller.Controller;
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Section;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class LibraryUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
@@ -64,6 +64,9 @@ public class LibraryUI extends PanelUI {
 			public void actionPerformed(ActionEvent e) {
 			}
 		});
+		
+		JButton btnLoadTemplate = new JButton("Load Template");
+		btnLoadTemplate.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/template.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -80,8 +83,10 @@ public class LibraryUI extends PanelUI {
 								.addComponent(btnLoadSeries, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 								.addComponent(btnAddSection, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
 							.addGap(6)
-							.addComponent(btnAddTemplate)))
-					.addContainerGap(101, Short.MAX_VALUE))
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnAddTemplate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnLoadTemplate, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+					.addContainerGap(97, Short.MAX_VALUE))
 		);
 		groupLayout.setVerticalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)
@@ -96,7 +101,8 @@ public class LibraryUI extends PanelUI {
 					.addPreferredGap(ComponentPlacement.RELATED)
 					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
 						.addComponent(btnLoadBook, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
-						.addComponent(btnLoadSeries, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+						.addComponent(btnLoadSeries, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLoadTemplate, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
 					.addContainerGap(211, Short.MAX_VALUE))
 		);
 		setLayout(groupLayout);

@@ -14,10 +14,10 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.controller.Controller;
-import com.paranhaslett.gamebook.model.Book;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class GameBookUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
