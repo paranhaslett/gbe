@@ -1,0 +1,128 @@
+package com.paranhaslett.gamebook.ui.panel;
+
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
+import javax.swing.GroupLayout;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.LayoutStyle.ComponentPlacement;
+
+import com.paranhaslett.gamebook.controller.Controller;
+import com.paranhaslett.gamebook.model.Book;
+import com.paranhaslett.gamebook.model.Library;
+import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Section;
+
+public class LibraryUI extends PanelUI {
+	private static final long serialVersionUID = -6099292917735976714L;
+	private static PanelUI panelUI;
+	private Library model;
+
+	/**
+	 * Create the panel.
+	 */
+	private LibraryUI() {
+
+		JButton btnAddSection = new JButton("Add Series");
+		btnAddSection.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
+		btnAddSection.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				// Controller controller = model.getController();
+				Section section = new Section();
+				section.getController().setup(section);
+			}
+		});
+
+		JButton btnAddPage = new JButton("Add Book");
+		btnAddPage.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/gamebook.png")));
+		btnAddPage.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Controller controller = model.getController();
+				Book book = new Book();
+				book.getController().setup(book);
+				controller.add(model, book);
+			}
+		});
+
+		JLabel lblGameBook = new JLabel("Library");
+		lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblGameBook.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/library.png")));
+		
+		JButton btnAddTemplate = new JButton("Add Template");
+		btnAddTemplate.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/template.png")));
+		
+		JButton btnLoadBook = new JButton("Load Book");
+		btnLoadBook.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/gamebook.png")));
+		
+		JButton btnLoadSeries = new JButton("Load Series");
+		btnLoadSeries.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
+		btnLoadSeries.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+			}
+		});
+		GroupLayout groupLayout = new GroupLayout(this);
+		groupLayout.setHorizontalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+						.addComponent(lblGameBook)
+						.addGroup(groupLayout.createSequentialGroup()
+							.addGroup(groupLayout.createParallelGroup(Alignment.TRAILING, false)
+								.addComponent(btnAddPage, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnLoadBook, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addPreferredGap(ComponentPlacement.RELATED)
+							.addGroup(groupLayout.createParallelGroup(Alignment.LEADING, false)
+								.addComponent(btnLoadSeries, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+								.addComponent(btnAddSection, Alignment.TRAILING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+							.addGap(6)
+							.addComponent(btnAddTemplate)))
+					.addContainerGap(101, Short.MAX_VALUE))
+		);
+		groupLayout.setVerticalGroup(
+			groupLayout.createParallelGroup(Alignment.LEADING)
+				.addGroup(groupLayout.createSequentialGroup()
+					.addContainerGap()
+					.addComponent(lblGameBook)
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnAddPage)
+						.addComponent(btnAddSection)
+						.addComponent(btnAddTemplate, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addPreferredGap(ComponentPlacement.RELATED)
+					.addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+						.addComponent(btnLoadBook, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE)
+						.addComponent(btnLoadSeries, GroupLayout.PREFERRED_SIZE, 25, GroupLayout.PREFERRED_SIZE))
+					.addContainerGap(211, Short.MAX_VALUE))
+		);
+		setLayout(groupLayout);
+
+	}
+
+	public void setup(String title) {
+		//no setup
+	}
+
+	public static PanelUI getPanelUI() {
+		if (panelUI == null) {
+			panelUI = new LibraryUI();
+		}
+		return panelUI;
+	}
+
+	@Override
+	public void populatePanel(ModelItem modelItem) {
+		model = (Library) modelItem;
+
+	}
+
+	@Override
+	public void populateModel() {
+		// TODO Auto-generated method stub
+		
+	}
+}
