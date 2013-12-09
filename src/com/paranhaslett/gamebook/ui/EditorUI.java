@@ -1,9 +1,11 @@
 package com.paranhaslett.gamebook.ui;
 
 import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
@@ -14,12 +16,8 @@ import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.controller.LibraryController;
-import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.tree.TreeUI;
-
-import java.awt.Toolkit;
 
 public class EditorUI extends JFrame {
 	private static final long serialVersionUID = 6198693420541435623L;
@@ -43,41 +41,14 @@ public class EditorUI extends JFrame {
 		JMenu mnFile = new JMenu("File");
 		menuBar.add(mnFile);
 
-		JMenuItem mntmNew = new JMenuItem("New");
-		mntmNew.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				LibraryController lc = (LibraryController)Editor.getEd().lc;
-				lc.createBook(Editor.getEd());
-			}
-		});
-		mnFile.add(mntmNew);
-
-		JMenuItem mntmOpen = new JMenuItem("Open");
-		mntmOpen.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				LibraryController lc = (LibraryController)Editor.getEd().lc;
-				lc.loadBook(Editor.getEd());
-			}
-		});
-		mnFile.add(mntmOpen);
-
 		JMenuItem mntmSave = new JMenuItem("Save");
+		mntmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
 		mntmSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				LibraryController lc = (LibraryController)Editor.getEd().lc;
-				lc.saveBook(Editor.getEd());
+				Editor.getEd().library.saveLibrary(Editor.getEd());
 			}
 		});
 		mnFile.add(mntmSave);
-		
-		JMenuItem mntmNewLibrary = new JMenuItem("New Library");
-		mntmNewLibrary.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Library lib = new Library();
-				lib.loadLibrary(Editor.getEd());
-			}
-		});
-		mnFile.add(mntmNewLibrary);
 
 		JMenu mnEdit = new JMenu("Edit");
 		menuBar.add(mnEdit);

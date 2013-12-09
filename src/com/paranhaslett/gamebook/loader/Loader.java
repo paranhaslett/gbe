@@ -12,4 +12,6 @@ public interface Loader {
 	Library loadLibrary(File file);
 
 	void save(Book gameBook, File file);
+	
+	void save(Library library, File file);
 }

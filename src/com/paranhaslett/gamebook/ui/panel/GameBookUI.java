@@ -13,7 +13,6 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
@@ -49,7 +48,7 @@ public class GameBookUI extends PanelUI {
 			public void actionPerformed(ActionEvent e) {
 				// Controller controller = model.getController();
 				Section section = new Section();
-				section.getController().setup(section);
+				section.setup(section);
 			}
 		});
 
@@ -58,10 +57,9 @@ public class GameBookUI extends PanelUI {
 				.getResource("/icons/tree/page.png")));
 		btnAddPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Page page = new Page();
-				page.getController().setup(page);
-				controller.add(model, page);
+				page.setup(page);
+				model.add(page);
 			}
 		});
 

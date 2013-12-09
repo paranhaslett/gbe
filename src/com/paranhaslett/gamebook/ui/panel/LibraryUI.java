@@ -11,11 +11,11 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.ModelItem;
-import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.libraryitem.Series;
+import com.paranhaslett.gamebook.model.libraryitem.Template;
 
 public class LibraryUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
@@ -31,9 +31,9 @@ public class LibraryUI extends PanelUI {
 		btnAddSection.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
 		btnAddSection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Controller controller = model.getController();
-				Section section = new Section();
-				section.getController().setup(section);
+				Series series = new Series();
+				series.setup(series);
+				model.add(series);
 			}
 		});
 
@@ -41,10 +41,9 @@ public class LibraryUI extends PanelUI {
 		btnAddPage.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/gamebook.png")));
 		btnAddPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Book book = new Book();
-				book.getController().setup(book);
-				controller.add(model, book);
+				book.setup(book);
+				model.add(book);
 			}
 		});
 
@@ -53,6 +52,13 @@ public class LibraryUI extends PanelUI {
 		lblGameBook.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/library.png")));
 		
 		JButton btnAddTemplate = new JButton("Add Template");
+		btnAddTemplate.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Template template = new Template();
+				template.getController().setup(template);
+				model.add(template);
+			}
+		});
 		btnAddTemplate.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/template.png")));
 		
 		JButton btnLoadBook = new JButton("Load Book");

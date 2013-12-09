@@ -17,8 +17,6 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.Editor.Item;
-import com.paranhaslett.gamebook.controller.BookController;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
 
@@ -30,8 +28,6 @@ public class XMLLoader implements Loader {
 	@Override
 	public Book loadBook(File file) {
 		Book gameBook = null;
-		BookController gbController = (BookController) gc
-				.getController(Item.BOOK);
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
@@ -41,7 +37,7 @@ public class XMLLoader implements Loader {
 			Node nNode = doc.getDocumentElement();
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element) nNode;
-				gameBook = (Book) gbController.loader.loadFromXML(element);
+				gameBook = (Book) Book.loadable.loadFromXML(element);
 			}
 
 		} catch (Exception e) {
@@ -52,15 +48,13 @@ public class XMLLoader implements Loader {
 
 	@Override
 	public void save(Book gameBook, File file) {
-		BookController gbController = (BookController) gc
-				.getController(Item.BOOK);
 		try {
 
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			doc = dBuilder.newDocument();
-			doc.appendChild(gbController.loader.saveToXML(gameBook));
+			doc.appendChild(Book.loadable.saveToXML(gameBook));
 
 			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory
@@ -202,6 +196,29 @@ public class XMLLoader implements Loader {
 			e.printStackTrace();
 		}
 		return library;
+	}
+
+	@Override
+	public void save(Library library, File file) {
+		try {
+
+			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
+					.newInstance();
+			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+			doc = dBuilder.newDocument();
+			doc.appendChild(Library.loadable.saveToXML(library));
+
+			// write the content into xml file
+			TransformerFactory transformerFactory = TransformerFactory
+					.newInstance();
+			Transformer transformer = transformerFactory.newTransformer();
+			DOMSource source = new DOMSource(doc);
+			StreamResult result = new StreamResult(file);
+
+			transformer.transform(source, result);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

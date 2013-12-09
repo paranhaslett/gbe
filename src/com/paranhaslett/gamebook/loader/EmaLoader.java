@@ -7,21 +7,15 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.Editor.Item;
-import com.paranhaslett.gamebook.controller.BookController;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class EmaLoader implements Loader {
-	private Editor gc = Editor.getEd();
 
 	@Override
 	public Book loadBook(File file) {
 
-		Book gameBook = new Book();
-		BookController gbController = (BookController) gc
-				.getController(Item.BOOK);
+		Book gameBook = null;
 		BufferedReader reader;
 		ArrayList<String> content = new ArrayList<String>();
 		content.add(file.getParent());
@@ -32,7 +26,7 @@ public class EmaLoader implements Loader {
 			while ((line = reader.readLine()) != null) {
 				content.add(line);
 			}
-			gameBook = (Book) gbController.loader.loadFromEma(content);
+			gameBook = (Book) Book.loadable.loadFromEma(content);
 			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -40,6 +34,9 @@ public class EmaLoader implements Loader {
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}
+		if (gameBook == null){
+			gameBook = new Book();
 		}
 		return gameBook;
 	}
@@ -54,6 +51,12 @@ public class EmaLoader implements Loader {
 	public Library loadLibrary(File file) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public void save(Library library, File file) {
+		// TODO Auto-generated method stub
+
 	}
 
 }

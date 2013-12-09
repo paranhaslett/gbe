@@ -9,31 +9,23 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
-import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.Editor.Item;
-import com.paranhaslett.gamebook.controller.PageController;
-import com.paranhaslett.gamebook.controller.SectionController;
 import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class BookIO implements Loadable {
-	private Editor gc = Editor.getEd();
 
-	public ModelItem loadFromXML(Element element) {
+	public Book loadFromXML(Element element) {
 		Book gameBook = new Book();
 		gameBook.title = xmlLoader.load("title");
 		gameBook.title = element.getAttribute("title");// Manditory name
-		PageController pc = (PageController) gc.getController(Item.PAGE);
 		for (Element pageElement : xmlLoader.getElements(element, "page")) {
-			Page page = (Page) pc.loader.loadFromXML(pageElement);
+			Page page = (Page) Page.loadable.loadFromXML(pageElement);
 			gameBook.pages.add(page);
 		}
-		SectionController sc = (SectionController) gc
-				.getController(Item.SECTION);
 		for (Element sectionElement : xmlLoader.getElements(element, "section")) {
-			Section section = (Section) sc.loader.loadFromXML(sectionElement);
+			Section section = (Section) Section.loadable.loadFromXML(sectionElement);
 			gameBook.freeSections.add(section);
 		}
 		return gameBook;
@@ -46,20 +38,17 @@ public class BookIO implements Loadable {
 		if (gameBook.title != null) {
 			nodeElement.setAttribute("name", gameBook.title);
 		}
-		PageController pc = (PageController) gc.getController(Item.PAGE);
 		for (Page page : gameBook.pages) {
-			nodeElement.appendChild(pc.loader.saveToXML(page));
+			nodeElement.appendChild(Page.loadable.saveToXML(page));
 		}
-		SectionController sc = (SectionController) gc
-				.getController(Item.SECTION);
 		for (Section section : gameBook.freeSections) {
-			nodeElement.appendChild(sc.loader.saveToXML(section));
+			nodeElement.appendChild(Section.loadable.saveToXML(section));
 		}
 		return nodeElement;
 	}
 
 	@Override
-	public ModelItem loadFromEma(ArrayList<String> content) {
+	public Book loadFromEma(ArrayList<String> content) {
 		Book gameBook = new Book();
 		// get the gamebook name from content
 		String path = content.get(0);
@@ -72,8 +61,6 @@ public class BookIO implements Loadable {
 		}
 		File[] files = new File(path).listFiles();
 
-		SectionController sc = (SectionController) gc
-				.getController(Item.SECTION);
 		for (File file : files) {
 			String entryname = file.getName();
 			if (entryname.endsWith(".txt")
@@ -103,7 +90,7 @@ public class BookIO implements Loadable {
 						e.printStackTrace();
 					}
 
-					Section section = (Section) sc.loader
+					Section section = (Section) Section.loadable
 							.loadFromEma(entryContent);
 					gameBook.freeSections.add(section);
 
