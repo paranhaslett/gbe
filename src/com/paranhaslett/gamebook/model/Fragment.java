@@ -1,5 +1,5 @@
 package com.paranhaslett.gamebook.model;
 
-public interface Fragment extends ModelItem {
+public interface Fragment extends Item {
 
 }

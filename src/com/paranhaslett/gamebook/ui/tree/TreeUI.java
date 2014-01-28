@@ -8,19 +8,20 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.model.Fragment;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.LibraryItem;
 import com.paranhaslett.gamebook.model.ModelContainer;
-import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.libraryitem.Series;
+import com.paranhaslett.gamebook.model.libraryitem.Template;
 
 public class TreeUI extends JTree {
 	private static final long serialVersionUID = -4252742793844024659L;
-	private ModelItem selection;
+	private Item selection;
 	private TreePath selectedPath;
 
 	public TreeUI() {
@@ -37,12 +38,11 @@ public class TreeUI extends JTree {
 				} // nothing is selected
 
 				Object nodeInfo = node.getUserObject();
-				if (nodeInfo instanceof ModelItem) {
+				if (nodeInfo instanceof Item) {
 					selectedPath = new TreePath(node.getPath());
 					setSelectionPath(selectedPath);
-					selection = (ModelItem) nodeInfo;
-					Controller controller = selection.getController();
-					controller.update(selection);
+					selection = (Item) nodeInfo;
+					selection.update();
 
 				}
 			}
@@ -52,18 +52,56 @@ public class TreeUI extends JTree {
 		new TreePopupUI(this);
 	}
 	
-	public void setup(Library gameBook) {
-		TreeNodeUI library = new TreeNodeUI(gameBook);
+	public void setup(Library lib) {
+		TreeNodeUI library = new TreeNodeUI(lib);
 
-		for (LibraryItem item : gameBook.items) {
-			TreeNodeUI itemNode = book((Book) item);	
+		for (LibraryItem item : lib.items) {
+			TreeNodeUI itemNode = null;
+			if (item instanceof Book){
+				itemNode = book((Book)item);	
+			}
+			if (item instanceof Series){
+				itemNode = series((Series)item);	
+			}
+			if (item instanceof Template){
+				itemNode = template((Template)item);	
+			}
 			library.add(itemNode);
 		}
 	
 		setModel(new DefaultTreeModel(library));
 		selectedPath = new TreePath(library.getPath());
 		setSelectionPath(selectedPath);
-		selection = gameBook;
+		selection = lib;
+	}
+	
+	public TreeNodeUI series(Series series) {
+		TreeNodeUI seriesNode = new TreeNodeUI(series);
+		
+		for (LibraryItem item : series.books) {
+			TreeNodeUI itemNode = book((Book)item);	
+			seriesNode.add(itemNode);
+		}
+		setModel(new DefaultTreeModel(seriesNode));
+		selectedPath = new TreePath(seriesNode.getPath());
+		setSelectionPath(selectedPath);
+		selection = series;
+		return seriesNode;
+	}
+	
+	public TreeNodeUI template(Template template) {
+		TreeNodeUI root = new TreeNodeUI(template);
+
+		for (Item page : template.items) {
+			TreeNodeUI pageNode = new TreeNodeUI(page);
+			
+			root.add(pageNode);
+		}
+		setModel(new DefaultTreeModel(root));
+		selectedPath = new TreePath(root.getPath());
+		setSelectionPath(selectedPath);
+		selection = template;
+		return root;
 	}
 
 	public TreeNodeUI book(Book gameBook) {
@@ -109,7 +147,7 @@ public class TreeUI extends JTree {
 		return sectionNode;
 	}
 
-	public ModelItem getSelection() {
+	public Item getSelection() {
 		return selection;
 	}
 
@@ -118,7 +156,7 @@ public class TreeUI extends JTree {
 		((DefaultTreeModel) this.getModel()).nodeChanged((TreeNode) node);
 	}
 
-	public void addToSel(ModelItem childValue) {
+	public void addToSel(Item childValue) {
 		TreeNodeUI parent = (TreeNodeUI) selectedPath.getLastPathComponent();
 		TreeNodeUI child = new TreeNodeUI(childValue);
 		int lastindex = parent.getChildCount();
@@ -135,7 +173,7 @@ public class TreeUI extends JTree {
 		return selectedPath;
 	}
 
-	public void addToPath(TreePath path, ModelItem childValue) {
+	public void addToPath(TreePath path, Item childValue) {
 		TreeNodeUI parent = (TreeNodeUI) path.getLastPathComponent();
 		TreeNodeUI child = new TreeNodeUI(childValue);
 		int lastindex = parent.getChildCount();

@@ -4,20 +4,20 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.fragment.Text;
 
 public class TextIO implements Loadable {
 
 	@Override
-	public ModelItem loadFromXML(Element element) {
+	public Item loadFromXML(Element element) {
 		Text desc = new Text();
 		desc.text = element.getTextContent();
 		return desc;
 	}
 
 	@Override
-	public Element saveToXML(ModelItem modelItem) {
+	public Element saveToXML(Item modelItem) {
 		Text desc = (Text) modelItem;
 		Element descElement = xmlLoader.doc.createElement("descripton");
 		descElement.appendChild(xmlLoader.doc.createTextNode(desc.text));
@@ -25,7 +25,7 @@ public class TextIO implements Loadable {
 	}
 
 	@Override
-	public ModelItem loadFromEma(ArrayList<String> content) {
+	public Item loadFromEma(ArrayList<String> content) {
 		Text desc = new Text();
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
@@ -44,7 +44,7 @@ public class TextIO implements Loadable {
 	}
 
 	@Override
-	public ArrayList<String> saveToEma(ModelItem modelItem) {
+	public ArrayList<String> saveToEma(Item modelItem) {
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.fragment.Set;
 
 public class SetIO implements Loadable {
 
 	@Override
-	public ModelItem loadFromXML(Element element) {
+	public Item loadFromXML(Element element) {
 		Set set = new Set();
 		set.var = element.getAttribute("var");
 		set.value = xmlLoader.getText(element, "value");
@@ -19,7 +19,7 @@ public class SetIO implements Loadable {
 	}
 
 	@Override
-	public Element saveToXML(ModelItem modelItem) {
+	public Element saveToXML(Item modelItem) {
 		Set set = (Set) modelItem;
 		Element setElement = xmlLoader.doc.createElement("set");
 		setElement.setAttribute("var", set.var);
@@ -34,7 +34,7 @@ public class SetIO implements Loadable {
 	}
 
 	@Override
-	public ModelItem loadFromEma(ArrayList<String> content) {
+	public Item loadFromEma(ArrayList<String> content) {
 		// Set desc = new Set();
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
@@ -52,7 +52,7 @@ public class SetIO implements Loadable {
 	}
 
 	@Override
-	public ArrayList<String> saveToEma(ModelItem modelItem) {
+	public ArrayList<String> saveToEma(Item modelItem) {
 		// TODO Auto-generated method stub
 		return null;
 	}

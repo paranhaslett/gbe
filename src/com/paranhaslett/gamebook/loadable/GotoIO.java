@@ -4,14 +4,14 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.fragment.Goto;
 import com.paranhaslett.gamebook.model.fragment.Text;
 
 public class GotoIO implements Loadable {
 
 	@Override
-	public ModelItem loadFromXML(Element element) {
+	public Item loadFromXML(Element element) {
 		Goto gotoob = new Goto();
 		gotoob.to = element.getAttribute("to");
 		gotoob.text = element.getTextContent();
@@ -19,7 +19,7 @@ public class GotoIO implements Loadable {
 	}
 
 	@Override
-	public Element saveToXML(ModelItem modelItem) {
+	public Element saveToXML(Item modelItem) {
 		Goto gotoob = (Goto) modelItem;
 		Element gotoElement = xmlLoader.doc.createElement("goto");
 		gotoElement.setAttribute("to", gotoob.to);
@@ -31,7 +31,7 @@ public class GotoIO implements Loadable {
 	}
 
 	@Override
-	public ModelItem loadFromEma(ArrayList<String> content) {
+	public Item loadFromEma(ArrayList<String> content) {
 		Text desc = new Text();
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
@@ -50,7 +50,7 @@ public class GotoIO implements Loadable {
 	}
 
 	@Override
-	public ArrayList<String> saveToEma(ModelItem modelItem) {
+	public ArrayList<String> saveToEma(Item modelItem) {
 		// TODO Auto-generated method stub
 		return null;
 	}

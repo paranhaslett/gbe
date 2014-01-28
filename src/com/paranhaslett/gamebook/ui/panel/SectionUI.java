@@ -13,11 +13,10 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.controller.Controller;
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
-import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.Set;
+import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.branch.Chance;
 import com.paranhaslett.gamebook.model.fragment.branch.Choice;
 import com.paranhaslett.gamebook.model.fragment.branch.If;
@@ -57,20 +56,18 @@ public class SectionUI extends PanelUI {
 				.getResource("/icons/tree/desc.png")));
 		btnDescription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Text chance = new Text();
-				chance.getController().setup(chance);
-				controller.add(model, chance);
+				chance.setup();
+				model.add(chance);
 			}
 		});
 
 		JButton btnSet = new JButton("Add Set");
 		btnSet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Set set = new Set();
-				set.getController().setup(set);
-				controller.add(model, set);
+				set.setup();
+				model.add(set);
 			}
 		});
 		btnSet.setIcon(new ImageIcon(SectionUI.class
@@ -79,10 +76,9 @@ public class SectionUI extends PanelUI {
 		JButton btnChance = new JButton("Add Chance");
 		btnChance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Chance chance = new Chance();
-				chance.getController().setup(chance);
-				controller.add(model, chance);
+				chance.setup();
+				model.add(chance);
 			}
 		});
 		btnChance.setIcon(new ImageIcon(SectionUI.class
@@ -91,10 +87,9 @@ public class SectionUI extends PanelUI {
 		JButton btnChoice = new JButton("Add Choice");
 		btnChoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Choice choice = new Choice();
-				choice.getController().setup(choice);
-				controller.add(model, choice);
+				choice.setup();
+				model.add(choice);
 			}
 		});
 		btnChoice.setIcon(new ImageIcon(SectionUI.class
@@ -103,10 +98,9 @@ public class SectionUI extends PanelUI {
 		JButton btnIf = new JButton("Add If");
 		btnIf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
-				If chance = new If();
-				chance.getController().setup(chance);
-				controller.add(model, chance);
+				If ef = new If();
+				ef.setup();
+				model.add(ef);
 			}
 		});
 		btnIf.setIcon(new ImageIcon(SectionUI.class
@@ -221,7 +215,7 @@ public class SectionUI extends PanelUI {
 	}
 
 	@Override
-	public void populatePanel(ModelItem modelItem) {
+	public void populatePanel(Item modelItem) {
 		model = (Section) modelItem;
 		lblHeading.setText("Section " + model.id);
 		textTitle.setText(model.title);

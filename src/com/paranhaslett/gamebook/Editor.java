@@ -1,19 +1,9 @@
 package com.paranhaslett.gamebook;
 
 import java.awt.EventQueue;
-import java.util.HashMap;
 
 import javax.swing.filechooser.FileFilter;
 
-import com.paranhaslett.gamebook.controller.ChanceController;
-import com.paranhaslett.gamebook.controller.ChoiceController;
-import com.paranhaslett.gamebook.controller.Controller;
-import com.paranhaslett.gamebook.controller.GotoController;
-import com.paranhaslett.gamebook.controller.IfController;
-import com.paranhaslett.gamebook.controller.PageController;
-import com.paranhaslett.gamebook.controller.SectionController;
-import com.paranhaslett.gamebook.controller.SetController;
-import com.paranhaslett.gamebook.controller.TextController;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Library;
@@ -24,16 +14,11 @@ import com.paranhaslett.gamebook.ui.FileChooserUI.GameBookFilter;
 import com.paranhaslett.gamebook.ui.tree.TreeUI;
 
 public class Editor {
-	private HashMap<Item, Controller> controllers = new HashMap<Item, Controller>();
 	public Library library;
 	private static Editor editor = null;
 	public TreeUI tree;
 	public EditorUI editorUI;
 	public FileChooserUI fileChooser;
-
-	public static enum Item {
-		 SECTION, PAGE, TEXT, CHANCE, SET, CHOICE, IF, GOTO, OP
-	}
 
 	private Editor() {
 	}
@@ -48,14 +33,6 @@ public class Editor {
 	}
 
 	private void init() {
-		//controllers.put(Item.SECTION, new SectionController());
-		//controllers.put(Item.PAGE, new PageController());
-		controllers.put(Item.TEXT, new TextController());
-		controllers.put(Item.CHANCE, new ChanceController());
-		controllers.put(Item.CHOICE, new ChoiceController());
-		controllers.put(Item.SET, new SetController());
-		controllers.put(Item.IF, new IfController());
-		controllers.put(Item.GOTO, new GotoController());
 		tree = new TreeUI();
 		fileChooser = new FileChooserUI();
 		editorUI = new EditorUI();
@@ -83,11 +60,6 @@ public class Editor {
 
 	public void update() {
 		tree.update();
-	}
-
-	@Deprecated
-	public Controller getController(Item key) {
-		return controllers.get(key);
 	}
 
 	/**

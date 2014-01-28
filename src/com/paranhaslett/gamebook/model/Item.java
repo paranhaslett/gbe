@@ -1,18 +1,21 @@
 package com.paranhaslett.gamebook.model;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.controller.Controller;
 
-public interface Item {
+public interface Item extends Controller{
 
-	void add(ModelItem to);
+	void add(Item to);
 
 	void update();
 
-	void setup(Editor ed);
+	//void setup(Editor ed);
+	
+	void setup();
 
 	void changeMainLabel(String newLabel);
 
-	boolean isDropOn(ModelItem item);
+	boolean isDropOn(Item item);
 	
 	String toString();
 	

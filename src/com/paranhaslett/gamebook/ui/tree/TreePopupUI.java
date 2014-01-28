@@ -7,15 +7,14 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
+import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
-import com.paranhaslett.gamebook.controller.Controller;
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
-import javax.swing.JMenu;
 
 public class TreePopupUI extends JPopupMenu {
 	private static final long serialVersionUID = -3362291340967409194L;
@@ -31,11 +30,10 @@ public class TreePopupUI extends JPopupMenu {
 				} // nothing is selected
 
 				Object nodeInfo = node.getUserObject();
-				if (nodeInfo instanceof ModelItem) {
-					ModelItem item = (ModelItem) nodeInfo;
-					Controller controller = item.getController();
+				if (nodeInfo instanceof Item) {
+					Item item = (Item) nodeInfo;
 					// TODO figure out how to specify items
-					controller.add(item, new Section());
+					item.add(new Section());
 				}
 
 			}

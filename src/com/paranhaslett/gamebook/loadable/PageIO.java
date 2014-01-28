@@ -4,51 +4,43 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
-import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.Editor.Item;
-import com.paranhaslett.gamebook.controller.SectionController;
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 
 public class PageIO implements Loadable {
-	private Editor gc = Editor.getEd();
 
 	@Override
-	public ModelItem loadFromXML(Element element) {
+	public Item loadFromXML(Element element) {
 		Page page = new Page();
 		// Manditory page_id
 		page.id = element.getAttribute("id");
-		SectionController sc = (SectionController) gc
-				.getController(Item.SECTION);
 		for (Element sectionEl : xmlLoader.getElements(element, "section")) {
-			Section section = (Section) sc.loader.loadFromXML(sectionEl);
+			Section section = (Section) Section.loadable.loadFromXML(sectionEl);
 			page.sections.add(section);
 		}
 		return null;
 	}
 
 	@Override
-	public Element saveToXML(ModelItem modelItem) {
+	public Element saveToXML(Item modelItem) {
 		Page page = (Page) modelItem;
 		Element nodeElement = xmlLoader.doc.createElement("page");
 		nodeElement.setAttribute("id", "" + page.id);
-		SectionController sc = (SectionController) gc
-				.getController(Item.SECTION);
 		for (Section section : page.sections) {
-			nodeElement.appendChild(sc.loader.saveToXML(section));
+			nodeElement.appendChild(Section.loadable.saveToXML(section));
 		}
 		return nodeElement;
 	}
 
 	@Override
-	public ModelItem loadFromEma(ArrayList<String> content) {
+	public Item loadFromEma(ArrayList<String> content) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public ArrayList<String> saveToEma(ModelItem modelItem) {
+	public ArrayList<String> saveToEma(Item modelItem) {
 		// TODO Auto-generated method stub
 		return null;
 	}

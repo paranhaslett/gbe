@@ -13,9 +13,9 @@ import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.model.ModelItem;
-import com.paranhaslett.gamebook.model.libraryitem.Series;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.libraryitem.Series;
 
 public class SeriesUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
@@ -45,8 +45,8 @@ public class SeriesUI extends PanelUI {
 		btnAddPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
 				Book book = new Book();
-				book.setup(book);
-				model.add(model, book);
+				book.setup();
+				model.add(book);
 			}
 		});
 
@@ -102,7 +102,7 @@ public class SeriesUI extends PanelUI {
 	}
 
 	@Override
-	public void populatePanel(ModelItem modelItem) {
+	public void populatePanel(Item modelItem) {
 		textField.setText(((Series) modelItem).title);
 		model = (Series) modelItem;
 

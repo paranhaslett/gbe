@@ -5,19 +5,16 @@ import java.util.ArrayList;
 import javax.swing.tree.TreePath;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.loadable.Loadable;
-import com.paranhaslett.gamebook.loadable.SeriesIO;
 import com.paranhaslett.gamebook.loadable.TemplateIO;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.LibraryItem;
-import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
-import com.paranhaslett.gamebook.ui.panel.SeriesUI;
+import com.paranhaslett.gamebook.ui.panel.TemplateUI;
 
-public class Template implements LibraryItem,  Controller, Item {
+public class Template implements LibraryItem {
 	public String title;
-	public ArrayList<ModelItem> items = new ArrayList<ModelItem>();
+	public ArrayList<Item> items = new ArrayList<Item>();
 	public static Loadable loadable = new TemplateIO();
 	private PanelUI panel = TemplateUI.getPanelUI();
 	private Editor ed = Editor.getEd();
@@ -29,27 +26,13 @@ public class Template implements LibraryItem,  Controller, Item {
 	public String toString() {
 		return title;
 	}
-
-	@Override
-	@Deprecated
-	public Controller getController() {
-		return this;
-	}
-
-	@Override
-	public void add(ModelItem item, ModelItem added) {
-		if (item instanceof Template) {
-			Template gameBook = (Template) item;
-			gameBook.add(added);
-		}
-	}
 	
 	public void update(){
 		panel.populatePanel(this);
 		ed.editorUI.updatePanel(panel);
 	}
 
-	public void update(ModelItem item) {
+	public void update(Item item) {
 		if (item instanceof Template) {
 			Template template = (Template) item;
 			panel.populatePanel(template);
@@ -57,27 +40,12 @@ public class Template implements LibraryItem,  Controller, Item {
 		}
 	}
 
-	@Override
-	public void changeMainLabel(ModelItem item, String newLabel) {
-		if (item instanceof Template) {
-			Template template = (Template) item;
-			template.changeMainLabel(newLabel);
-		}
-
-	}
-
-	public boolean isDropOn(ModelItem mi) {
+	public boolean isDropOn(Item mi) {
 		return true;
 	}
 
 	@Override
-	public void setup(ModelItem modelItem) {
-		Template template = (Template) modelItem;
-		template.setup(ed);
-	}
-
-	@Override
-	public void add(ModelItem to) {
+	public void add(Item to) {
 		if (to instanceof Book) {
 			items.add((Book) to);
 			ed.tree.addToSel(to);
@@ -88,7 +56,7 @@ public class Template implements LibraryItem,  Controller, Item {
 	}
 
 	@Override
-	public void setup(Editor ed) {
+	public void setup() {
 		title = "New";
 		TreePath path = ed.tree.getSelectLoc();
 		ed.tree.addToPath(path, this);

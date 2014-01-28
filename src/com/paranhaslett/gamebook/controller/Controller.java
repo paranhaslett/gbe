@@ -1,21 +1,18 @@
 package com.paranhaslett.gamebook.controller;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 
 public interface Controller {
 
-	@Deprecated
-	void add(ModelItem item, ModelItem to);
+	//@Deprecated
+	//void add(Item item, Item to);
 
-	@Deprecated
-	void update(ModelItem item);
+	//@Deprecated
+	//void update(Item item);
 
-	@Deprecated
-	void setup(ModelItem modelItem);
+	//@Deprecated
+	//void setup(Item modelItem);
 
-	@Deprecated
-	void changeMainLabel(ModelItem item, String newLabel);
-
-	boolean isDropOn(ModelItem item);
+	
 
 }

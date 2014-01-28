@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 import org.w3c.dom.Element;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
@@ -32,8 +32,8 @@ public class BookIO implements Loadable {
 	}
 
 	@Override
-	public Element saveToXML(ModelItem modelItem) {
-		Book gameBook = (Book) modelItem;
+	public Element saveToXML(Item item) {
+		Book gameBook = (Book) item;
 		Element nodeElement = xmlLoader.doc.createElement("book");
 		if (gameBook.title != null) {
 			nodeElement.setAttribute("name", gameBook.title);
@@ -101,7 +101,7 @@ public class BookIO implements Loadable {
 	}
 
 	@Override
-	public ArrayList<String> saveToEma(ModelItem modelItem) {
+	public ArrayList<String> saveToEma(Item item) {
 		// TODO Auto-generated method stub
 		return null;
 	}

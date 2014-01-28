@@ -11,8 +11,8 @@ import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Library;
-import com.paranhaslett.gamebook.model.ModelItem;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
 import com.paranhaslett.gamebook.model.libraryitem.Series;
 import com.paranhaslett.gamebook.model.libraryitem.Template;
@@ -32,7 +32,7 @@ public class LibraryUI extends PanelUI {
 		btnAddSection.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Series series = new Series();
-				series.setup(series);
+				series.setup();
 				model.add(series);
 			}
 		});
@@ -42,7 +42,7 @@ public class LibraryUI extends PanelUI {
 		btnAddPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Book book = new Book();
-				book.setup(book);
+				book.setup();
 				model.add(book);
 			}
 		});
@@ -55,7 +55,7 @@ public class LibraryUI extends PanelUI {
 		btnAddTemplate.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Template template = new Template();
-				template.getController().setup(template);
+				template.setup();
 				model.add(template);
 			}
 		});
@@ -127,7 +127,7 @@ public class LibraryUI extends PanelUI {
 	}
 
 	@Override
-	public void populatePanel(ModelItem modelItem) {
+	public void populatePanel(Item modelItem) {
 		model = (Library) modelItem;
 
 	}

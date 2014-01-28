@@ -16,14 +16,11 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class XMLLoader implements Loader {
 	public Document doc;
-	private Editor gc = Editor.getEd();
-	private Element currentElement;
 
 	@Override
 	public Book loadBook(File file) {
@@ -118,11 +115,13 @@ public class XMLLoader implements Loader {
 
 	public List<Element> getElements(Element eElement, String name) {
 		ArrayList<Element> result = new ArrayList<Element>();
-		NodeList nodes = eElement.getElementsByTagName(name);
+		NodeList nodes = eElement.getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				result.add((Element) node);
+				if (node.getNodeName().equalsIgnoreCase(name)){
+					result.add((Element) node);
+				}
 			}
 		}
 		return result;
@@ -189,7 +188,7 @@ public class XMLLoader implements Loader {
 			Node nNode = doc.getDocumentElement();
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
 				Element element = (Element) nNode;
-				library = (Library) library.loadable.loadFromXML(element);
+				library = (Library) Library.loadable.loadFromXML(element);
 			}
 
 		} catch (Exception e) {

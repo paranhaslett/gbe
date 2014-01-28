@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 
@@ -35,7 +35,7 @@ public class PageUI extends PanelUI {
 			public void actionPerformed(ActionEvent e) {
 				// Controller controller = Editor.getEd().getController("Page");
 				Section section = new Section();
-				section.getController().setup(section);
+				section.setup();
 			}
 		});
 
@@ -133,7 +133,7 @@ public class PageUI extends PanelUI {
 	}
 
 	@Override
-	public void populatePanel(ModelItem modelItem) {
+	public void populatePanel(Item modelItem) {
 		model = (Page) modelItem;
 		lblHeading.setText("Page " + model.id);
 		textNumber.setText(model.id);

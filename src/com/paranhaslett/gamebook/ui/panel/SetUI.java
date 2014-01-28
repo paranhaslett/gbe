@@ -1,19 +1,19 @@
 package com.paranhaslett.gamebook.ui.panel;
 
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-
-import com.paranhaslett.gamebook.model.ModelItem;
-import com.paranhaslett.gamebook.model.fragment.Set;
-
-import javax.swing.JLabel;
 import javax.swing.ImageIcon;
-import java.awt.Font;
+import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import com.paranhaslett.gamebook.model.Item;
+import com.paranhaslett.gamebook.model.fragment.Set;
 
 public class SetUI extends PanelUI {
 	private static PanelUI panelUI;
@@ -174,7 +174,7 @@ public class SetUI extends PanelUI {
 	}
 
 	@Override
-	public void populatePanel(ModelItem modelItem) {
+	public void populatePanel(Item modelItem) {
 		model = (Set) modelItem;
 		textVariable.setText(model.var);
 		textValue.setText(model.value);

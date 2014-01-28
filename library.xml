@@ -427,4 +427,6 @@
 			<goto to="" />
 		</section>
 	</book>
-</library>
+	<template title="Book">
+	    <book title="New"/>
+	</template></library>

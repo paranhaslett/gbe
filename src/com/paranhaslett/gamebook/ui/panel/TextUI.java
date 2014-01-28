@@ -11,7 +11,7 @@ import javax.swing.JTextArea;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.fragment.Text;
 
 public class TextUI extends PanelUI {
@@ -69,7 +69,7 @@ public class TextUI extends PanelUI {
 	}
 
 	@Override
-	public void populatePanel(ModelItem modelItem) {
+	public void populatePanel(Item modelItem) {
 		model = (Text) modelItem;
 		txtDesc.setText(((Text) modelItem).text);
 

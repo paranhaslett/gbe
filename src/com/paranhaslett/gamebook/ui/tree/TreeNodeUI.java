@@ -2,24 +2,23 @@ package com.paranhaslett.gamebook.ui.tree;
 
 import javax.swing.tree.DefaultMutableTreeNode;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 
 public class TreeNodeUI extends DefaultMutableTreeNode {
 	private static final long serialVersionUID = 9020576980406733512L;
-	private ModelItem previousValue;
+	private Item previousValue;
 
-	public TreeNodeUI(ModelItem modelItem) {
-		super(modelItem, true);
-		previousValue = modelItem;
+	public TreeNodeUI(Item item) {
+		super(item, true);
+		previousValue = item;
 	}
 
 	public void setUserObject(Object userObject) {
-		if (userObject instanceof ModelItem) {
+		if (userObject instanceof Item) {
 			this.userObject = userObject;
-			this.previousValue = (ModelItem) userObject;
+			this.previousValue = (Item) userObject;
 		} else if (userObject instanceof String) {
-			previousValue.getController().changeMainLabel(previousValue,
-					(String) userObject);
+			previousValue.changeMainLabel((String) userObject);
 			this.userObject = previousValue;
 		}
 	}

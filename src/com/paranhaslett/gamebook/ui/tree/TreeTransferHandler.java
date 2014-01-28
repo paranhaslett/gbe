@@ -13,7 +13,7 @@ import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
-import com.paranhaslett.gamebook.model.ModelItem;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.fragment.Goto;
 
@@ -65,10 +65,10 @@ public class TreeTransferHandler extends TransferHandler {
 				.getLastPathComponent();
 		TreeNodeUI targetRoot = (TreeNodeUI) dl.getPath()
 				.getLastPathComponent();
-		ModelItem sourceComponent = (ModelItem) sourceRoot.getUserObject();
-		ModelItem targetComponent = (ModelItem) targetRoot.getUserObject();
+		Item sourceComponent = (Item) sourceRoot.getUserObject();
+		Item targetComponent = (Item) targetRoot.getUserObject();
 		System.out.println(sourceComponent + " x " + targetComponent);
-		if (!targetComponent.getController().isDropOn(sourceComponent)) {
+		if (!targetComponent.isDropOn(sourceComponent)) {
 			return false;
 		}
 		// Do not allow MOVE-action drops if a non-leaf node is

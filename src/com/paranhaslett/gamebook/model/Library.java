@@ -4,7 +4,6 @@ import java.io.File;
 import java.util.ArrayList;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.controller.Controller;
 import com.paranhaslett.gamebook.loadable.LibraryIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loader.Loader;
@@ -12,42 +11,20 @@ import com.paranhaslett.gamebook.loader.XMLLoader;
 import com.paranhaslett.gamebook.ui.panel.LibraryUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
-public class Library implements ModelItem, Controller, Item {
+public class Library implements Item {
 	public static Loadable loadable = new LibraryIO();
-	private PanelUI panel = LibraryUI.getPanelUI();
+	private static PanelUI panel = LibraryUI.getPanelUI();
 	private Editor ed = Editor.getEd();
 	public ArrayList<LibraryItem> items = new ArrayList<LibraryItem>();
 	public static Loader loader = new XMLLoader();
 
 	@Override
-	public void add (ModelItem item){
+	public void add (Item item){
 		if (item instanceof LibraryItem){
 			items.add((LibraryItem)item);
 		}
 	}
 
-	@Override
-	public void add(ModelItem item, ModelItem added) {
-		if (item instanceof LibraryItem){
-			items.add((LibraryItem)item);
-		}
-	}
-	
-	@Override
-	public void changeMainLabel(ModelItem item, String newLabel) {
-		// The library label cannot be changed
-	}
-	
-	@Override
-	@Deprecated
-	public Controller getController() {
-		return this;
-	}
-	
-    @Override
-	public boolean isDropOn(ModelItem mi) {
-		return (mi instanceof LibraryItem);
-	}
 
 	public void saveLibrary(Editor editor) {
 		File file = new File ("./library.xml");
@@ -63,20 +40,20 @@ public class Library implements ModelItem, Controller, Item {
 	}
 
 	public void setup(Editor editor) {
+		ed = editor;
+		setup();
+	}
+	
+	public void setup() {
 		File file = new File ("./library.xml");
 		if (file != null) {
 			Loader loader = Editor.getEd().getLoader();
 			if (loader != null) {
-				editor.library = loader.loadLibrary(file);
+				ed.library = loader.loadLibrary(file);
 			} 
 		} 
-		editor.library.update();
-		editor.setupLibraryTree();
-	}
-
-	@Override
-	public void setup(ModelItem modelItem) {
-		// library is already setup cant create a new one
+		ed.library.update();
+		ed.setupLibraryTree();
 	}
 
 	@Override
@@ -84,7 +61,8 @@ public class Library implements ModelItem, Controller, Item {
 		return "Gamebook Library";
 	}	
 
-	public void update(ModelItem item) {
+	@Deprecated
+	public void update(Item item) {
 		if (item instanceof Library) {
 			Library library = (Library) item;
 			library.update();
@@ -102,6 +80,11 @@ public class Library implements ModelItem, Controller, Item {
 	public void changeMainLabel(String newLabel) {
 		// The library label cannot be changed
 		
+	}
+
+	@Override
+	public boolean isDropOn(Item item) {
+		return item instanceof LibraryItem;
 	}
 	
 }

@@ -4,24 +4,23 @@ import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.controller.Controller;
-import com.paranhaslett.gamebook.model.ModelItem;
-import com.paranhaslett.gamebook.model.fragment.Text;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.fragment.Set;
+import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.branch.Chance;
 import com.paranhaslett.gamebook.model.fragment.branch.Choice;
 import com.paranhaslett.gamebook.model.fragment.branch.If;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 
 public class IfUI extends PanelUI {
 	private static final long serialVersionUID = 4882714495642743442L;
@@ -31,7 +30,7 @@ public class IfUI extends PanelUI {
 	private JLabel lblHeading;
 	private JTextField textRhs;
 	private JTextField textField;
-	private JComboBox comboBox;
+	private JComboBox<String> comboBox;
 
 	/**
 	 * Create the panel.
@@ -61,20 +60,18 @@ public class IfUI extends PanelUI {
 				.getResource("/icons/tree/desc.png")));
 		btnDescription.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Text chance = new Text();
-				chance.getController().setup(chance);
-				controller.add(model, chance);
+				chance.setup();
+				model.add(chance);
 			}
 		});
 
 		JButton btnSet = new JButton("Add Set");
 		btnSet.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Set set = new Set();
-				set.getController().setup(set);
-				controller.add(model, set);
+				set.setup();
+				model.add(set);
 			}
 		});
 		btnSet.setIcon(new ImageIcon(IfUI.class
@@ -83,10 +80,9 @@ public class IfUI extends PanelUI {
 		JButton btnChance = new JButton("Add Chance");
 		btnChance.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Chance chance = new Chance();
-				chance.getController().setup(chance);
-				controller.add(model, chance);
+				chance.setup();
+				chance.add(model);
 			}
 		});
 		btnChance.setIcon(new ImageIcon(IfUI.class
@@ -95,10 +91,9 @@ public class IfUI extends PanelUI {
 		JButton btnChoice = new JButton("Add Choice");
 		btnChoice.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				Choice choice = new Choice();
-				choice.getController().setup(choice);
-				controller.add(model, choice);
+				choice.setup();
+				model.add(choice);
 			}
 		});
 		btnChoice.setIcon(new ImageIcon(IfUI.class
@@ -107,10 +102,9 @@ public class IfUI extends PanelUI {
 		JButton btnIf = new JButton("Add If");
 		btnIf.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Controller controller = model.getController();
 				If chance = new If();
-				chance.getController().setup(chance);
-				controller.add(model, chance);
+				chance.setup();
+				model.add(chance);
 			}
 		});
 		btnIf.setIcon(new ImageIcon(IfUI.class
@@ -119,9 +113,9 @@ public class IfUI extends PanelUI {
 		textRhs = new JTextField();
 		textRhs.setColumns(10);
 
-		comboBox = new JComboBox();
+		comboBox = new JComboBox<String>();
 		comboBox.setEditable(true);
-		comboBox.setModel(new DefaultComboBoxModel(
+		comboBox.setModel(new DefaultComboBoxModel<String>(
 				new String[] { "=", "<", ">" }));
 
 		textField = new JTextField();
@@ -297,7 +291,7 @@ public class IfUI extends PanelUI {
 	}
 
 	@Override
-	public void populatePanel(ModelItem modelItem) {
+	public void populatePanel(Item modelItem) {
 		model = (If) modelItem;
 		textLhs.setText(model.lhs);
 		textRhs.setText(model.rhs);
