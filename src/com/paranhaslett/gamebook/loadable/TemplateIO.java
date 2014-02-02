@@ -1,9 +1,6 @@
 package com.paranhaslett.gamebook.loadable;
 
-import java.util.ArrayList;
-
-import org.w3c.dom.Element;
-
+import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
@@ -19,63 +16,71 @@ import com.paranhaslett.gamebook.model.libraryitem.Template;
 public class TemplateIO implements Loadable {
 
 	@Override
-	public Item loadFromXML(Element element) {
-		Template template = new Template();
-		template.title = element.getAttribute("title");
-		for (Element elem :xmlLoader.getChildren(element)){
+	public void load(Loader ff, Item tempItem) {
+		Template template = (Template) tempItem;
+		template.title = ff.getText("title");
+		for (Loader elem :ff.getChildren(
+				"template",
+				"book",
+				"chance",
+				"choice",
+				"goto",
+				"if",
+				"page",
+				"set",
+				"template",
+				"text",
+				"section")){
 			Item item = null;
-			if (elem.getNodeName().equals("book")){
-				item = Book.loadable.loadFromXML(elem);
+			if (elem.getName().equals("book")){
+				item = new Book();
+				Book.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("chance")){
-				item = Chance.loadable.loadFromXML(elem);
+			if (elem.getName().equals("chance")){
+				item = new Chance();
+				Chance.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("choice")){
-				item = Choice.loadable.loadFromXML(elem);
+			if (elem.getName().equals("choice")){
+				item = new Choice();
+				Choice.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("goto")){
-				item = Goto.loadable.loadFromXML(elem);
+			if (elem.getName().equals("goto")){
+				item = new Goto();
+				Goto.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("if")){
-				item = If.loadable.loadFromXML(elem);
+			if (elem.getName().equals("if")){
+				item = new If();
+				If.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("page")){
-				item = Page.loadable.loadFromXML(elem);
+			if (elem.getName().equals("page")){
+				item = new Page();
+				Page.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("section")){
-				item = Section.loadable.loadFromXML(elem);
+			if (elem.getName().equals("section")){
+				item = new Section();
+				Section.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("set")){
-				item = Set.loadable.loadFromXML(elem);
+			if (elem.getName().equals("set")){
+				item = new Set();
+				Set.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("template")){
-				item = Template.loadable.loadFromXML(elem);
+			if (elem.getName().equals("template")){
+				item = new Template();
+				Template.loadable.load(elem, item);
 			}
-			if (elem.getNodeName().equals("set")){
-				item = Text.loadable.loadFromXML(elem);
+			if (elem.getName().equals("text")){
+				item = new Text();
+				Text.loadable.load(elem, item);
 			}
 			template.items.add(item);
 		}
 		
-		return template;
 	}
 
 	@Override
-	public Element saveToXML(Item modelItem) {
+	public void save(Loader ff, Item item) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Item loadFromEma(ArrayList<String> content) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public ArrayList<String> saveToEma(Item modelItem) {
-		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

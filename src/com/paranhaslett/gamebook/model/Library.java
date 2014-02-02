@@ -26,12 +26,12 @@ public class Library implements Item {
 	}
 
 
-	public void saveLibrary(Editor editor) {
-		File file = new File ("./library.xml");
+	public void saveLibrary() {
+		File file = new File ("./library-save.xml");
 		if (file != null) {
 			Loader loader = Editor.getEd().getLoader();
 			if (loader != null) {
-				loader.save(editor.library, file);
+				loader.save(file, Editor.getEd().library);
 			} else {
 				throw new RuntimeException(
 						"Bad Programmer: File chooser selected wrong file type");
@@ -49,7 +49,8 @@ public class Library implements Item {
 		if (file != null) {
 			Loader loader = Editor.getEd().getLoader();
 			if (loader != null) {
-				ed.library = loader.loadLibrary(file);
+				ed.library = new Library();
+				loader.load(file, ed.library);
 			} 
 		} 
 		ed.library.update();
@@ -60,14 +61,6 @@ public class Library implements Item {
 	public String toString() {
 		return "Gamebook Library";
 	}	
-
-	@Deprecated
-	public void update(Item item) {
-		if (item instanceof Library) {
-			Library library = (Library) item;
-			library.update();
-		}
-	}
 	
 	@Override
 	public void update(){

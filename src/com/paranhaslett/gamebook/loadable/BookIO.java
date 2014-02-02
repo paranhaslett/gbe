@@ -7,8 +7,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import org.w3c.dom.Element;
-
+import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
@@ -16,40 +15,9 @@ import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class BookIO implements Loadable {
 
-	public Book loadFromXML(Element element) {
-		Book gameBook = new Book();
-		gameBook.title = xmlLoader.load("title");
-		gameBook.title = element.getAttribute("title");// Manditory name
-		for (Element pageElement : xmlLoader.getElements(element, "page")) {
-			Page page = (Page) Page.loadable.loadFromXML(pageElement);
-			gameBook.pages.add(page);
-		}
-		for (Element sectionElement : xmlLoader.getElements(element, "section")) {
-			Section section = (Section) Section.loadable.loadFromXML(sectionElement);
-			gameBook.freeSections.add(section);
-		}
-		return gameBook;
-	}
-
-	@Override
-	public Element saveToXML(Item item) {
+	@Deprecated
+	public void load(ArrayList<String> content, Item item) {
 		Book gameBook = (Book) item;
-		Element nodeElement = xmlLoader.doc.createElement("book");
-		if (gameBook.title != null) {
-			nodeElement.setAttribute("name", gameBook.title);
-		}
-		for (Page page : gameBook.pages) {
-			nodeElement.appendChild(Page.loadable.saveToXML(page));
-		}
-		for (Section section : gameBook.freeSections) {
-			nodeElement.appendChild(Section.loadable.saveToXML(section));
-		}
-		return nodeElement;
-	}
-
-	@Override
-	public Book loadFromEma(ArrayList<String> content) {
-		Book gameBook = new Book();
 		// get the gamebook name from content
 		String path = content.get(0);
 		for (String line : content) {
@@ -90,20 +58,47 @@ public class BookIO implements Loadable {
 						e.printStackTrace();
 					}
 
-					Section section = (Section) Section.loadable
-							.loadFromEma(entryContent);
+					Section section = new Section();
+					//Section.loadable.load(entryContent, section);
 					gameBook.freeSections.add(section);
 
 				}
 			}
 		}
-		return gameBook;
+	}
+
+
+	@Override
+	public void load(Loader ff, Item item) {
+		Book gameBook = (Book) item;
+		gameBook.title = ff.getText("title");// Manditory name
+		for (Loader pageFf : ff.getChildren("page")) {
+			Page page = new Page();
+			Page.loadable.load(pageFf, page);
+			gameBook.pages.add(page);
+		}
+		for (Loader sectionElement : ff.getChildren("section")) {
+			Section section = new Section();
+			Section.loadable.load(sectionElement, section);
+			gameBook.freeSections.add(section);
+		}
 	}
 
 	@Override
-	public ArrayList<String> saveToEma(Item item) {
-		// TODO Auto-generated method stub
-		return null;
+	public void save(Loader ff, Item item) {
+		Book gameBook = (Book) item;
+		if (gameBook.title != null) {
+			ff.setText("name", gameBook.title);
+		}
+		for (Page page : gameBook.pages) {
+			Loader pageff = ff.create("page"); 
+			Page.loadable.save(pageff, page);
+		}
+		for (Section section : gameBook.freeSections) {
+			Loader sectionff = ff.create("section"); 
+			Section.loadable.save(sectionff, section);
+		}
+		
 	}
 
 }

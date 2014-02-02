@@ -24,14 +24,7 @@ public class Section implements ModelContainer {
 	private Editor gc = Editor.getEd();
 	private static long secnum = 1;
 
-	public void update(Item item) {
-		if (item instanceof Section) {
-			Section section = (Section) item;
-			panel.populatePanel(section);
-			gc.editorUI.updatePanel(panel);
-		}
-	}
-
+	@Override
 	public boolean isDropOn(Item mi) {
 		return (mi instanceof Fragment || mi instanceof Section);
 	}
@@ -53,14 +46,6 @@ public class Section implements ModelContainer {
 		gc.tree.addToPath(path, desc);
 		gc.tree.addToPath(path, secgoto);
 		secnum++;
-	}
-
-	public String getTitle() {
-		return title;
-	}
-
-	public void setTitle(String title) {
-		this.title = title;
 	}
 
 	public ArrayList<Fragment> getFragments() {
@@ -96,7 +81,8 @@ public class Section implements ModelContainer {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		panel.populatePanel(this);
+		gc.editorUI.updatePanel(panel);
 		
 	}
 

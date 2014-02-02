@@ -4,7 +4,7 @@
 <!ELEMENT book (page|section)*>
 <!ATTLIST book title CDATA #IMPLIED>
 <!ELEMENT page (section*)>
-<!ATTLIST page num CDATA #REQUIRED>
+<!ATTLIST page id CDATA #REQUIRED>
 <!ELEMENT section ((text|set|if|choice|chance)*, goto)>
 <!ATTLIST section id CDATA #REQUIRED title CDATA #REQUIRED>
 <!ELEMENT title (#PCDATA)>

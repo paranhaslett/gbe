@@ -1,15 +1,10 @@
 package com.paranhaslett.gamebook.model;
 
-import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.controller.Controller;
-
-public interface Item extends Controller{
+public interface Item {
 
 	void add(Item to);
 
 	void update();
-
-	//void setup(Editor ed);
 	
 	void setup();
 

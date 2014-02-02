@@ -8,7 +8,6 @@ import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.model.Fragment;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.ModelContainer;
-import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 
@@ -28,9 +27,7 @@ public class Chance implements ModelContainer, Fragment, Item {
 
 	public void update(Item item) {
 		if (item instanceof Chance) {
-			Text set = (Text) item;
-			panel.populatePanel(set);
-			gc.editorUI.updatePanel(panel);
+			
 		}
 	}
 
@@ -50,8 +47,8 @@ public class Chance implements ModelContainer, Fragment, Item {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
-		
+		panel.populatePanel(this);
+		gc.editorUI.updatePanel(panel);
 	}
 
 	@Override

@@ -45,7 +45,7 @@ public class EditorUI extends JFrame {
 		mntmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
 		mntmSave.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Editor.getEd().library.saveLibrary(Editor.getEd());
+				Editor.getEd().library.saveLibrary();
 			}
 		});
 		mnFile.add(mntmSave);

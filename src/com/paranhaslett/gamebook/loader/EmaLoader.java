@@ -6,27 +6,104 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.libraryitem.Series;
+import com.paranhaslett.gamebook.model.libraryitem.Template;
 
 public class EmaLoader implements Loader {
 
-	@Override
-	public Book loadBook(File file) {
+	List<String> content = new ArrayList<String>();
+	File file;
 
-		Book gameBook = null;
+	@Override
+	public String getText(String key) {
+		if (getName().equals("book") && key.equals("title")) {
+			for (String line : content) {
+				if (line.contains("#")) {
+					int pos = line.lastIndexOf('#');
+					return line.substring(pos + 1);
+				}
+			}
+		}
+
+		return null;
+	}
+
+	@Override
+	public void setText(String key, String value) {
+		if (key.equals("title")) {
+			content.add("##" + value);
+		}
+
+	}
+
+	@Override
+	public List<Loader> getChildren(String... childrenKeys) {
+		HashSet<String> keySet = new HashSet<String>(
+				Arrays.asList(childrenKeys));
+		List<Loader> result = new ArrayList<Loader>();
+		String childKey = null;
+		for (String contentItem : content) {
+
+			Pattern link = Pattern.compile(".*\\* \\[(.*)\\]\\(ema:(.*)\\).*");
+			Matcher linkmat = link.matcher(contentItem);
+			if (linkmat.matches() && childKey != null) {
+				EmaLoader subLoad = new EmaLoader();
+				String filename = linkmat.group(1).replace(" ", "_") + ".txt";
+				File newfile = new File(file.getPath() + filename);
+				subLoad.content = getContent(newfile);
+				result.add(subLoad);
+			} else {
+
+					Pattern heading = Pattern.compile(".*([a-zA-Z]+).*");
+					Matcher headingMat = heading.matcher(contentItem);
+					childKey = null;
+					if (headingMat.matches()) {
+						String head = headingMat.group();
+						if (keySet.contains(head)) {
+							childKey = head;
+						}
+					}
+			}
+		}
+		return result;
+	}
+
+	@Override
+	public Loader getChild(String childkey) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Loader create(String key) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	
+	private List<String> getContent(File file){
+		List<String> result = new ArrayList<String>();
 		BufferedReader reader;
-		ArrayList<String> content = new ArrayList<String>();
-		content.add(file.getParent());
 		try {
 			reader = new BufferedReader(new FileReader(file));
 			String line = null;
-
 			while ((line = reader.readLine()) != null) {
-				content.add(line);
+				result.add(line);
 			}
-			gameBook = (Book) Book.loadable.loadFromEma(content);
 			reader.close();
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -35,26 +112,34 @@ public class EmaLoader implements Loader {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		if (gameBook == null){
-			gameBook = new Book();
+		return result;
+	}
+
+	@Override
+	public void load(File file, Item item) {
+		this.file = file;
+		 content = getContent(file);
+
+		if (item instanceof Book) {
+			Book.loadable.load(this, item);
 		}
-		return gameBook;
+
+		if (item instanceof Library) {
+			Library.loadable.load(this, item);
+		}
+
+		if (item instanceof Series) {
+			Series.loadable.load(this, item);
+		}
+
+		if (item instanceof Template) {
+			Template.loadable.load(this, item);
+		}
+
 	}
 
 	@Override
-	public void save(Book gameBook, File file) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public Library loadLibrary(File file) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-	
-	@Override
-	public void save(Library library, File file) {
+	public void save(File file, Item item) {
 		// TODO Auto-generated method stub
 
 	}

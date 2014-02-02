@@ -1,6 +1,7 @@
 package com.paranhaslett.gamebook.model.fragment;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.ast.Null;
 import com.paranhaslett.gamebook.loadable.GotoIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.model.Fragment;
@@ -11,6 +12,7 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 public class Goto implements Fragment {
 	public String to;
 	public String text;
+	public Null ast;
 	
 	public static Loadable loadable = new GotoIO();
 	private PanelUI panel = GotoUI.getPanelUI();

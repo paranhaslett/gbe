@@ -63,6 +63,7 @@ public class Book implements LibraryItem {
 	
 	@Override
 	public void setup() {
+		//TODO: Get setup from current Book template copy it across
 		title = "New";
 		TreePath path = ed.tree.getSelectLoc();
 		ed.tree.addToPath(path, this);

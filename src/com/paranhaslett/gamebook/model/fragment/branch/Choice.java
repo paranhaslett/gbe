@@ -8,7 +8,6 @@ import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.model.Fragment;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.ModelContainer;
-import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 
@@ -24,14 +23,6 @@ public class Choice implements ModelContainer, Fragment {
 	public boolean isDropOn(Item mi) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public void update(Item item) {
-		if (item instanceof Choice) {
-			Text set = (Text) item;
-			panel.populatePanel(set);
-			gc.editorUI.updatePanel(panel);
-		}
 	}
 
 	@Override
@@ -56,7 +47,8 @@ public class Choice implements ModelContainer, Fragment {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		panel.populatePanel(this);
+		gc.editorUI.updatePanel(panel);
 		
 	}
 

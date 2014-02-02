@@ -16,7 +16,7 @@ public class If implements ModelContainer, Fragment, Item {
 	public String op;
 	public String rhs;
 	public String text;
-	public ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+	public ArrayList<Fragment> trueBranch = new ArrayList<Fragment>();
 
 	public static Loadable loadable = new IfIO();
 	private PanelUI panel = IfUI.getPanelUI();
@@ -26,14 +26,6 @@ public class If implements ModelContainer, Fragment, Item {
 	public boolean isDropOn(Item mi) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public void update(Item item) {
-		if (item instanceof If) {
-			If ifItem = (If) item;
-			panel.populatePanel(ifItem);
-			gc.editorUI.updatePanel(panel);
-		}
 	}
 
 	@Override
@@ -46,7 +38,7 @@ public class If implements ModelContainer, Fragment, Item {
 	}
 
 	public ArrayList<Fragment> getFragments() {
-		return fragments;
+		return trueBranch;
 	}
 
 	@Override
@@ -57,7 +49,8 @@ public class If implements ModelContainer, Fragment, Item {
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		panel.populatePanel(this);
+		gc.editorUI.updatePanel(panel);
 		
 	}
 

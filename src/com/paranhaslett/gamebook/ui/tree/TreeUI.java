@@ -90,23 +90,33 @@ public class TreeUI extends JTree {
 	}
 	
 	public TreeNodeUI template(Template template) {
-		TreeNodeUI root = new TreeNodeUI(template);
+		TreeNodeUI templateNode = new TreeNodeUI(template);
 
-		for (Item page : template.items) {
-			TreeNodeUI pageNode = new TreeNodeUI(page);
-			
-			root.add(pageNode);
+		for (Item item : template.items) {
+			TreeNodeUI newNode = null;
+			if(item instanceof Book){
+				newNode = book((Book) item);
+			}
+			if(item instanceof Series){
+				newNode = series((Series) item);
+			}
+			if(item instanceof Template){
+				newNode = template((Template) item);
+			}
+		    //TODO the others
+			if (newNode != null){
+				templateNode.add(newNode);
+			}
 		}
-		setModel(new DefaultTreeModel(root));
-		selectedPath = new TreePath(root.getPath());
+		setModel(new DefaultTreeModel(templateNode));
+		selectedPath = new TreePath(templateNode.getPath());
 		setSelectionPath(selectedPath);
 		selection = template;
-		return root;
+		return templateNode;
 	}
 
 	public TreeNodeUI book(Book gameBook) {
 		TreeNodeUI root = new TreeNodeUI(gameBook);
-
 		for (Page page : gameBook.pages) {
 			TreeNodeUI pageNode = new TreeNodeUI(page);
 			for (Section section : page.sections) {
@@ -147,9 +157,9 @@ public class TreeUI extends JTree {
 		return sectionNode;
 	}
 
-	public Item getSelection() {
-		return selection;
-	}
+	//public Item getSelection() {
+	//	return selection;
+	//}
 
 	public void update() {
 		TreeNodeUI node = (TreeNodeUI) selectedPath.getLastPathComponent();
@@ -168,6 +178,7 @@ public class TreeUI extends JTree {
 				.nodeStructureChanged((TreeNode) parent);
 
 	}
+	
 
 	public TreePath getSelectLoc() {
 		return selectedPath;

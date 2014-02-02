@@ -1,17 +1,27 @@
 package com.paranhaslett.gamebook.loader;
 
 import java.io.File;
+import java.util.List;
 
-import com.paranhaslett.gamebook.model.Library;
-import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.Item;
 
 public interface Loader {
-
-	Book loadBook(File file);
 	
-	Library loadLibrary(File file);
-
-	void save(Book gameBook, File file);
+	void load(File file, Item item);
 	
-	void save(Library library, File file);
+	void save(File file, Item item);
+	
+	//-----------------------------
+	
+    String getText(String key);
+	
+	void setText(String key, String value);
+	
+	List<Loader> getChildren(String... childrenKeys);
+	
+	Loader getChild(String childkey);
+	
+	public Loader create(String key);
+	
+	public String getName();
 }

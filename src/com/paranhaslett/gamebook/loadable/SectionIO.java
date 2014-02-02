@@ -3,8 +3,7 @@ package com.paranhaslett.gamebook.loadable;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.w3c.dom.Element;
-
+import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Fragment;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
@@ -17,99 +16,8 @@ import com.paranhaslett.gamebook.model.fragment.branch.If;
 
 public class SectionIO implements Loadable {
 
-	public Item loadFromXML(Element element) {
-		Section section = new Section();
-		// Manditory section_id
-		section.id = element.getAttribute("id");
-		section.title = element.getAttribute("title");
-
-		List<Element> fragmentElements = xmlLoader.getChildren(element);
-		
-		boolean hasDesc = false;
-		for (Element fragmentElement : fragmentElements) {
-			Fragment frag = null;
-			if (fragmentElement.getNodeName().equals("text")) {
-				frag = (Text) Text.loadable.loadFromXML(fragmentElement);
-				hasDesc = true;
-			}
-			if (fragmentElement.getNodeName().equals("set")) {
-				frag = (Set) Set.loadable.loadFromXML(fragmentElement);
-			}
-			if (fragmentElement.getNodeName().equals("choice")) {
-				frag = (Choice) Choice.loadable.loadFromXML(fragmentElement);
-			}
-			if (fragmentElement.getNodeName().equals("chance")) {
-				frag = (Chance) Chance.loadable.loadFromXML(fragmentElement);
-			}
-			if (fragmentElement.getNodeName().equals("if")) {
-				frag = (If) If.loadable.loadFromXML(fragmentElement);
-			}
-
-			if (frag != null) {
-				section.fragments.add(frag);
-			}
-		}
-
-		if (!hasDesc) {
-			Text desc = new Text();
-			desc.setup();
-			section.fragments.add(desc);
-		}
-
-		Element gotoElement = xmlLoader.getChild(element, "goto");
-		if (gotoElement != null) {
-			section.gotoid = (Goto) Goto.loadable.loadFromXML(gotoElement);
-		} else {
-			Goto secgoto = new Goto();
-			secgoto.setup();
-			section.gotoid = secgoto;
-		}
-		return section;
-	}
-
-	@Override
-	public Element saveToXML(Item modelItem) {
-		Section section = (Section) modelItem;
-		Element nodeElement = xmlLoader.doc.createElement("section");
-		nodeElement.setAttribute("id", "" + section.id);
-		if (section.title != null) {
-			xmlLoader.setTextElement(xmlLoader.doc, nodeElement, "title",
-					section.title);
-		}
-		if (section.fragments.size() > 0) {
-			Element fragElements = xmlLoader.doc.createElement("fragments");
-			
-			for (Fragment fragment : section.fragments) {
-				Element fragElement = null;
-				if (fragment instanceof Text) {
-					fragElement = Text.loadable.saveToXML(fragment);
-				}
-				if (fragment instanceof Set) {
-					fragElement = Set.loadable.saveToXML(fragment);
-				}
-				if (fragment instanceof Choice) {
-					fragElement = Choice.loadable.saveToXML(fragment);
-				}
-				if (fragment instanceof Chance) {
-					fragElement = Chance.loadable.saveToXML(fragment);
-				}
-				if (fragment instanceof If) {
-					fragElement = If.loadable.saveToXML(fragment);
-				}
-				fragElements.appendChild(fragElement);
-			}
-			nodeElement.appendChild(fragElements);
-		}
-
-		if (section.gotoid != null) {
-			nodeElement.appendChild(Goto.loadable.saveToXML(section.gotoid));
-		}
-
-		return nodeElement;
-	}
-
-	@Override
-	public Item loadFromEma(ArrayList<String> content) {
+	@Deprecated
+	public void load(ArrayList<String> content, Item item) {
 		Section section = new Section();
 		section.id = content.get(0);
 		boolean gotTitle = false;
@@ -122,13 +30,112 @@ public class SectionIO implements Loadable {
 
 			}
 		}
-		return section;
+	}
+
+
+	@Override
+	public void load(Loader ff, Item item) {
+			Section section = (Section) item;
+			// Manditory section_id
+			section.id = ff.getText("id");
+			section.title = ff.getText("title");
+
+			List<Loader> fragmentElements = ff.getChildren(
+					"text",
+					"set",
+					"choice", 
+					"chance",
+					"if");
+			
+			boolean hasDesc = false;
+			for (Loader fragmentElement : fragmentElements) {
+				Fragment frag = null;
+				if (fragmentElement.getName().equals("text")) {
+					frag = new Text();
+					Text.loadable.load(fragmentElement, frag);
+					hasDesc = true;
+				}
+				if (fragmentElement.getName().equals("set")) {	
+					frag = new Set();
+					Set.loadable.load(fragmentElement, frag);
+				}
+				if (fragmentElement.getName().equals("choice")) {
+					frag = new Choice();
+					Choice.loadable.load(fragmentElement, frag);
+				}
+				if (fragmentElement.getName().equals("chance")) {
+					frag = new Chance();
+					Chance.loadable.load(fragmentElement, frag);
+				}
+				if (fragmentElement.getName().equals("if")) {
+					frag = new If();
+					If.loadable.load(fragmentElement, frag);
+				}
+
+				if (frag != null) {
+					section.fragments.add(frag);
+				}
+			}
+
+			if (!hasDesc) {
+				Text desc = new Text();
+				desc.setup();
+				section.fragments.add(desc);
+			}
+
+			Loader gotoElement = ff.getChild("goto");
+			Goto secgoto = new Goto();
+			if (gotoElement != null) {
+				Goto.loadable.load(gotoElement, secgoto);
+			} else {
+				secgoto.setup();
+				section.gotoid = secgoto;
+			}
+		
 	}
 
 	@Override
-	public ArrayList<String> saveToEma(Item modelItem) {
-		// TODO Auto-generated method stub
-		return null;
+	public void save(Loader ff, Item item) {
+		Section section = (Section) item;
+		Loader nodeElement =ff.create("section");
+		nodeElement.setText("id", "" + section.id);
+		if (section.title != null) {
+			ff.setText("title", section.title);
+		}
+		if (section.fragments.size() > 0) {
+			Loader fragElements = nodeElement.create("fragments");
+			
+			for (Fragment fragment : section.fragments) {
+				Loader fragElement = null;
+				if (fragment instanceof Text) {
+					fragElement = fragElements.create("text");
+					Text.loadable.save(fragElement, fragment);
+				}
+				if (fragment instanceof Set) {
+					fragElement = fragElements.create("set");
+					Set.loadable.save(fragElement, fragment);
+				}
+				if (fragment instanceof Choice) {
+					fragElement = fragElements.create("choice");
+					Choice.loadable.save(fragElement, fragment);
+				}
+				if (fragment instanceof Chance) {
+					fragElement = fragElements.create("chance");
+					Chance.loadable.save(fragElement, fragment);
+				}
+				if (fragment instanceof If) {
+					fragElement = fragElements.create("choice");
+					If.loadable.save(fragElement, fragment);
+				}
+			}
+		}
+
+		if (section.gotoid != null) {
+			Loader gotoElement = nodeElement.create("goto");
+			Goto.loadable.save( gotoElement, section.gotoid);
+		}
+
+		
 	}
 
 }

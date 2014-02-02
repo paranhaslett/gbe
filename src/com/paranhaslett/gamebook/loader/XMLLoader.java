@@ -2,6 +2,8 @@ package com.paranhaslett.gamebook.loader;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
@@ -16,15 +18,19 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+import com.paranhaslett.gamebook.loadable.Loadable;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Library;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.libraryitem.Series;
+import com.paranhaslett.gamebook.model.libraryitem.Template;
 
 public class XMLLoader implements Loader {
 	public Document doc;
-
+	private Element element;
+	
 	@Override
-	public Book loadBook(File file) {
-		Book gameBook = null;
+	public void load(File file, Item item) {
 		try {
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
@@ -33,25 +39,55 @@ public class XMLLoader implements Loader {
 			doc.getDocumentElement().normalize();
 			Node nNode = doc.getDocumentElement();
 			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element element = (Element) nNode;
-				gameBook = (Book) Book.loadable.loadFromXML(element);
+				element = (Element) nNode;
+				if (item instanceof Book){
+					Book.loadable.load(this, item);
+				}
+				if (item instanceof Library){
+					Library.loadable.load(this, item);
+				}
+				if (item instanceof Series){
+					Series.loadable.load(this, item);
+				}
+				if (item instanceof Template){
+					Template.loadable.load(this, item);
+				}
+					
 			}
 
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return gameBook;
-	}
+}
 
+	
 	@Override
-	public void save(Book gameBook, File file) {
+	public void save(File file, Item item) {
 		try {
 
 			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
 					.newInstance();
 			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
 			doc = dBuilder.newDocument();
-			doc.appendChild(Book.loadable.saveToXML(gameBook));
+						
+			if (item instanceof Book){
+				element = doc.createElement("book");
+				Book.loadable.save(this, item);
+			}
+			if (item instanceof Library){
+				element = doc.createElement("library");
+				Library.loadable.save(this, item);
+			}
+			if (item instanceof Series){
+				element = doc.createElement("series");
+				Series.loadable.save(this, item);
+			}
+			if (item instanceof Template){
+				element = doc.createElement("template");
+				Template.loadable.save(this, item);
+			}
+			
+			doc.appendChild(element);
 
 			// write the content into xml file
 			TransformerFactory transformerFactory = TransformerFactory
@@ -67,157 +103,105 @@ public class XMLLoader implements Loader {
 
 	}
 
-	public String getText(Element eElement, String name) {
-		NodeList nodes = eElement.getElementsByTagName(name);
-		if (nodes.getLength() > 0) {
-			return nodes.item(0).getTextContent();
+	@Override
+	public Loader create(String key) {
+		XMLLoader xmlff = new XMLLoader();
+		xmlff.setElement(Loadable.xmlLoader.doc.createElement(key));
+		element.appendChild(xmlff.getElement());
+		return xmlff;
+	}
+	
+	public void setElement(Element element){
+		this.element=element;
+	}
+	
+	Element getElement(){
+		return element;
+	}
+	
+	
+	@Override
+	public String getText(String key) {
+		if(key == null){
+			return beutifyText(element.getTextContent());
+		}
+		if(element.hasAttribute(key)){
+			return element.getAttribute(key);
+		}
+		NodeList nl = element.getChildNodes();
+		for (int i = 0; i < nl.getLength(); i++) {
+			Node node = nl.item(i);
+			if (node.getNodeName().equals(key)){
+				return beutifyText(node.getTextContent());
+			}
 		}
 		return null;
 	}
+	
+	private String beutifyText(String text){
+		String result = text;
+		for (int i=0; i<50; i++){
+			result  = result.replace("\n ", "\n");
+		}
+		return result;
+		
+		
+	}
 
-	public ArrayList<Element> getChildren(Element element) {
-		ArrayList<Element> result = new ArrayList<Element>();
+	@Override
+	public List<Loader> getChildren(String... childrenKeys) {
+		ArrayList<Loader> result = new ArrayList<Loader>();
+		HashSet<String> keySet = new HashSet<String>(Arrays.asList(childrenKeys));
 		NodeList nodes = element.getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
 			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				result.add((Element) node);
+				
+				if (keySet.contains(node.getNodeName())){
+					XMLLoader ff = new XMLLoader();
+					ff.setElement((Element) node);
+					result.add(ff);
+				}
 			}
 		}
 		return result;
 	}
 
-	public Element getChild(Element element, String name) {
+	@Override
+	public void setText(String key, String value) {
+		if (key == null){
+			element.setTextContent(value);
+		} else {
+			if (key.equals("value")|| key.equals("text")){
+				XMLLoader subFF = (XMLLoader) create(key);
+				subFF.getElement().setTextContent(value);
+			}
+			else {
+				element.setAttribute(key, value);
+			}
+		}
+	}
+
+	@Override
+	public String getName() {
+		return element.getNodeName();
+	}
+
+	@Override
+	public Loader getChild(String childKey) {
 		NodeList nodes = element.getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);
-			if (node.getNodeName().equals(name)) {
-				if (node.getNodeType() == Node.ELEMENT_NODE) {
-					return (Element) node;
+			if (node.getNodeType() == Node.ELEMENT_NODE) {
+				
+				if (childKey.equals(node.getNodeName())){
+					XMLLoader ff = new XMLLoader();
+					ff.setElement((Element) node);
+					return ff;
 				}
 			}
 		}
 		return null;
-	}
-
-	public Element getElement(Element element, String name) {
-
-		NodeList nodes = element.getElementsByTagName(name);
-		if (nodes.getLength() > 0) {
-			Node node = nodes.item(0);
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				Element subElement = (Element) node;
-				return subElement;
-			}
-		}
-		return null;
-	}
-
-	public List<Element> getElements(Element eElement, String name) {
-		ArrayList<Element> result = new ArrayList<Element>();
-		NodeList nodes = eElement.getChildNodes();
-		for (int i = 0; i < nodes.getLength(); i++) {
-			Node node = nodes.item(i);
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				if (node.getNodeName().equalsIgnoreCase(name)){
-					result.add((Element) node);
-				}
-			}
-		}
-		return result;
-	}
-
-	public List<Element> getAllElements(Element eElement, String name) {
-		ArrayList<Element> result = new ArrayList<Element>();
-		NodeList nodes = eElement.getElementsByTagName(name);
-		if (nodes.getLength() > 0) {
-			Node node = nodes.item(0);
-			if (node.getNodeType() == Node.ELEMENT_NODE) {
-				Element element = (Element) node;
-				NodeList subnodes = element.getChildNodes();
-				for (int i = 0; i < subnodes.getLength(); i++) {
-					Node subnode = subnodes.item(i);
-					if (subnode.getNodeType() == Node.ELEMENT_NODE) {
-						result.add((Element) subnode);
-					}
-				}
-			}
-		}
-		return result;
-	}
-
-	public void setTextElement(Document doc, Element nodeElement, String name,
-			String value) {
-		Element titleElement = doc.createElement(name);
-		nodeElement.appendChild(titleElement);
-		titleElement.appendChild(doc.createTextNode(value));
-	}
-
-	public void setStrs(Document doc, Element nodeElement, String name,
-			ArrayList<String> values) {
-		for (String value : values) {
-			Element titleElement = doc.createElement(name);
-			nodeElement.appendChild(titleElement);
-			titleElement.appendChild(doc.createTextNode(value));
-		}
-
-	}
-
-	public String load(String string) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	
-
-	/*
-	 * load from attribute load from text load from sub element load from sub
-	 * elements load from open file open and close appropriate file load from
-	 * file chooser
-	 */
-	
-	@Override
-	public Library loadLibrary(File file) {
-		Library library = new Library();
-		try {
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			doc = dBuilder.parse(file);
-			doc.getDocumentElement().normalize();
-			Node nNode = doc.getDocumentElement();
-			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-				Element element = (Element) nNode;
-				library = (Library) Library.loadable.loadFromXML(element);
-			}
-
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return library;
-	}
-
-	@Override
-	public void save(Library library, File file) {
-		try {
-
-			DocumentBuilderFactory dbFactory = DocumentBuilderFactory
-					.newInstance();
-			DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-			doc = dBuilder.newDocument();
-			doc.appendChild(Library.loadable.saveToXML(library));
-
-			// write the content into xml file
-			TransformerFactory transformerFactory = TransformerFactory
-					.newInstance();
-			Transformer transformer = transformerFactory.newTransformer();
-			DOMSource source = new DOMSource(doc);
-			StreamResult result = new StreamResult(file);
-
-			transformer.transform(source, result);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 }
