@@ -17,10 +17,9 @@ public class SetIO implements Loadable {
 	@Override
 	public void save(Loader ff, Item item) {
 		Set set = (Set) item;
-		Loader setff = ff.create("set");
-		setff.setText("var", set.var);
-		setff.setText("value", set.value);
-		setff.setText("text", set.text);
+		ff.setText("var", set.var);
+		ff.setText("value", set.value);
+		ff.setText("text", set.text);
 	}
 
 }

@@ -89,49 +89,47 @@ public class SectionIO implements Loadable {
 				Goto.loadable.load(gotoElement, secgoto);
 			} else {
 				secgoto.setup();
-				section.gotoid = secgoto;
 			}
+			section.gotoid = secgoto;
 		
 	}
 
 	@Override
 	public void save(Loader ff, Item item) {
 		Section section = (Section) item;
-		Loader nodeElement =ff.create("section");
-		nodeElement.setText("id", "" + section.id);
+		ff.setText("id", "" + section.id);
 		if (section.title != null) {
 			ff.setText("title", section.title);
 		}
 		if (section.fragments.size() > 0) {
-			Loader fragElements = nodeElement.create("fragments");
 			
 			for (Fragment fragment : section.fragments) {
 				Loader fragElement = null;
 				if (fragment instanceof Text) {
-					fragElement = fragElements.create("text");
+					fragElement = ff.create("text");
 					Text.loadable.save(fragElement, fragment);
 				}
 				if (fragment instanceof Set) {
-					fragElement = fragElements.create("set");
+					fragElement = ff.create("set");
 					Set.loadable.save(fragElement, fragment);
 				}
 				if (fragment instanceof Choice) {
-					fragElement = fragElements.create("choice");
+					fragElement = ff.create("choice");
 					Choice.loadable.save(fragElement, fragment);
 				}
 				if (fragment instanceof Chance) {
-					fragElement = fragElements.create("chance");
+					fragElement = ff.create("chance");
 					Chance.loadable.save(fragElement, fragment);
 				}
 				if (fragment instanceof If) {
-					fragElement = fragElements.create("choice");
+					fragElement = ff.create("choice");
 					If.loadable.save(fragElement, fragment);
 				}
 			}
 		}
 
 		if (section.gotoid != null) {
-			Loader gotoElement = nodeElement.create("goto");
+			Loader gotoElement = ff.create("goto");
 			Goto.loadable.save( gotoElement, section.gotoid);
 		}
 

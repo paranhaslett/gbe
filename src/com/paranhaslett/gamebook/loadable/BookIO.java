@@ -88,7 +88,7 @@ public class BookIO implements Loadable {
 	public void save(Loader ff, Item item) {
 		Book gameBook = (Book) item;
 		if (gameBook.title != null) {
-			ff.setText("name", gameBook.title);
+			ff.setText("title", gameBook.title);
 		}
 		for (Page page : gameBook.pages) {
 			Loader pageff = ff.create("page"); 
