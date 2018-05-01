@@ -13,9 +13,9 @@ import com.paranhaslett.toolbox.model.Artifact;
 
 public class TreeUI extends JTree {
 	private static final long serialVersionUID = -4252742793844024659L;
-	protected DefaultMutableTreeNode selection;
-	protected TreePath selectedPath;
-	private TreeRendererUI treeRenderer = new TreeRendererUI();
+	private DefaultMutableTreeNode selection;
+	private TreePath selectedPath;
+	private final TreeRendererUI treeRenderer = new TreeRendererUI();
 
 	public TreeUI() {
 		setDropMode(DropMode.ON_OR_INSERT);
@@ -34,8 +34,8 @@ public class TreeUI extends JTree {
 				if (nodeInfo instanceof Artifact) {
 					selectedPath = new TreePath(node.getPath());
 					setSelectionPath(selectedPath);
-					selection = (DefaultMutableTreeNode) nodeInfo;
-					((Artifact)selection.getUserObject()).update();
+					selection = node;
+					((Artifact)nodeInfo).update();
 
 				}
 			}
@@ -73,7 +73,7 @@ public class TreeUI extends JTree {
 		((DefaultTreeModel) getModel()).insertNodeInto(child, parent, lastindex);
 		this.selection = child;
 		selectedPath = new TreePath(child.getPath());
-		((DefaultTreeModel) this.getModel()).nodeStructureChanged((TreeNode) parent);
+		((DefaultTreeModel) this.getModel()).nodeStructureChanged(parent);
 
 	}
 
@@ -89,7 +89,7 @@ public class TreeUI extends JTree {
 		this.selection = child;
 		selectedPath = new TreePath(child.getPath());
 		setSelectionPath(selectedPath);
-		((DefaultTreeModel) this.getModel()).nodeStructureChanged((TreeNode) parent);
+		((DefaultTreeModel) this.getModel()).nodeStructureChanged(parent);
 
 	}
 

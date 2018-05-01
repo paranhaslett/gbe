@@ -15,7 +15,7 @@ import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.fragment.Text;
 
 public class TextUI extends PanelUI {
-	private JTextArea txtDesc;
+	private final JTextArea txtDesc;
 	private static PanelUI panelUI;
 	private Text model;
 

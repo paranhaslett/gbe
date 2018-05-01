@@ -19,7 +19,7 @@
   <xsd:complexType name ="sectionType">
     <xsd:sequence>
       <xsd:element name="title" type ="xsd:string"/>
-      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:choice maxOccurs="unbounded">
         <xsd:element name="text" type ="xsd:string" maxOccurs="unbounded"/>
         <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>
@@ -44,7 +44,7 @@
       <xsd:element name="var" type="xsd:string"/>
       <xsd:element name="value" type="xsd:string"/>
       <xsd:element name="text" type="xsd:string"/>
-      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:choice maxOccurs="unbounded">
         <xsd:element name="text" type ="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>
@@ -58,7 +58,7 @@
   <xsd:complexType name="choiceType">
     <xsd:sequence>
       <xsd:element name="text" type="xsd:string"/>
-      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:choice maxOccurs="unbounded">
         <xsd:element name="text" type ="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>
@@ -72,7 +72,7 @@
   <xsd:complexType name="chanceType">
     <xsd:sequence>
       <xsd:element name="text" type="xsd:string"/>
-      <xsd:choice minOccurs="1" maxOccurs="unbounded">
+      <xsd:choice maxOccurs="unbounded">
         <xsd:element name="text" type ="xsd:string" minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="set" type ="setType" minOccurs="0" maxOccurs="unbounded"/>
         <xsd:element name="if" type ="ifType" minOccurs="0" maxOccurs="unbounded"/>

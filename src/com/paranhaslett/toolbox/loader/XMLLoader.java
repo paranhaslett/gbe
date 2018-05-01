@@ -22,7 +22,7 @@ import com.paranhaslett.toolbox.model.Artifact;
 import com.paranhaslett.toolbox.tools.Tool;
 
 public class XMLLoader implements Loader {
-	public Document doc;
+	private Document doc;
 	private Element element;
 
 	@Override
@@ -78,11 +78,11 @@ public class XMLLoader implements Loader {
 		return xmlff;
 	}
 
-	public void setElement(Element element) {
+	private void setElement(Element element) {
 		this.element = element;
 	}
 
-	Element getElement() {
+	private Element getElement() {
 		return element;
 	}
 
@@ -114,8 +114,8 @@ public class XMLLoader implements Loader {
 
 	@Override
 	public List<Loader> getChildren(String... childrenKeys) {
-		ArrayList<Loader> result = new ArrayList<Loader>();
-		HashSet<String> keySet = new HashSet<String>(Arrays.asList(childrenKeys));
+		ArrayList<Loader> result = new ArrayList<>();
+		HashSet<String> keySet = new HashSet<>(Arrays.asList(childrenKeys));
 		NodeList nodes = element.getChildNodes();
 		for (int i = 0; i < nodes.getLength(); i++) {
 			Node node = nodes.item(i);

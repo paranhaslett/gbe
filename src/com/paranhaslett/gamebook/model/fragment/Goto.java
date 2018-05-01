@@ -16,9 +16,9 @@ public class Goto implements Fragment {
 	public String text;
 	public Null ast;
 	
-	public static Loadable loadable = new GotoIO();
-	private PanelUI panel = GotoUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public static final Loadable loadable = new GotoIO();
+	private final PanelUI panel = GotoUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 
 	public void update(Item item) {
 		if (item instanceof Goto) {
@@ -60,7 +60,7 @@ public class Goto implements Fragment {
 		return false;
 	}
 
-static Icon icon;
+private static Icon icon;
   
   @Override
   public Icon icon(){

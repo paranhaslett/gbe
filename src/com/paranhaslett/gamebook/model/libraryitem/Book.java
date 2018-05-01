@@ -19,12 +19,12 @@ import com.paranhaslett.gamebook.ui.panel.SectionUI;
 public class Book implements Item {
   
 	public String title;
-	public ArrayList<Page> pages = new ArrayList<Page>();
-	public ArrayList<Section> sections = new ArrayList<Section>();
-	public ArrayList<Section> freeSections = new ArrayList<Section>();
-	public static Loadable loadable = new BookIO();
-	private PanelUI panel = GameBookUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public final ArrayList<Page> pages = new ArrayList<>();
+	public ArrayList<Section> sections = new ArrayList<>();
+	public final ArrayList<Section> freeSections = new ArrayList<>();
+	public static final Loadable loadable = new BookIO();
+	private final PanelUI panel = GameBookUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 
 	@Override
 	public void add(Item added) {
@@ -80,7 +80,7 @@ public class Book implements Item {
 		ed.editorUI.updatePanel(panel, this);
 	}
 
-	static Icon icon;
+	private static Icon icon;
 	
 	@Override
 	public Icon icon(){

@@ -12,11 +12,11 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
 public class Page implements Item {
 	public String id;
-	public ArrayList<Section> sections = new ArrayList<Section>();
+	public final ArrayList<Section> sections = new ArrayList<>();
 
-	public static Loadable loadable = new PageIO();
-	private PanelUI panel = PageUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public static final Loadable loadable = new PageIO();
+	private final PanelUI panel = PageUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 	private int pgnum = 1;
 	
 
@@ -68,7 +68,7 @@ public class Page implements Item {
 		
 	}
 	
-	static Icon icon;
+	private static Icon icon;
 	
     @Override
 	public Icon icon() {

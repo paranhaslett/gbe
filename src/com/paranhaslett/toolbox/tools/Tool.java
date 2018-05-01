@@ -15,8 +15,8 @@ import com.paranhaslett.toolbox.model.Artifact;
 
 public abstract class Tool extends JPanel{
 	private Icon icon;
-	private List<Field> fields = new ArrayList<>();
-	private List<Tool> subTools = new ArrayList<>();
+	private final List<Field> fields = new ArrayList<>();
+	private final List<Tool> subTools = new ArrayList<>();
 	
 	public Tool addIcon(String iconStr){
 		  icon = Editor.getEd().tree.getTreeRenderer().createImageIcon("/icons/tree/" + iconStr + ".png");

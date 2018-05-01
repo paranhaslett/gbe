@@ -20,10 +20,9 @@ public class GotoUI extends PanelUI {
 	private Goto model;
 
 	private static final long serialVersionUID = -1739742038591872687L;
-	private JTextField textGoto;
-	private JLabel lblHeading;
-	private JLabel lblGoTo;
-	private JTextField textField;
+	private final JTextField textGoto;
+	private final JLabel lblHeading;
+	private final JTextField textField;
 
 	private GotoUI() {
 		lblHeading = new JLabel("Go To");
@@ -34,7 +33,7 @@ public class GotoUI extends PanelUI {
 		textGoto = new JTextField();
 		textGoto.setColumns(10);
 
-		lblGoTo = new JLabel("Go To:");
+		JLabel lblGoTo = new JLabel("Go To:");
 		lblGoTo.setLabelFor(textGoto);
 
 		JButton btnUpdate = new JButton("Update");
@@ -65,8 +64,7 @@ public class GotoUI extends PanelUI {
 														.addGroup(
 																groupLayout
 																		.createSequentialGroup()
-																		.addComponent(
-																				lblGoTo)
+																		.addComponent(lblGoTo)
 																		.addPreferredGap(
 																				ComponentPlacement.RELATED)
 																		.addGroup(

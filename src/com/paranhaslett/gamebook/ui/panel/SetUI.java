@@ -20,10 +20,10 @@ public class SetUI extends PanelUI {
 	private Set model;
 
 	private static final long serialVersionUID = -1739742038591872687L;
-	private JTextField textVariable;
-	private JLabel lblHeading;
-	private JTextField textValue;
-	private JTextField textText;
+	private final JTextField textVariable;
+	private final JLabel lblHeading;
+	private final JTextField textValue;
+	private final JTextField textText;
 
 	private SetUI() {
 		lblHeading = new JLabel("Set");

@@ -2,7 +2,6 @@ package com.paranhaslett.gamebook.loadable;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -28,40 +27,38 @@ public class BookIO implements Loadable {
 			}
 		}
 		File[] files = new File(path).listFiles();
+		if (files != null) {
 
-		for (File file : files) {
-			String entryname = file.getName();
-			if (entryname.endsWith(".txt")
-					&& entryname.startsWith(gameBook.title)) {
-				int spos = gameBook.title.length();
-				int epos = entryname.lastIndexOf('.');
-				if (epos - spos > 0) {
-					ArrayList<String> entryContent = new ArrayList<String>();
-					String secnum = entryname.substring(spos, epos);
-					entryContent.add(secnum);
+			for (File file : files) {
+				String entryname = file.getName();
+				if (entryname.endsWith(".txt") && entryname.startsWith(gameBook.title)) {
+					int spos = gameBook.title.length();
+					int epos = entryname.lastIndexOf('.');
+					if (epos - spos > 0) {
+						ArrayList<String> entryContent = new ArrayList<>();
+						String secnum = entryname.substring(spos, epos);
+						entryContent.add(secnum);
 
-					BufferedReader reader;
-					try {
-						reader = new BufferedReader(new FileReader(file));
-						String line = null;
+						BufferedReader reader;
+						try {
+							reader = new BufferedReader(new FileReader(file));
+							String line = null;
 
-						while ((line = reader.readLine()) != null) {
-							entryContent.add(line);
+							while ((line = reader.readLine()) != null) {
+								entryContent.add(line);
+							}
+
+							reader.close();
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
 						}
 
-						reader.close();
-					} catch (FileNotFoundException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
+						Section section = new Section();
+						//Section.loadable.load(entryContent, section);
+						gameBook.freeSections.add(section);
+
 					}
-
-					Section section = new Section();
-					//Section.loadable.load(entryContent, section);
-					gameBook.freeSections.add(section);
-
 				}
 			}
 		}

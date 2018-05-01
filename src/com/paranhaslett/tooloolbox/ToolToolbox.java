@@ -8,7 +8,7 @@ import com.paranhaslett.toolbox.fields.*;
 import com.paranhaslett.toolbox.tools.FormTool;
 import com.paranhaslett.toolbox.tools.Tool;
 
-public class ToolToolbox extends Editor{
+class ToolToolbox extends Editor{
 
 	
 	public static void main(String args[]){
@@ -23,7 +23,7 @@ public class ToolToolbox extends Editor{
 		});
 	}
 	
-	public ToolToolbox(){
+	private ToolToolbox(){
 		super();
 			
 		Tool fieldTool = new FormTool();

@@ -14,10 +14,10 @@ import com.paranhaslett.gamebook.ui.panel.TemplateUI;
 
 public class Template implements Item {
 	public String title;
-	public ArrayList<Item> items = new ArrayList<Item>();
-	public static Loadable loadable = new TemplateIO();
-	private PanelUI panel = TemplateUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public final ArrayList<Item> items = new ArrayList<>();
+	public static final Loadable loadable = new TemplateIO();
+	private final PanelUI panel = TemplateUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 
 	public void setName(String name) {
 		this.title = name;
@@ -38,9 +38,9 @@ public class Template implements Item {
 	@Override
 	public void add(Item to) {
 		if (to instanceof Book) {
-			items.add((Book) to);
+			items.add(to);
 			ed.tree.addToSel(to);
-			((Book)to).update();
+			to.update();
 
 		}
 		
@@ -61,7 +61,7 @@ public class Template implements Item {
 		
 	}
 
-static Icon icon;
+private static Icon icon;
   
   @Override
   public Icon icon(){

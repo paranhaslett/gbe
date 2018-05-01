@@ -19,7 +19,7 @@ import com.paranhaslett.gamebook.model.libraryitem.Series;
 
 public class SeriesUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
-	private JTextField textField;
+	private final JTextField textField;
 	private static PanelUI panelUI;
 	private Series model;
 

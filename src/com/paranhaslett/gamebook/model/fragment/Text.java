@@ -11,9 +11,9 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 
 public class Text implements Fragment {
-	public static Loadable loadable = new TextIO();
-	private PanelUI panel = TextUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public static final Loadable loadable = new TextIO();
+	private final PanelUI panel = TextUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 
 	public String text;
 
@@ -43,7 +43,7 @@ public class Text implements Fragment {
 		ed.editorUI.updatePanel(panel, this);
 	}
 
-static Icon icon;
+private static Icon icon;
   
   @Override
   public Icon icon(){

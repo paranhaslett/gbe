@@ -20,8 +20,8 @@ public class PageUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
 	private static PanelUI panelUI;
 	private Page model;
-	private JTextField textNumber;
-	private JLabel lblHeading;
+	private final JTextField textNumber;
+	private final JLabel lblHeading;
 
 	/**
 	 * Create the panel.

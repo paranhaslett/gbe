@@ -33,7 +33,7 @@
     <title>Radiation</title>
     <text>If you are wearing a radiation suit the the in-built geiger counter is ticking furiously.</text>
     <if>
-      <var></var>
+      <var/>
       <value>not</value>
       <text>If not</text>
       <set var="defense">

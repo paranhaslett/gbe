@@ -17,10 +17,10 @@ import com.paranhaslett.toolbox.ui.FileChooserUI.GameBookFilter;
 
 public class Editor {
 	private static Editor editor = null;
-	public TreeUI tree;
+	public final TreeUI tree;
 	public EditorUI editorUI;
-	public FileChooserUI fileChooser;
-	private List<Tool> tools = new ArrayList<>();
+	private final FileChooserUI fileChooser;
+	private final List<Tool> tools = new ArrayList<>();
 	
 	protected Editor(){
 		tree = new TreeUI();
@@ -61,7 +61,7 @@ public class Editor {
 		
 	}
 
-	public Loader getLoader() {
+	private Loader getLoader() {
 		FileFilter filt = fileChooser.getFileFilter();
 		Loader loader = null;
 		if (filt instanceof GameBookFilter) {

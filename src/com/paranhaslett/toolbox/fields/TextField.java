@@ -4,12 +4,11 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class TextField implements Field {
-	private JTextField textField;
-	private JLabel label;
+	private final JTextField textField;
 
-	public TextField(String name) {
+    public TextField(String name) {
 		textField = new JTextField();
-		label = new JLabel();
+        JLabel label = new JLabel();
 		label.setText(name);
 	}
 	

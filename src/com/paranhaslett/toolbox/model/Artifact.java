@@ -4,19 +4,18 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.DefaultTreeCellRenderer;
 import javax.swing.tree.TreePath;
 
 import com.paranhaslett.toolbox.Editor;
 import com.paranhaslett.toolbox.tools.Tool;
 
 public class Artifact {
-	private Tool tool;
-	protected List <String> data;
-	protected long id;
+	private final Tool tool;
+	private List <String> data;
+	private final long id;
 	private static long nextId = 1;
-	private static Editor ed = Editor.getEd();
-	private List<Artifact> contents = new ArrayList<>();
+	private static final Editor ed = Editor.getEd();
+	private final List<Artifact> contents = new ArrayList<>();
 	
 	public Tool tool(){
 		 return tool;
@@ -52,14 +51,14 @@ public class Artifact {
 					// change to page controller
 					// add newPage to parent of selection
 		
-	};
+	}
 
-	public void update(){};
+    public void update(){}
 
 	public void setup(){
 		TreePath path = ed.tree.getSelectLoc();
 		ed.tree.addToPath(path, getTreeNode());
-	};
+	}
 
 	public void changeMainLabel(String newLabel) {
 		data.set(0, newLabel);
@@ -93,6 +92,6 @@ public class Artifact {
 	
 	public List <Artifact> contents(){
 		return contents;
-	};
-	
+	}
+
 }

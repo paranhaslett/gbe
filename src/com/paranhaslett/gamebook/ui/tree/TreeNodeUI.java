@@ -4,7 +4,7 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import com.paranhaslett.gamebook.model.Item;
 
-public class TreeNodeUI extends DefaultMutableTreeNode {
+class TreeNodeUI extends DefaultMutableTreeNode {
 	private static final long serialVersionUID = 9020576980406733512L;
 	private Item previousValue;
 

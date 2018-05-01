@@ -30,7 +30,7 @@ import com.paranhaslett.gamebook.model.libraryitem.Template;
 
 public class TemplateUI extends PanelUI {
 	private static final long serialVersionUID = 5259672660377230929L;
-	private JTextField textField;
+	private final JTextField textField;
 	private static PanelUI panelUI;
 	private Template model;
 
@@ -51,10 +51,9 @@ public class TemplateUI extends PanelUI {
 			}
 		});
 
-		final JComboBox<String> comboBox = new JComboBox<String>();
-		comboBox.setModel(new DefaultComboBoxModel<String>(new String[] {
-				"Template", "Series", "Book", "Page", "Section", "Text",
-				"Goto", "Set", "Chance", "Choice", "If", "Var" }));
+		final JComboBox<String> comboBox = new JComboBox<>();
+		comboBox.setModel(new DefaultComboBoxModel<>(
+                new String[] { "Template", "Series", "Book", "Page", "Section", "Text", "Goto", "Set", "Chance", "Choice", "If", "Var" }));
 
 		JButton btnAddPage = new JButton("Add");
 		btnAddPage.setIcon(null);
@@ -62,42 +61,44 @@ public class TemplateUI extends PanelUI {
 			public void actionPerformed(ActionEvent e) {
 				String selected = (String) comboBox.getSelectedItem();
 				Item item = null;
-				if (selected.equals("Book")){
-					item = new Book();
+				if (selected != null) {
+					if (selected.equals("Book")) {
+						item = new Book();
+					}
+					if (selected.equals("Series")) {
+						item = new Series();
+					}
+					if (selected.equals("Template")) {
+						item = new Template();
+					}
+					if (selected.equals("Page")) {
+						item = new Page();
+					}
+					if (selected.equals("Section")) {
+						item = new Section();
+					}
+					if (selected.equals("Text")) {
+						item = new Text();
+					}
+					if (selected.equals("Goto")) {
+						item = new Goto();
+					}
+					if (selected.equals("Set")) {
+						item = new Set();
+					}
+					if (selected.equals("Chance")) {
+						item = new Chance();
+					}
+					if (selected.equals("Choice")) {
+						item = new Choice();
+					}
+					if (selected.equals("If")) {
+						item = new If();
+					}
+					//if (selected.equals("Var")){
+					//	item = new Var();
+					//}
 				}
-				if (selected.equals("Series")){
-					item = new Series();
-				}
-				if (selected.equals("Template")){
-					item = new Template();
-				}
-				if (selected.equals("Page")){
-					item = new Page();
-				}
-				if (selected.equals("Section")){
-					item = new Section();
-				}
-				if (selected.equals("Text")){
-					item = new Text();
-				}
-				if (selected.equals("Goto")){
-					item = new Goto();
-				}
-				if (selected.equals("Set")){
-					item = new Set();
-				}
-				if (selected.equals("Chance")){
-					item = new Chance();
-				}
-				if (selected.equals("Choice")){
-					item = new Choice();
-				}
-				if (selected.equals("If")){
-					item = new If();
-				}
-				//if (selected.equals("Var")){
-				//	item = new Var();
-				//}
 				
 				
 				item.changeMainLabel("< New >");

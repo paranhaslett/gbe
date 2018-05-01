@@ -14,12 +14,12 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 
 public class Chance implements ModelContainer, Fragment, Item {
-	String text;
-	ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+	private String text;
+	private final ArrayList<Fragment> fragments = new ArrayList<>();
 	
-	public static Loadable loadable = new ChanceIO();
-	private PanelUI panel = TextUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public static final Loadable loadable = new ChanceIO();
+	private final PanelUI panel = TextUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 
 	@Override
 	public boolean isDropOn(Item mi) {
@@ -58,7 +58,7 @@ public class Chance implements ModelContainer, Fragment, Item {
 		
 	}
 
-static Icon icon;
+private static Icon icon;
   
   @Override
   public Icon icon(){

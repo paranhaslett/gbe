@@ -18,11 +18,11 @@ public class Section implements ModelContainer {
 	public String title;
 	public String id;
 	public Goto gotoid;
-	public ArrayList<Fragment> fragments = new ArrayList<Fragment>();
+	public final ArrayList<Fragment> fragments = new ArrayList<>();
 
-	public static Loadable loadable = new SectionIO();
-	private PanelUI panel = SectionUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public static final Loadable loadable = new SectionIO();
+	private final PanelUI panel = SectionUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 	private static long secnum = 1;
 
 	@Override
@@ -91,7 +91,7 @@ public class Section implements ModelContainer {
 
 	}
 
-	static Icon icon;
+	private static Icon icon;
 
 	@Override
 	public Icon icon() {

@@ -16,9 +16,7 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-public class About extends JDialog {
-
-	private final JPanel contentPanel = new JPanel();
+class About extends JDialog {
 
 	/**
 	 * Launch the application.
@@ -36,9 +34,10 @@ public class About extends JDialog {
 	/**
 	 * Create the dialog.
 	 */
-	public About() {
+	private About() {
 		setBounds(100, 100, 450, 300);
 		getContentPane().setLayout(new BorderLayout());
+		JPanel contentPanel = new JPanel();
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(contentPanel, BorderLayout.CENTER);
 		

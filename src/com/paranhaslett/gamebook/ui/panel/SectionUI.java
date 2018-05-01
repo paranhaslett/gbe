@@ -23,10 +23,10 @@ import com.paranhaslett.gamebook.model.fragment.branch.If;
 
 public class SectionUI extends PanelUI {
 	private static final long serialVersionUID = 4882714495642743442L;
-	private JTextField textTitle;
+	private final JTextField textTitle;
 	private static PanelUI panelUI;
 	private Section model;
-	private JLabel lblHeading;
+	private final JLabel lblHeading;
 
 	/**
 	 * Create the panel.

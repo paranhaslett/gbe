@@ -24,9 +24,8 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
 
 		super.getTreeCellRendererComponent(tree, value, sel, expanded, leaf,
 				row, hasFocus);
-		DefaultMutableTreeNode node = (DefaultMutableTreeNode) value;
 
-		Object nodeInfo = node.getUserObject();
+		Object nodeInfo = value.getUserObject();
 		if (nodeInfo instanceof Artifact){
 		  Artifact item = (Artifact) nodeInfo;
 		  setIcon(item.tool().icon());

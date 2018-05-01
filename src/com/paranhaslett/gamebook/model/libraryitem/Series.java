@@ -14,10 +14,10 @@ import com.paranhaslett.gamebook.ui.panel.SeriesUI;
 
 public class Series implements Item {
 	public String title;
-	public ArrayList<Book> books = new ArrayList<Book>();
-	public static Loadable loadable = new SeriesIO();
-	private PanelUI panel = SeriesUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public final ArrayList<Book> books = new ArrayList<>();
+	public static final Loadable loadable = new SeriesIO();
+	private final PanelUI panel = SeriesUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 	static Icon seriesIcon;
 
 	public void setName(String name) {
@@ -48,7 +48,7 @@ public class Series implements Item {
 		if (added instanceof Book) {
 			books.add((Book) added);
 			ed.tree.addToSel(added);
-			((Book)added).update();
+			added.update();
 
 		}
 		
@@ -61,7 +61,7 @@ public class Series implements Item {
 		
 	}
 
-  static Icon icon;
+  private static Icon icon;
   
   @Override
   public Icon icon(){

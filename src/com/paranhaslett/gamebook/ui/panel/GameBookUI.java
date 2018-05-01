@@ -17,12 +17,12 @@ import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
-import javax.swing.JTable;
+
 import javax.swing.JScrollPane;
 
 public class GameBookUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
-	private JTextField textField;
+	private final JTextField textField;
 	private static PanelUI panelUI;
 	private Book model;
 

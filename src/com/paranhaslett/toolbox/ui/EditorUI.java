@@ -21,8 +21,8 @@ import com.paranhaslett.toolbox.tree.TreeUI;
 
 public class EditorUI extends JFrame {
 	private static final long serialVersionUID = 6198693420541435623L;
-	private JSplitPane splitPane;
-	private JScrollPane scrollPane;
+	private final JSplitPane splitPane;
+	private final JScrollPane scrollPane;
 
 	/**
 	 * Create the frame.

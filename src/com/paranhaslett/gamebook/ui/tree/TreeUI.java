@@ -5,7 +5,6 @@ import javax.swing.JTree;
 import javax.swing.event.TreeSelectionEvent;
 import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 
 import com.paranhaslett.gamebook.model.Fragment;
@@ -22,7 +21,7 @@ public class TreeUI extends JTree {
 	private static final long serialVersionUID = -4252742793844024659L;
 	private Item selection;
 	private TreePath selectedPath;
-	private TreeRendererUI treeRenderer = new TreeRendererUI();
+	private final TreeRendererUI treeRenderer = new TreeRendererUI();
 
 	public TreeUI() {
 		setDropMode(DropMode.ON_OR_INSERT);
@@ -79,7 +78,7 @@ public class TreeUI extends JTree {
 		selection = lib;
 	}
 	
-	public TreeNodeUI series(Series series) {
+	private TreeNodeUI series(Series series) {
 		TreeNodeUI seriesNode = new TreeNodeUI(series);
 		
 		for (Item item : series.books) {
@@ -93,7 +92,7 @@ public class TreeUI extends JTree {
 		return seriesNode;
 	}
 	
-	public TreeNodeUI template(Template template) {
+	private TreeNodeUI template(Template template) {
 		TreeNodeUI templateNode = new TreeNodeUI(template);
 
 		for (Item item : template.items) {
@@ -119,7 +118,7 @@ public class TreeUI extends JTree {
 		return templateNode;
 	}
 
-	public TreeNodeUI book(Book gameBook) {
+	private TreeNodeUI book(Book gameBook) {
 		TreeNodeUI root = new TreeNodeUI(gameBook);
 		for (Page page : gameBook.pages) {
 			TreeNodeUI pageNode = new TreeNodeUI(page);
@@ -167,7 +166,7 @@ public class TreeUI extends JTree {
 
 	public void update() {
 		TreeNodeUI node = (TreeNodeUI) selectedPath.getLastPathComponent();
-		((DefaultTreeModel) this.getModel()).nodeChanged((TreeNode) node);
+		((DefaultTreeModel) this.getModel()).nodeChanged(node);
 	}
 
 	public void addToSel(Item childValue) {
@@ -179,7 +178,7 @@ public class TreeUI extends JTree {
 		this.selection = childValue;
 		selectedPath = new TreePath(child.getPath());
 		((DefaultTreeModel) this.getModel())
-				.nodeStructureChanged((TreeNode) parent);
+				.nodeStructureChanged(parent);
 
 	}
 	
@@ -198,7 +197,7 @@ public class TreeUI extends JTree {
 		selectedPath = new TreePath(child.getPath());
 		setSelectionPath(selectedPath);
 		((DefaultTreeModel) this.getModel())
-				.nodeStructureChanged((TreeNode) parent);
+				.nodeStructureChanged(parent);
 
 	}
 

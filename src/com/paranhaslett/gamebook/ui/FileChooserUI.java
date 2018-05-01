@@ -47,10 +47,7 @@ public class FileChooserUI extends JFileChooser {
 		@Override
 		public boolean accept(File f) {
 			String fn = f.getName();
-			if (f.isDirectory() || fn.endsWith(".gbf") || fn.endsWith(".xml")) {
-				return true;
-			}
-			return false;
+			return f.isDirectory() || fn.endsWith(".gbf") || fn.endsWith(".xml");
 		}
 
 		@Override
@@ -65,11 +62,7 @@ public class FileChooserUI extends JFileChooser {
 		@Override
 		public boolean accept(File f) {
 			String fn = f.getName();
-			if (f.isDirectory()
-					|| (fn.startsWith("gbf") && fn.endsWith(".txt"))) {
-				return true;
-			}
-			return false;
+			return f.isDirectory() || (fn.startsWith("gbf") && fn.endsWith(".txt"));
 		}
 
 		@Override

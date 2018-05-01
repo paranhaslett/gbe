@@ -20,9 +20,9 @@ public interface Loader {
 	
 	Loader getChild(String childkey);
 	
-	public Loader create(String key);
+	Loader create(String key);
 	
-	public String getName();
+	String getName();
 
 
 }

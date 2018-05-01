@@ -15,11 +15,11 @@ import javax.swing.tree.TreePath;
 
 import com.paranhaslett.toolbox.model.Artifact;
 
-public class TreeTransferHandler extends TransferHandler {
+class TreeTransferHandler extends TransferHandler {
 	private static final long serialVersionUID = -9199992278240380840L;
-	DataFlavor nodesFlavor;
-	DataFlavor[] flavors = new DataFlavor[1];
-	DefaultMutableTreeNode[] nodesToRemove;
+	private DataFlavor nodesFlavor;
+	private final DataFlavor[] flavors = new DataFlavor[1];
+	private DefaultMutableTreeNode[] nodesToRemove;
 
 	public TreeTransferHandler() {
 		try {
@@ -51,8 +51,11 @@ public class TreeTransferHandler extends TransferHandler {
 		JTree tree = (JTree) support.getComponent();
 		int dropRow = tree.getRowForPath(dl.getPath());
 		int[] selRows = tree.getSelectionRows();
-		for (int i = 0; i < selRows.length; i++) {
-			if (selRows[i] == dropRow) {
+		if (selRows == null){
+			return false;
+		}
+		for (int selRow : selRows) {
+			if (selRow == dropRow) {
 				return false;
 			}
 		}
@@ -82,16 +85,14 @@ public class TreeTransferHandler extends TransferHandler {
 		DefaultMutableTreeNode target = (DefaultMutableTreeNode) dest.getLastPathComponent();
 		TreePath path = tree.getPathForRow(selRows[0]);
 		DefaultMutableTreeNode firstNode = (DefaultMutableTreeNode) path.getLastPathComponent();
-		if (firstNode.getChildCount() > 0
-				&& target.getLevel() < firstNode.getLevel()) {
-			return false;
-		}
-
-		return true;
+		return firstNode.getChildCount() <= 0 || target.getLevel() >= firstNode.getLevel();
 	}
 
 	private boolean haveCompleteNode(JTree tree) {
 		int[] selRows = tree.getSelectionRows();
+		if (selRows==null){
+			return false;
+		}
 		TreePath path = tree.getPathForRow(selRows[0]);
 		DefaultMutableTreeNode first = (DefaultMutableTreeNode) path.getLastPathComponent();
 		int childCount = first.getChildCount();
@@ -148,7 +149,7 @@ public class TreeTransferHandler extends TransferHandler {
 
 	/** Defensive copy used in createTransferable. */
 	private DefaultMutableTreeNode copy(DefaultMutableTreeNode node) {
-		return (DefaultMutableTreeNode) (((DefaultMutableTreeNode) node).clone());
+		return (DefaultMutableTreeNode) (node.clone());
 	}
 
 	protected void exportDone(JComponent source, Transferable data, int action) {
@@ -192,10 +193,12 @@ public class TreeTransferHandler extends TransferHandler {
 		if (childIndex == -1) { // DropMode.ON
 			index = parent.getChildCount();
 		}
-
+		if(nodes == null){
+			return false;
+		}
 		// Add data to model.
-		for (int i = 0; i < nodes.length; i++) {
-			model.insertNodeInto(nodes[i], parent, index++);
+		for (DefaultMutableTreeNode node : nodes) {
+			model.insertNodeInto(node, parent, index++);
 		}
 		return true;
 	}
@@ -204,10 +207,10 @@ public class TreeTransferHandler extends TransferHandler {
 		return getClass().getName();
 	}
 
-	public class NodesTransferable implements Transferable {
-		DefaultMutableTreeNode[] nodes;
+	class NodesTransferable implements Transferable {
+		final DefaultMutableTreeNode[] nodes;
 
-		public NodesTransferable(DefaultMutableTreeNode[] nodes2) {
+		NodesTransferable(DefaultMutableTreeNode[] nodes2) {
 			this.nodes = nodes2;
 		}
 

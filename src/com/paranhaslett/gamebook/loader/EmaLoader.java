@@ -2,7 +2,6 @@ package com.paranhaslett.gamebook.loader;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,8 +19,8 @@ import com.paranhaslett.gamebook.model.libraryitem.Template;
 
 public class EmaLoader implements Loader {
 
-	List<String> content = new ArrayList<String>();
-	File file;
+	private List<String> content = new ArrayList<>();
+	private File file;
 
 	@Override
 	public String getText(String key) {
@@ -47,9 +46,8 @@ public class EmaLoader implements Loader {
 
 	@Override
 	public List<Loader> getChildren(String... childrenKeys) {
-		HashSet<String> keySet = new HashSet<String>(
-				Arrays.asList(childrenKeys));
-		List<Loader> result = new ArrayList<Loader>();
+		HashSet<String> keySet = new HashSet<>(Arrays.asList(childrenKeys));
+		List<Loader> result = new ArrayList<>();
 		String childKey = null;
 		for (String contentItem : content) {
 
@@ -96,7 +94,7 @@ public class EmaLoader implements Loader {
 	}
 	
 	private List<String> getContent(File file){
-		List<String> result = new ArrayList<String>();
+		List<String> result = new ArrayList<>();
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(file));
@@ -105,9 +103,6 @@ public class EmaLoader implements Loader {
 				result.add(line);
 			}
 			reader.close();
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

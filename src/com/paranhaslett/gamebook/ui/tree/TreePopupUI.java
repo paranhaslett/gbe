@@ -16,7 +16,7 @@ import javax.swing.tree.TreePath;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
 
-public class TreePopupUI extends JPopupMenu {
+class TreePopupUI extends JPopupMenu {
 	private static final long serialVersionUID = -3362291340967409194L;
 
 	public TreePopupUI(final TreeUI tree) {

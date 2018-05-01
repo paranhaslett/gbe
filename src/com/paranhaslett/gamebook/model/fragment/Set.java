@@ -15,9 +15,9 @@ public class Set implements Fragment {
   public String value;
   public String text;
 
-  public static Loadable loadable = new SetIO();
-  private PanelUI panel = SetUI.getPanelUI();
-  private Editor ed = Editor.getEd();
+  public static final Loadable loadable = new SetIO();
+  private final PanelUI panel = SetUI.getPanelUI();
+  private final Editor ed = Editor.getEd();
 
   @Override
   public boolean isDropOn(Item mi) {
@@ -52,7 +52,7 @@ public class Set implements Fragment {
 
   }
 
-  static Icon icon;
+  private static Icon icon;
 
   @Override
   public Icon icon() {

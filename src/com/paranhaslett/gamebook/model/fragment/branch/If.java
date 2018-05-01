@@ -18,11 +18,11 @@ public class If implements ModelContainer, Fragment, Item {
 	public String op;
 	public String rhs;
 	public String text;
-	public ArrayList<Fragment> trueBranch = new ArrayList<Fragment>();
+	public final ArrayList<Fragment> trueBranch = new ArrayList<>();
 
-	public static Loadable loadable = new IfIO();
-	private PanelUI panel = IfUI.getPanelUI();
-	private Editor ed = Editor.getEd();
+	public static final Loadable loadable = new IfIO();
+	private final PanelUI panel = IfUI.getPanelUI();
+	private final Editor ed = Editor.getEd();
 
 	@Override
 	public boolean isDropOn(Item mi) {
@@ -61,7 +61,7 @@ public class If implements ModelContainer, Fragment, Item {
 		
 	}
 
-static Icon icon;
+private static Icon icon;
   
   @Override
   public Icon icon(){

@@ -17,11 +17,11 @@ import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.fragment.Goto;
 
-public class TreeTransferHandler extends TransferHandler {
+class TreeTransferHandler extends TransferHandler {
 	private static final long serialVersionUID = -9199992278240380840L;
-	DataFlavor nodesFlavor;
-	DataFlavor[] flavors = new DataFlavor[1];
-	TreeNodeUI[] nodesToRemove;
+	private DataFlavor nodesFlavor;
+	private final DataFlavor[] flavors = new DataFlavor[1];
+	private TreeNodeUI[] nodesToRemove;
 
 	public TreeTransferHandler() {
 		try {
@@ -53,9 +53,11 @@ public class TreeTransferHandler extends TransferHandler {
 		JTree tree = (JTree) support.getComponent();
 		int dropRow = tree.getRowForPath(dl.getPath());
 		int[] selRows = tree.getSelectionRows();
-		for (int i = 0; i < selRows.length; i++) {
-			if (selRows[i] == dropRow) {
-				return false;
+		if (selRows != null) {
+			for (int selRow : selRows) {
+				if (selRow == dropRow) {
+					return false;
+				}
 			}
 		}
 		TreeNodeUI sourceRoot = (TreeNodeUI) tree.getPathForRow(selRows[0])
@@ -84,16 +86,14 @@ public class TreeTransferHandler extends TransferHandler {
 		TreeNodeUI target = (TreeNodeUI) dest.getLastPathComponent();
 		TreePath path = tree.getPathForRow(selRows[0]);
 		TreeNodeUI firstNode = (TreeNodeUI) path.getLastPathComponent();
-		if (firstNode.getChildCount() > 0
-				&& target.getLevel() < firstNode.getLevel()) {
-			return false;
-		}
-
-		return true;
-	}
+        return firstNode.getChildCount() <= 0 || target.getLevel() >= firstNode.getLevel();
+    }
 
 	private boolean haveCompleteNode(JTree tree) {
 		int[] selRows = tree.getSelectionRows();
+		if(selRows == null){
+			return false;
+		}
 		TreePath path = tree.getPathForRow(selRows[0]);
 		TreeNodeUI first = (TreeNodeUI) path.getLastPathComponent();
 		int childCount = first.getChildCount();
@@ -122,8 +122,8 @@ public class TreeTransferHandler extends TransferHandler {
 			// Make up a node array of copies for transfer and
 			// another for/of the nodes that will be removed in
 			// exportDone after a successful drop.
-			List<TreeNodeUI> copies = new ArrayList<TreeNodeUI>();
-			List<TreeNodeUI> toRemove = new ArrayList<TreeNodeUI>();
+			List<TreeNodeUI> copies = new ArrayList<>();
+			List<TreeNodeUI> toRemove = new ArrayList<>();
 			TreeNodeUI node = (TreeNodeUI) paths[0].getLastPathComponent();
 			TreeNodeUI copy = copy(node);
 			copies.add(copy);
@@ -196,8 +196,11 @@ public class TreeTransferHandler extends TransferHandler {
 		}
 
 		// Add data to model.
-		for (int i = 0; i < nodes.length; i++) {
-			model.insertNodeInto(nodes[i], parent, index++);
+		if(nodes == null){
+			return false;
+		}
+		for (TreeNodeUI node : nodes) {
+			model.insertNodeInto(node, parent, index++);
 		}
 		return true;
 	}
@@ -206,10 +209,10 @@ public class TreeTransferHandler extends TransferHandler {
 		return getClass().getName();
 	}
 
-	public class NodesTransferable implements Transferable {
-		TreeNodeUI[] nodes;
+	class NodesTransferable implements Transferable {
+		final TreeNodeUI[] nodes;
 
-		public NodesTransferable(TreeNodeUI[] nodes) {
+		NodesTransferable(TreeNodeUI[] nodes) {
 			this.nodes = nodes;
 		}
 

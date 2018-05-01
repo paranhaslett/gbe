@@ -15,7 +15,7 @@ import javax.swing.tree.TreePath;
 
 import com.paranhaslett.toolbox.model.Artifact;
 
-public class TreePopupUI extends JPopupMenu {
+class TreePopupUI extends JPopupMenu {
 	private static final long serialVersionUID = -3362291340967409194L;
 
 	public TreePopupUI(final TreeUI tree) {

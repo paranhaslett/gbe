@@ -24,13 +24,12 @@ import com.paranhaslett.gamebook.model.fragment.branch.If;
 
 public class IfUI extends PanelUI {
 	private static final long serialVersionUID = 4882714495642743442L;
-	private JTextField textLhs;
+	private final JTextField textLhs;
 	private static PanelUI panelUI;
 	private If model;
-	private JLabel lblHeading;
-	private JTextField textRhs;
-	private JTextField textField;
-	private JComboBox<String> comboBox;
+    private final JTextField textRhs;
+	private final JTextField textField;
+	private final JComboBox<String> comboBox;
 
 	/**
 	 * Create the panel.
@@ -50,7 +49,7 @@ public class IfUI extends PanelUI {
 			}
 		});
 
-		lblHeading = new JLabel("If");
+        JLabel lblHeading = new JLabel("If");
 		lblHeading.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblHeading.setIcon(new ImageIcon(IfUI.class
 				.getResource("/icons/tree/if.png")));
@@ -113,10 +112,9 @@ public class IfUI extends PanelUI {
 		textRhs = new JTextField();
 		textRhs.setColumns(10);
 
-		comboBox = new JComboBox<String>();
+		comboBox = new JComboBox<>();
 		comboBox.setEditable(true);
-		comboBox.setModel(new DefaultComboBoxModel<String>(
-				new String[] { "=", "<", ">" }));
+		comboBox.setModel(new DefaultComboBoxModel<>(new String[] { "=", "<", ">" }));
 
 		textField = new JTextField();
 		textField.setColumns(10);
@@ -134,8 +132,7 @@ public class IfUI extends PanelUI {
 												groupLayout
 														.createParallelGroup(
 																Alignment.LEADING)
-														.addComponent(
-																lblHeading)
+														.addComponent(lblHeading)
 														.addGroup(
 																groupLayout
 																		.createSequentialGroup()
@@ -305,7 +302,7 @@ public class IfUI extends PanelUI {
 		model.op = (String) comboBox.getSelectedItem();
 		if (textField.getText() == null || textField.getText().equals("")) {
 			textField.setText("If " + textLhs.getText()
-					+ (String) comboBox.getSelectedItem() + textRhs.getText());
+					+ comboBox.getSelectedItem() + textRhs.getText());
 		}
 		model.text = textField.getText();
 		Editor.getEd().update();

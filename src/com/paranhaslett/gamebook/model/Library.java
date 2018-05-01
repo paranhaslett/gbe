@@ -17,10 +17,10 @@ import com.paranhaslett.gamebook.ui.panel.LibraryUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
 public class Library implements Item {
-	public static Loadable loadable = new LibraryIO();
-	private static PanelUI panel = LibraryUI.getPanelUI();
+	public static final Loadable loadable = new LibraryIO();
+	private static final PanelUI panel = LibraryUI.getPanelUI();
 	private Editor ed = Editor.getEd();
-	public ArrayList<Item> items = new ArrayList<>();
+	public final ArrayList<Item> items = new ArrayList<>();
 	public static Loader loader = new XMLLoader();
 
 	@Override
@@ -33,15 +33,13 @@ public class Library implements Item {
 
 	public void saveLibrary() {
 		File file = new File ("./library-save.xml");
-		if (file != null) {
-			Loader loader = Editor.getEd().getLoader();
-			if (loader != null) {
-				loader.save(file, Editor.getEd().library);
-			} else {
-				throw new RuntimeException(
-						"Bad Programmer: File chooser selected wrong file type");
-			}
-		}
+		Loader loader = Editor.getEd().getLoader();
+		if (loader != null) {
+            loader.save(file, Editor.getEd().library);
+        } else {
+            throw new RuntimeException(
+                    "Bad Programmer: File chooser selected wrong file type");
+        }
 	}
 
 	public void setup(Editor editor) {
@@ -51,13 +49,11 @@ public class Library implements Item {
 	
 	public void setup() {
 		File file = new File ("./library.xml");
-		if (file != null) {
-			Loader loader = Editor.getEd().getLoader();
-			if (loader != null) {
-				ed.library = new Library();
-				loader.load(file, ed.library);
-			} 
-		} 
+		Loader loader = Editor.getEd().getLoader();
+		if (loader != null) {
+            ed.library = new Library();
+            loader.load(file, ed.library);
+        }
 		ed.library.update();
 		ed.setupLibraryTree();
 	}
@@ -85,7 +81,7 @@ public class Library implements Item {
 		return (item instanceof Book || item instanceof Series || item instanceof Template);
 	}
 
-	static Icon icon;
+	private static Icon icon;
 	
 	  @Override
 	public Icon icon() {

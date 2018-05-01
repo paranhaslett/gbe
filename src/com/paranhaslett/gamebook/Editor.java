@@ -18,7 +18,7 @@ public class Editor {
 	private static Editor editor = null;
 	public TreeUI tree;
 	public EditorUI editorUI;
-	public FileChooserUI fileChooser;
+	private FileChooserUI fileChooser;
 
 	private Editor() {
 	}
