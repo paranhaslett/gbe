@@ -1,5 +1,7 @@
 package com.paranhaslett.gamebook.model.fragment;
 
+import javax.swing.Icon;
+
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.ast.Null;
 import com.paranhaslett.gamebook.loadable.GotoIO;
@@ -16,13 +18,11 @@ public class Goto implements Fragment {
 	
 	public static Loadable loadable = new GotoIO();
 	private PanelUI panel = GotoUI.getPanelUI();
-	private Editor gc = Editor.getEd();
+	private Editor ed = Editor.getEd();
 
 	public void update(Item item) {
 		if (item instanceof Goto) {
-			Goto gotoob = (Goto) item;
-			panel.populatePanel(gotoob);
-			gc.editorUI.updatePanel(panel);
+			ed.editorUI.updatePanel(panel, item);
 		}
 	}
 
@@ -60,4 +60,13 @@ public class Goto implements Fragment {
 		return false;
 	}
 
+static Icon icon;
+  
+  @Override
+  public Icon icon(){
+    if (icon == null){
+      icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/goto.png");
+    }
+    return icon;
+  }
 }

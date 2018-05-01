@@ -2,17 +2,17 @@ package com.paranhaslett.gamebook.model.libraryitem;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.tree.TreePath;
 
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loadable.TemplateIO;
 import com.paranhaslett.gamebook.model.Item;
-import com.paranhaslett.gamebook.model.LibraryItem;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.TemplateUI;
 
-public class Template implements LibraryItem {
+public class Template implements Item {
 	public String title;
 	public ArrayList<Item> items = new ArrayList<Item>();
 	public static Loadable loadable = new TemplateIO();
@@ -28,16 +28,7 @@ public class Template implements LibraryItem {
 	}
 	
 	public void update(){
-		panel.populatePanel(this);
-		ed.editorUI.updatePanel(panel);
-	}
-
-	public void update(Item item) {
-		if (item instanceof Template) {
-			Template template = (Template) item;
-			panel.populatePanel(template);
-			ed.editorUI.updatePanel(panel);
-		}
+		ed.editorUI.updatePanel(panel, this);
 	}
 
 	public boolean isDropOn(Item mi) {
@@ -66,10 +57,17 @@ public class Template implements LibraryItem {
 	@Override
 	public void changeMainLabel(String newLabel) {
 		title = newLabel;
-		panel.populatePanel(this);
-		ed.editorUI.updatePanel(panel);
+		ed.editorUI.updatePanel(panel, this);
 		
 	}
 
-
+static Icon icon;
+  
+  @Override
+  public Icon icon(){
+    if (icon == null){
+      icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/template.png");
+    }
+    return icon;
+  }
 }

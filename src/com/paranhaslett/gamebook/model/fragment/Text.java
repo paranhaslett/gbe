@@ -1,5 +1,7 @@
 package com.paranhaslett.gamebook.model.fragment;
 
+import javax.swing.Icon;
+
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loadable.TextIO;
@@ -38,10 +40,19 @@ public class Text implements Fragment {
 
 	@Override
 	public void update() {
-		panel.populatePanel(this);
-		ed.editorUI.updatePanel(panel);
+		ed.editorUI.updatePanel(panel, this);
 	}
 
+static Icon icon;
+  
+  @Override
+  public Icon icon(){
+    if (icon == null){
+      icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/desc.png");
+    }
+    return icon;
+  }
+	
 	@Override
 	public void changeMainLabel(String newLabel) {
 		// TODO Auto-generated method stub

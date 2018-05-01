@@ -13,6 +13,7 @@ public class TextIO implements Loadable {
 		StringBuilder sb = new StringBuilder();
 		boolean lineBlank = false;
 		for (String str : content) {
+			str = str.replace("^\\w*", "");
 			if (lineBlank || str != "") {
 				sb.append(str);
 				sb.append('\n');
@@ -28,8 +29,7 @@ public class TextIO implements Loadable {
 	@Override
 	public void load(Loader ff, Item item) {
 		Text desc = (Text) item;
-		desc.text = ff.getText(null);
-		
+		desc.text = ff.getText(null);	
 	}
 
 	@Override

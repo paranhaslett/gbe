@@ -17,6 +17,8 @@ import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
+import javax.swing.JTable;
+import javax.swing.JScrollPane;
 
 public class GameBookUI extends PanelUI {
 	private static final long serialVersionUID = -6099292917735976714L;
@@ -67,88 +69,47 @@ public class GameBookUI extends PanelUI {
 		lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblGameBook.setIcon(new ImageIcon(GameBookUI.class
 				.getResource("/icons/tree/gamebook.png")));
+		
+		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout groupLayout = new GroupLayout(this);
-		groupLayout
-				.setHorizontalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.LEADING)
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				lblGameBook))
-														.addGroup(
-																groupLayout
-																		.createSequentialGroup()
-																		.addContainerGap()
-																		.addComponent(
-																				lblNewLabel)
-																		.addPreferredGap(
-																				ComponentPlacement.RELATED)
-																		.addGroup(
-																				groupLayout
-																						.createParallelGroup(
-																								Alignment.LEADING)
-																						.addComponent(
-																								textField,
-																								GroupLayout.DEFAULT_SIZE,
-																								400,
-																								Short.MAX_VALUE)
-																						.addGroup(
-																								groupLayout
-																										.createSequentialGroup()
-																										.addComponent(
-																												btnUpdate)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addComponent(
-																												btnAddPage)
-																										.addPreferredGap(
-																												ComponentPlacement.RELATED)
-																										.addComponent(
-																												btnAddSection)))))
-										.addContainerGap(16,
-												GroupLayout.PREFERRED_SIZE)));
-		groupLayout
-				.setVerticalGroup(groupLayout
-						.createParallelGroup(Alignment.LEADING)
-						.addGroup(
-								groupLayout
-										.createSequentialGroup()
-										.addContainerGap()
-										.addComponent(lblGameBook)
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(
-																lblNewLabel)
-														.addComponent(
-																textField,
-																GroupLayout.PREFERRED_SIZE,
-																GroupLayout.DEFAULT_SIZE,
-																GroupLayout.PREFERRED_SIZE))
-										.addPreferredGap(
-												ComponentPlacement.RELATED)
-										.addGroup(
-												groupLayout
-														.createParallelGroup(
-																Alignment.BASELINE)
-														.addComponent(btnUpdate)
-														.addComponent(
-																btnAddPage)
-														.addComponent(
-																btnAddSection))
-										.addContainerGap(216, Short.MAX_VALUE)));
+		groupLayout.setHorizontalGroup(
+		  groupLayout.createParallelGroup(Alignment.LEADING)
+		    .addGroup(groupLayout.createSequentialGroup()
+		      .addContainerGap()
+		      .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		        .addComponent(lblGameBook)
+		        .addGroup(groupLayout.createSequentialGroup()
+		          .addComponent(lblNewLabel)
+		          .addPreferredGap(ComponentPlacement.RELATED)
+		          .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
+		            .addComponent(textField, GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
+		            .addGroup(groupLayout.createSequentialGroup()
+		              .addComponent(btnUpdate)
+		              .addPreferredGap(ComponentPlacement.RELATED)
+		              .addComponent(btnAddPage)
+		              .addPreferredGap(ComponentPlacement.RELATED)
+		              .addComponent(btnAddSection))
+		            .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE))))
+		      .addContainerGap())
+		);
+		groupLayout.setVerticalGroup(
+		  groupLayout.createParallelGroup(Alignment.LEADING)
+		    .addGroup(groupLayout.createSequentialGroup()
+		      .addContainerGap()
+		      .addComponent(lblGameBook)
+		      .addPreferredGap(ComponentPlacement.RELATED)
+		      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+		        .addComponent(lblNewLabel)
+		        .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+		      .addPreferredGap(ComponentPlacement.RELATED)
+		      .addComponent(scrollPane, GroupLayout.DEFAULT_SIZE, 197, Short.MAX_VALUE)
+		      .addPreferredGap(ComponentPlacement.RELATED)
+		      .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
+		        .addComponent(btnUpdate)
+		        .addComponent(btnAddPage)
+		        .addComponent(btnAddSection))
+		      .addContainerGap())
+		);
 		setLayout(groupLayout);
 
 	}

@@ -2,6 +2,8 @@ package com.paranhaslett.gamebook.model;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loadable.PageIO;
@@ -14,14 +16,13 @@ public class Page implements Item {
 
 	public static Loadable loadable = new PageIO();
 	private PanelUI panel = PageUI.getPanelUI();
-	private Editor gc = Editor.getEd();
+	private Editor ed = Editor.getEd();
 	private int pgnum = 1;
+	
 
 	public void update(Item item) {
 		if (item instanceof Page) {
-			Page page = (Page) item;
-			panel.populatePanel(page);
-			gc.editorUI.updatePanel(panel);
+			ed.editorUI.updatePanel(panel, item);
 		}
 	}
 
@@ -43,7 +44,7 @@ public class Page implements Item {
 
 		if (to instanceof Section) {
 			sections.add((Section) to);
-			gc.tree.addToSel(to);
+			ed.tree.addToSel(to);
 		}
 	}
 
@@ -56,8 +57,7 @@ public class Page implements Item {
 	@Override
 	public void changeMainLabel(String newLabel) {
 		id = newLabel;
-		panel.populatePanel(this);
-		gc.editorUI.updatePanel(panel);
+		ed.editorUI.updatePanel(panel, this);
 
 	}
 
@@ -67,5 +67,16 @@ public class Page implements Item {
 		pgnum++;
 		
 	}
+	
+	static Icon icon;
+	
+    @Override
+	public Icon icon() {
+		if (icon == null){
+		      icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/library.png");
+		    }
+		    return icon;
+	}
 
+  
 }

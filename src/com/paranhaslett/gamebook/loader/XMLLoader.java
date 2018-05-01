@@ -139,13 +139,11 @@ public class XMLLoader implements Loader {
 	}
 	
 	private String beutifyText(String text){
-		String result = text;
+		String result = text.replaceAll("^\\s*", "");
 		for (int i=0; i<50; i++){
-			result  = result.replace("\n ", "\n");
+			result  = result.replaceAll("\n\\s*", "\n");
 		}
-		return result;
-		
-		
+		return result;	
 	}
 
 	@Override

@@ -2,6 +2,8 @@ package com.paranhaslett.gamebook.model.fragment.branch;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.ChanceIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
@@ -17,18 +19,12 @@ public class Chance implements ModelContainer, Fragment, Item {
 	
 	public static Loadable loadable = new ChanceIO();
 	private PanelUI panel = TextUI.getPanelUI();
-	private Editor gc = Editor.getEd();
+	private Editor ed = Editor.getEd();
 
 	@Override
 	public boolean isDropOn(Item mi) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public void update(Item item) {
-		if (item instanceof Chance) {
-			
-		}
 	}
 
 	public String toString() {
@@ -47,8 +43,7 @@ public class Chance implements ModelContainer, Fragment, Item {
 
 	@Override
 	public void update() {
-		panel.populatePanel(this);
-		gc.editorUI.updatePanel(panel);
+		ed.editorUI.updatePanel(panel, this);
 	}
 
 	@Override
@@ -63,4 +58,13 @@ public class Chance implements ModelContainer, Fragment, Item {
 		
 	}
 
+static Icon icon;
+  
+  @Override
+  public Icon icon(){
+    if (icon == null){
+      icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/chance.png");
+    }
+    return icon;
+  }
 }

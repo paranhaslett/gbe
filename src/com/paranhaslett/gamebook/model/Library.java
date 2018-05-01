@@ -3,11 +3,16 @@ package com.paranhaslett.gamebook.model;
 import java.io.File;
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.LibraryIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.loader.XMLLoader;
+import com.paranhaslett.gamebook.model.libraryitem.Book;
+import com.paranhaslett.gamebook.model.libraryitem.Series;
+import com.paranhaslett.gamebook.model.libraryitem.Template;
 import com.paranhaslett.gamebook.ui.panel.LibraryUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 
@@ -15,14 +20,14 @@ public class Library implements Item {
 	public static Loadable loadable = new LibraryIO();
 	private static PanelUI panel = LibraryUI.getPanelUI();
 	private Editor ed = Editor.getEd();
-	public ArrayList<LibraryItem> items = new ArrayList<LibraryItem>();
+	public ArrayList<Item> items = new ArrayList<>();
 	public static Loader loader = new XMLLoader();
 
 	@Override
 	public void add (Item item){
-		if (item instanceof LibraryItem){
-			items.add((LibraryItem)item);
-		}
+	       if (isDropOn(item)){
+			items.add(item);
+	       }
 	}
 
 
@@ -64,8 +69,8 @@ public class Library implements Item {
 	
 	@Override
 	public void update(){
-		panel.populatePanel(this);
-		ed.editorUI.updatePanel(panel);
+		
+		ed.editorUI.updatePanel(panel, this);
 		//ed.setupLibraryTree();
 	}
 
@@ -77,7 +82,18 @@ public class Library implements Item {
 
 	@Override
 	public boolean isDropOn(Item item) {
-		return item instanceof LibraryItem;
+		return (item instanceof Book || item instanceof Series || item instanceof Template);
+	}
+
+	static Icon icon;
+	
+	  @Override
+	public Icon icon() {
+		if (icon == null){
+		      icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/library.png");
+		    }
+		    return icon;
 	}
 	
+  
 }

@@ -18,9 +18,6 @@ import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.fragment.Goto;
 
 public class TreeTransferHandler extends TransferHandler {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = -9199992278240380840L;
 	DataFlavor nodesFlavor;
 	DataFlavor[] flavors = new DataFlavor[1];

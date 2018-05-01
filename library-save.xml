@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><library><book title="Adventure"><section id="a1" title="Blackout"><text>You awaken with no idea about who you are or how you got here.</text><set var="energy"><value>its maximal value</value><text>*Set **energy*** = its maximal value.</text></set><choice/><set var="dream"><value>0</value><text>*Set **dream** = 0*</text></set><goto to="a2"><text>Go to {a2}
+</text></goto></section><section id="a10" title="Radiation"><text>If you are wearing a radiation suit the the in-built geiger
+counter is ticking furiously.</text><choice/><goto to="to"><text>*When you are finished go to the page number recorded beside **to**</text></goto></section><section id="a11" title="Ruins"><text>The undergrowth contains large pieces of concrete. Vines cover an old
+concrete building
+**a small box with heath warnings over it**
+* Crossroads set **to**={a4} go to {a6}
+* Domed Sector E **to**={a20} go to {a6}
+</text><goto to=""/></section><section id="a12" title="Cyber City Airlock"><text>* Leave through the airlock
+* Machine City *set **to={a15}***
+* Domed Sector D *set **to={a9}***
+*go to section {a6}*
+* Cyber city *{a13}*
+</text><goto to=""/></section><section id="a13" title="Cybercity"><text>*set **hub=a13***
+* Domicile {a2}
+* Airlock {a12}
+* Tech shop {a14}
+* Cyber medical
+</text><goto to=""/></section><section id="a14" title="Technology Shop"><text>An androgynous android awaits an acquisition.
+You may buy:
+* Patch panel
+* Robot
+* ICOMM
+* Internet Connection
+*When you are finished go to the page number recorded beside **hub***
+</text><goto to=""/></section><section id="a15" title="Machine City"><text>If you have just arrived go to {a10}
+After the antimatter accident the more radioactive areas were bought
+cheaply by a consortium of enterprising businessmen. Due to the high
+levels of radiation they used machines to create a power plant to
+supply power to the domed cities.
+* Robotics
+* Parts
+* Cyber city *set **to={a12}** and go to {a6}*
+* The Wastelands *set **to={a28}** and go to {a6}*
+</text><goto to=""/></section><section id="a16" title="Lost"><text>It is hard to keep a sense of direction. Pretty soon you have to admit
+you are lost and retrace your steps back to civilization (?)
+*When you are finished here return to **hub***
+</text><goto to=""/></section><section id="a17" title="Mutant Attack"><text>Mutant
+Energy: 4
+Recover:2
+Defend:1
+Attack: 2
+Defend:2
+If you lose *set **hub ={a24}** and goto {a1}*
+</text><goto to=""/></section><section id="a18" title="Containment breech"><text>Klaxons begin sounding and you are dragged away by medical staff in
+radioactive suits.
+"You have been exposed to too much radiation and have begun to mutate"
+explains a nurse "We are going to try to reverse the process"
+* If you have a **patch panel** it has been surgically removed.
+*Erase it from your adventure sheet*
+* Your mutation has been stabilized. *subtract 2 from **mutation**
+and set **exposure** to 0*
+Go to {a2}
+</text><goto to=""/></section><section id="a19" title="Domed Sector E"><text>*set **hub=a19***
+Figure out what event is happening
+* Domicile *go to {a2}*
+* Airlock *go to {a20}*
+* **1 credit** for subway to Domed Sector E *go to {a8}*
+</text><goto to=""/></section><section id="a2" title="Domicile"><text>For every **1 Credit** you may restore **1 unit Energy** up to your
+**Recovery**.
+*When you are finished go to the page number recorded beside **hub***
+</text><goto to=""/></section><section id="a20" title="Domed Sector E Airlock"><text>*set **hub** to {a19}*
+*if **exposure**&gt;3 go to {a18}*
+If you want to leave through the airlock
+* To go towards ruins *set **to** to {a11} goto section {a6}*
+* Domed Sector E *goto section {a19}*
+</text><goto to=""/></section><section id="a21" title="Jungle"><text>When this jungle grew back it was warped and mutated
+* Crossroads *set **to={a4}***
+* Wastelands *set **to={a28}***
+*Go to {a6}*
+</text><goto to=""/></section><section id="a22" title="Phaser Fire"><text>The previous silence is broken by phaser fire. You take cover behind a
+nearby rock but it did not stop you from being grazed by a stray
+bolt
+*lose 1 **defense** unless it was energised*
+*When you are finished go to the page number recorded beside **to** *
+</text><goto to=""/></section><section id="a23" title="A Rare Find"><text>You find and **old patch panel** that looks vaguely familiar
+*When you are finished go to the page number recorded beside **to** *
+</text><goto to=""/></section><section id="a24" title="Mutant encampment"><text>*set **hub={a24}***
+*set **chaos={a29}***
+*set **to={a25}***
+Known for their resourcefulness the mutants have adapted to survive the
+rigors of their highly radioactive environment. Nomadic by nature
+they have an adapt to survive mentality despite or maybe because
+their deformities.
+* Attempt to exit the encampment *go to {a6}*
+</text><goto to=""/></section><section id="a25" title="Desert"><text>One sandhill blends into another in this vast expanse. The scorching
+heat beats down upon you.
+*Lose 1 defense unless powered*
+*If you lose all defense or energy then you pass out go to {a1}*
+* go towards large dune *set **to={a30}***
+* go towards flat expanse *set **to={a31}***
+* go towards sun *set **to={a32}***
+*go to {a6}*
+</text><goto to=""/></section><section id="a26" title="Mechanics page"><text>Value [ ]
+Page, Instruction, Goto page
+</text><goto to=""/></section><section id="a27" title="Dream"><text>Record hub and radiation here and select near random values for each set
+out of wack to dream
+</text><goto to=""/></section><section id="a28" title="Edge of the Wastelands"><text>After the nuclear tragedy this area became a bleak mess of sand dunes and
+desert. There have been rumors of thieving mutant hoards hiding
+somewhere surviving off the land and unwary travelers.
+*set **hub={a24}***
+*set **chaos={a32}***
+* to brave the wastelands *set **to={a25}***
+* to go to the jungle *set **to={a21}***
+* to go to machine city *set **to={a15}***
+*go to {a6}*
+</text><goto to=""/></section><section id="a29" title="Wastelands"><text>*set **chaos**={a28}*
+*set **to** ={a25}*
+*go to {a6}*
+</text><goto to=""/></section><section id="a3" title=" Domed Sector D"><text>*Set **hub={a3}***
+After the antimatter catastrophe the bulk of earths
+population live within enclosed or domed cities where climate and radiation
+levels can be maintained and adjusted. You may goto the following
+places
+* Clothing *go to {a5}*
+* Museum *go to {a7}*
+* Domicile *go to {a2}*
+* Airlock *go to {a9}*
+* Transit Lounge *go to {a8}*
+</text><goto to=""/></section><section id="a30" title="An Oasis"><text>You see some trees on the horizon and make your way towards them. As
+you come closer however they disappear. You have been devices by one
+of the fickle tricks of the desert.
+*set **to=chaos***
+*go to {a6}*
+</text><goto to=""/></section><section id="a31" title="Sand trap"><text>Suddenly the sand gives way beneath your feet you are trapped by a lot of
+hot sand.
+*remove 1 energy and 1 defense unless it is unpowered to escape from the
+sand*
+*set **to={a25}***
+*go to {a6}*
+</text><goto to=""/></section><section id="a32" title="An Oasis"><text>You see some trees on the horizon and make your way towards them. As
+you come closer you find enough water to restore one defense point.
+*set **chaos={a24}***
+*set **to**={a25}*
+*go to {a6}*
+</text><goto to=""/></section><section id="a4" title="Crossroads"><text>The undergrowth has begun to get thicker. An old makeshift street sign
+* Roonz *set **to={a11}***
+* Junga *set **to={a21}***
+* Shen Sity *set **to={a15}***
+* Doomed Sity *set **to={a9}***
+*Go to {a6}*
+</text><goto to=""/></section><section id="a5" title="Clothing store"><text>You can buy:
+* Radiation suit (31.0.1.1.1) **9 credits**
+[ ] If box is unticked you may also deliver a flyer.
+*Tick the box and subtract 1 from **todeliver***
+*When you are finished go to the page number recorded beside **hub***
+</text><goto to=""/></section><section id="a6" title="Wilderness"><text>*Assign your **Energy** to **Attack**, **Defense** and **Recovery***
+*Throw two dice to determine which event occurs*
+2 or 3 *goto {a22}*
+4 or 5 *goto {a16}*
+6 or 7 *goto **to***
+8 or 9 *goto {a10}*
+10 or 11 *goto {a17}*
+12 *goto {a23}*
+</text><goto to=""/></section><section id="a7" title="Museum"><text>* If you have any historic **artifacts** the museum will buy them for
+**500 credits**
+* If **todeliver**=0 erase it and gain **4 credits**
+* You may deliver **flyers** by adding **todeliver**=1 to your
+adventure sheet
+*When you are finished go to the page number recorded beside **hub***
+</text><goto to=""/></section><section id="a8" title="Transit lounge"><text>*set **hub=a8***
+* Inertia elevator *go to*
+* If you have a spaceship docked *go to*
+* **1 credit** for subway to Domed Sector E *go to {a19}*
+* Domed Sector D *go to {a3}*
+</text><goto to=""/></section><section id="a9" title="Domed Sector D Airlock"><text>*set **hub** to {a3}*
+*if **exposure**&gt;3 go to {a18}*
+"I would recommend putting on a radiation suit before venturing out
+there" comments an old man
+If you want to leave through the airlock
+* To go towards jungle *set **to** = {a4} goto section {a6}*
+* To go toward cybercity *set **to** {a12} goto section {a6}*
+If you want go back into the domed city *goto section {a3}*
+</text><goto to=""/></section></book><template/></library>

@@ -16,6 +16,7 @@ import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
 import com.paranhaslett.gamebook.Editor;
+import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.tree.TreeUI;
 
@@ -75,7 +76,8 @@ public class EditorUI extends JFrame {
 		scrollPane.setViewportView(tree);
 	}
 
-	public void updatePanel(PanelUI panel) {
+	public void updatePanel(PanelUI panel, Item item) {
+		panel.populatePanel(item);
 		splitPane.setRightComponent(panel);
 	}
 

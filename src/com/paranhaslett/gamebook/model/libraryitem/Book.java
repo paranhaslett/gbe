@@ -2,19 +2,22 @@ package com.paranhaslett.gamebook.model.libraryitem;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.tree.TreePath;
 
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.BookIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.model.Item;
-import com.paranhaslett.gamebook.model.LibraryItem;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.ui.panel.GameBookUI;
+import com.paranhaslett.gamebook.ui.panel.PageUI;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
+import com.paranhaslett.gamebook.ui.panel.SectionUI;
 
-public class Book implements LibraryItem {
+public class Book implements Item {
+  
 	public String title;
 	public ArrayList<Page> pages = new ArrayList<Page>();
 	public ArrayList<Section> sections = new ArrayList<Section>();
@@ -33,22 +36,19 @@ public class Book implements LibraryItem {
 			if (added instanceof Page) {
 				pages.add((Page) added);
 				ed.tree.addToSel(added);
-				((Page)added).update();
-
+				ed.editorUI.updatePanel(PageUI.getPanelUI(), added);
 			}
 			if (added instanceof Section) {
 				freeSections.add((Section) added);
 				ed.tree.addToSel(added);
-				
-				((Section)added).update();
+				ed.editorUI.updatePanel(SectionUI.getPanelUI(), added);
 			}
 	}
 
 	@Override
 	public void changeMainLabel(String newLabel) {
 		title = newLabel;
-		panel.populatePanel(this);
-		ed.editorUI.updatePanel(panel);	
+		ed.editorUI.updatePanel(panel, this);	
 	}
 
 	
@@ -71,12 +71,22 @@ public class Book implements LibraryItem {
 
 
 	public String toString() {
+		//TODO ensure this is unique (add anumber perhaps
 		return title;
 	}
 
 	@Override
 	public void update(){
-		panel.populatePanel(this);
-		ed.editorUI.updatePanel(panel);
+		ed.editorUI.updatePanel(panel, this);
+	}
+
+	static Icon icon;
+	
+	@Override
+	public Icon icon(){
+	  if (icon == null){
+	    icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/gamebook.png");
+	  }
+	  return icon;
 	}
 }

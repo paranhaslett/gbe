@@ -11,7 +11,6 @@ import javax.swing.tree.TreePath;
 import com.paranhaslett.gamebook.model.Fragment;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Library;
-import com.paranhaslett.gamebook.model.LibraryItem;
 import com.paranhaslett.gamebook.model.ModelContainer;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
@@ -23,12 +22,13 @@ public class TreeUI extends JTree {
 	private static final long serialVersionUID = -4252742793844024659L;
 	private Item selection;
 	private TreePath selectedPath;
+	private TreeRendererUI treeRenderer = new TreeRendererUI();
 
 	public TreeUI() {
 		setDropMode(DropMode.ON_OR_INSERT);
 		setDragEnabled(true);
 		setTransferHandler(new TreeTransferHandler());
-		setCellRenderer(new TreeRendererUI());
+		setCellRenderer(treeRenderer);
 		addTreeSelectionListener(new TreeSelectionListener() {
 			@Override
 			public void valueChanged(TreeSelectionEvent e) {
@@ -52,10 +52,14 @@ public class TreeUI extends JTree {
 		new TreePopupUI(this);
 	}
 	
-	public void setup(Library lib) {
+	public TreeRendererUI getTreeRenderer() {
+    return treeRenderer;
+  }
+
+  public void setup(Library lib) {
 		TreeNodeUI library = new TreeNodeUI(lib);
 
-		for (LibraryItem item : lib.items) {
+		for (Item item : lib.items) {
 			TreeNodeUI itemNode = null;
 			if (item instanceof Book){
 				itemNode = book((Book)item);	
@@ -78,7 +82,7 @@ public class TreeUI extends JTree {
 	public TreeNodeUI series(Series series) {
 		TreeNodeUI seriesNode = new TreeNodeUI(series);
 		
-		for (LibraryItem item : series.books) {
+		for (Item item : series.books) {
 			TreeNodeUI itemNode = book((Book)item);	
 			seriesNode.add(itemNode);
 		}

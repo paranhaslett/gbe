@@ -97,8 +97,6 @@ public class BookIO implements Loadable {
 		for (Section section : gameBook.freeSections) {
 			Loader sectionff = ff.create("section"); 
 			Section.loadable.save(sectionff, section);
-		}
-		
+		}		
 	}
-
 }

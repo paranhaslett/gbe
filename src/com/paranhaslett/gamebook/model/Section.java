@@ -2,6 +2,7 @@ package com.paranhaslett.gamebook.model;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
 import javax.swing.tree.TreePath;
 
 import com.paranhaslett.gamebook.Editor;
@@ -18,10 +19,10 @@ public class Section implements ModelContainer {
 	public String id;
 	public Goto gotoid;
 	public ArrayList<Fragment> fragments = new ArrayList<Fragment>();
-	
+
 	public static Loadable loadable = new SectionIO();
 	private PanelUI panel = SectionUI.getPanelUI();
-	private Editor gc = Editor.getEd();
+	private Editor ed = Editor.getEd();
 	private static long secnum = 1;
 
 	@Override
@@ -40,11 +41,11 @@ public class Section implements ModelContainer {
 		Goto secgoto = new Goto();
 		secgoto.setup();
 		gotoid = secgoto;
-		TreePath path = gc.tree.getSelectLoc();
-		gc.tree.addToPath(path, this);
-		path = gc.tree.getSelectLoc();
-		gc.tree.addToPath(path, desc);
-		gc.tree.addToPath(path, secgoto);
+		TreePath path = ed.tree.getSelectLoc();
+		ed.tree.addToPath(path, this);
+		path = ed.tree.getSelectLoc();
+		ed.tree.addToPath(path, desc);
+		ed.tree.addToPath(path, secgoto);
 		secnum++;
 	}
 
@@ -72,26 +73,31 @@ public class Section implements ModelContainer {
 			} else {
 				fragments.add((Fragment) added);
 			}
-			gc.tree.addToSel(added);
+			ed.tree.addToSel(added);
 			// change to fragment controller
 		}
 	}
 
-	
-
 	@Override
 	public void update() {
-		panel.populatePanel(this);
-		gc.editorUI.updatePanel(panel);
-		
+		ed.editorUI.updatePanel(panel, this);
+
 	}
 
 	@Override
 	public void changeMainLabel(String newLabel) {
 		title = newLabel;
-		panel.populatePanel(this);
-		gc.editorUI.updatePanel(panel);
-		
+		ed.editorUI.updatePanel(panel, this);
+
 	}
 
+	static Icon icon;
+
+	@Override
+	public Icon icon() {
+		if (icon == null) {
+			icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/section.png");
+		}
+		return icon;
+	}
 }

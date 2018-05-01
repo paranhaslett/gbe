@@ -2,6 +2,8 @@ package com.paranhaslett.gamebook.model.fragment.branch;
 
 import java.util.ArrayList;
 
+import javax.swing.Icon;
+
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.IfIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
@@ -20,7 +22,7 @@ public class If implements ModelContainer, Fragment, Item {
 
 	public static Loadable loadable = new IfIO();
 	private PanelUI panel = IfUI.getPanelUI();
-	private Editor gc = Editor.getEd();
+	private Editor ed = Editor.getEd();
 
 	@Override
 	public boolean isDropOn(Item mi) {
@@ -49,8 +51,7 @@ public class If implements ModelContainer, Fragment, Item {
 
 	@Override
 	public void update() {
-		panel.populatePanel(this);
-		gc.editorUI.updatePanel(panel);
+		ed.editorUI.updatePanel(panel, this);
 		
 	}
 
@@ -59,4 +60,14 @@ public class If implements ModelContainer, Fragment, Item {
 		// TODO Auto-generated method stub
 		
 	}
+
+static Icon icon;
+  
+  @Override
+  public Icon icon(){
+    if (icon == null){
+      icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/if.png");
+    }
+    return icon;
+  }
 }

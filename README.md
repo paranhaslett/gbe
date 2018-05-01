@@ -1,4 +1,4 @@
-gbe
-===
+Toolbox
+=======
 
-Game Book Editor
+Toolbox library for amoungst other things  Game Book Editor
