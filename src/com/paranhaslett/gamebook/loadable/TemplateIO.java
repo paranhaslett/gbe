@@ -4,7 +4,7 @@ import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
-import com.paranhaslett.gamebook.model.fragment.Goto;
+import com.paranhaslett.gamebook.model.fragment.GoTo;
 import com.paranhaslett.gamebook.model.fragment.Set;
 import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.branch.Chance;
@@ -45,8 +45,8 @@ public class TemplateIO implements Loadable {
 				Choice.loadable.load(elem, item);
 			}
 			if (elem.getName().equals("goto")){
-				item = new Goto();
-				Goto.loadable.load(elem, item);
+				item = new GoTo();
+				GoTo.loadable.load(elem, item);
 			}
 			if (elem.getName().equals("if")){
 				item = new If();

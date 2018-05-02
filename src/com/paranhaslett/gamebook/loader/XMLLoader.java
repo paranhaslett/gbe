@@ -105,10 +105,10 @@ public class XMLLoader implements Loader {
 
 	@Override
 	public Loader create(String key) {
-		XMLLoader xmlff = new XMLLoader();
-		xmlff.setElement(Loadable.xmlLoader.doc.createElement(key));
-		element.appendChild(xmlff.getElement());
-		return xmlff;
+		XMLLoader xmlLoader = new XMLLoader();
+		xmlLoader.setElement(Loadable.xmlLoader.doc.createElement(key));
+		element.appendChild(xmlLoader.getElement());
+		return xmlLoader;
 	}
 	
 	private void setElement(Element element){
@@ -123,7 +123,7 @@ public class XMLLoader implements Loader {
 	@Override
 	public String getText(String key) {
 		if(key == null){
-			return beutifyText(element.getTextContent());
+			return beautifyText(element.getTextContent());
 		}
 		if(element.hasAttribute(key)){
 			return element.getAttribute(key);
@@ -132,13 +132,13 @@ public class XMLLoader implements Loader {
 		for (int i = 0; i < nl.getLength(); i++) {
 			Node node = nl.item(i);
 			if (node.getNodeName().equals(key)){
-				return beutifyText(node.getTextContent());
+				return beautifyText(node.getTextContent());
 			}
 		}
 		return null;
 	}
 	
-	private String beutifyText(String text){
+	private String beautifyText(String text){
 		String result = text.replaceAll("^\\s*", "");
 		for (int i=0; i<50; i++){
 			result  = result.replaceAll("\n\\s*", "\n");
@@ -171,8 +171,8 @@ public class XMLLoader implements Loader {
 			element.setTextContent(value);
 		} else {
 			if (key.equals("value")|| key.equals("text")){
-				XMLLoader subFF = (XMLLoader) create(key);
-				subFF.getElement().setTextContent(value);
+				XMLLoader subLoader = (XMLLoader) create(key);
+				subLoader.getElement().setTextContent(value);
 			}
 			else {
 				element.setAttribute(key, value);

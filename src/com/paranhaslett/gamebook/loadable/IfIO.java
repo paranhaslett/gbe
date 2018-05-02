@@ -5,7 +5,7 @@ import java.util.List;
 import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Fragment;
 import com.paranhaslett.gamebook.model.Item;
-import com.paranhaslett.gamebook.model.fragment.Goto;
+import com.paranhaslett.gamebook.model.fragment.GoTo;
 import com.paranhaslett.gamebook.model.fragment.Set;
 import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.branch.Chance;
@@ -16,11 +16,11 @@ public class IfIO implements Loadable {
 
 	@Override
 	public void load(Loader ff, Item item) {
-		If ifob = (If)item;
-		ifob.lhs = ff.getText("var");
-		ifob.rhs = ff.getText("value");
-		ifob.op = ff.getText("comp");
-		ifob.text = ff.getText("text");
+		If ifObj = (If)item;
+		ifObj.lhs = ff.getText("var");
+		ifObj.rhs = ff.getText("value");
+		ifObj.op = ff.getText("comp");
+		ifObj.text = ff.getText("text");
 		List<Loader> fragmentElements = ff.getChildren("set", "goto", "if");
 		
 		for (Loader fragmentElement : fragmentElements) {
@@ -46,12 +46,12 @@ public class IfIO implements Loadable {
 				If.loadable.load(fragmentElement, frag);
 			}
 			if (fragmentElement.getName().equals("goto")) {
-				frag = new Goto();
-				Goto.loadable.load(fragmentElement, frag);
+				frag = new GoTo();
+				GoTo.loadable.load(fragmentElement, frag);
 			}
 
 			if (frag != null) {
-				ifob.trueBranch.add(frag);
+				ifObj.trueBranch.add(frag);
 			}
 
 		}

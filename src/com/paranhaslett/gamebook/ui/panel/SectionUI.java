@@ -31,7 +31,8 @@ public class SectionUI extends PanelUI {
 	/**
 	 * Create the panel.
 	 */
-	private SectionUI() {
+	@SuppressWarnings("Convert2Lambda")
+    private SectionUI() {
 
 		JLabel lblTitle = new JLabel("Title:");
 

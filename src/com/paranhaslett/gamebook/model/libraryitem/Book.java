@@ -71,7 +71,7 @@ public class Book implements Item {
 
 
 	public String toString() {
-		//TODO ensure this is unique (add anumber perhaps
+		//TODO ensure this is unique (add a number perhaps
 		return title;
 	}
 
@@ -85,7 +85,7 @@ public class Book implements Item {
 	@Override
 	public Icon icon(){
 	  if (icon == null){
-	    icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/gamebook.png");
+	    icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/book.png");
 	  }
 	  return icon;
 	}

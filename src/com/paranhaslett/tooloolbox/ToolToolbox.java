@@ -31,7 +31,7 @@ class ToolToolbox extends Editor{
 		fieldTool.addField(new TextField("Type"));
 		
 		Tool toolTool = new FormTool();
-		toolTool.addIcon("gamebook");
+		toolTool.addIcon("book");
 		toolTool.addField(new TextField("Name"));
 		toolTool.addField(new TextField("Type"));
 		toolTool.addField(new TextField("Icon"));

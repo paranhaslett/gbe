@@ -60,7 +60,7 @@ public class Library implements Item {
 
 	@Override
 	public String toString() {
-		return "Gamebook Library";
+		return "Game Book Library";
 	}	
 	
 	@Override

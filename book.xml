@@ -264,7 +264,7 @@
 
     <text>
       Value [        ]
-      Page, Instruction, Goto page
+      Page, Instruction, GoTo page
     </text>
     <goto to=""/>
   </section>

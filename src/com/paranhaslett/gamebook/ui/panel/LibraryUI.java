@@ -25,7 +25,7 @@ public class LibraryUI extends PanelUI {
 	/**
 	 * Create the panel.
 	 */
-	private LibraryUI() {
+    private LibraryUI() {
 
 		JButton btnAddSection = new JButton("Add Series");
 		btnAddSection.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
@@ -38,7 +38,7 @@ public class LibraryUI extends PanelUI {
 		});
 
 		JButton btnAddPage = new JButton("Add Book");
-		btnAddPage.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/gamebook.png")));
+		btnAddPage.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/book.png")));
 		btnAddPage.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Book book = new Book();
@@ -62,7 +62,7 @@ public class LibraryUI extends PanelUI {
 		btnAddTemplate.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/template.png")));
 		
 		JButton btnLoadBook = new JButton("Load Book");
-		btnLoadBook.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/gamebook.png")));
+		btnLoadBook.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/book.png")));
 		
 		JButton btnLoadSeries = new JButton("Load Series");
 		btnLoadSeries.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));

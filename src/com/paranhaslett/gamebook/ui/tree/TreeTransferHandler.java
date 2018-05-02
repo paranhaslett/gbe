@@ -15,7 +15,7 @@ import javax.swing.tree.TreePath;
 
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
-import com.paranhaslett.gamebook.model.fragment.Goto;
+import com.paranhaslett.gamebook.model.fragment.GoTo;
 
 class TreeTransferHandler extends TransferHandler {
 	private static final long serialVersionUID = -9199992278240380840L;
@@ -73,7 +73,7 @@ class TreeTransferHandler extends TransferHandler {
 		// Do not allow MOVE-action drops if a non-leaf node is
 		// selected unless all of its children are also selected.
 		int action = support.getDropAction();
-		if (targetComponent instanceof Goto
+		if (targetComponent instanceof GoTo
 				&& sourceComponent instanceof Section) {
 			action = LINK;
 		}

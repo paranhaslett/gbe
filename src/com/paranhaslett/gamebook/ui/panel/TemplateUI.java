@@ -18,7 +18,7 @@ import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Page;
 import com.paranhaslett.gamebook.model.Section;
-import com.paranhaslett.gamebook.model.fragment.Goto;
+import com.paranhaslett.gamebook.model.fragment.GoTo;
 import com.paranhaslett.gamebook.model.fragment.Set;
 import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.branch.Chance;
@@ -53,7 +53,7 @@ public class TemplateUI extends PanelUI {
 
 		final JComboBox<String> comboBox = new JComboBox<>();
 		comboBox.setModel(new DefaultComboBoxModel<>(
-                new String[] { "Template", "Series", "Book", "Page", "Section", "Text", "Goto", "Set", "Chance", "Choice", "If", "Var" }));
+                new String[] { "Template", "Series", "Book", "Page", "Section", "Text", "GoTo", "Set", "Chance", "Choice", "If", "Var" }));
 
 		JButton btnAddPage = new JButton("Add");
 		btnAddPage.setIcon(null);
@@ -80,8 +80,8 @@ public class TemplateUI extends PanelUI {
 					if (selected.equals("Text")) {
 						item = new Text();
 					}
-					if (selected.equals("Goto")) {
-						item = new Goto();
+					if (selected.equals("GoTo")) {
+						item = new GoTo();
 					}
 					if (selected.equals("Set")) {
 						item = new Set();

@@ -10,7 +10,7 @@ public class PageIO implements Loadable {
 	@Override
 	public void load(Loader ff, Item item) {
 		Page page = (Page) item;
-		// Manditory page_id
+		// Mandatory page_id
 		page.id = ff.getText("id");
 		for (Loader sectionEl : ff.getChildren("section")) {
 			Section section = new Section();

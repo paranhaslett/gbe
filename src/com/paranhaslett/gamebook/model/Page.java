@@ -17,7 +17,7 @@ public class Page implements Item {
 	public static final Loadable loadable = new PageIO();
 	private final PanelUI panel = PageUI.getPanelUI();
 	private final Editor ed = Editor.getEd();
-	private int pgnum = 1;
+	private int pageNum = 1;
 	
 
 	public void update(Item item) {
@@ -63,8 +63,8 @@ public class Page implements Item {
 
 	@Override
 	public void setup() {
-		id = "" + pgnum;
-		pgnum++;
+		id = "" + pageNum;
+		pageNum++;
 		
 	}
 	

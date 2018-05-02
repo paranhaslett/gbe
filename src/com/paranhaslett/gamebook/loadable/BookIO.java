@@ -17,7 +17,7 @@ public class BookIO implements Loadable {
 	@Deprecated
 	public void load(ArrayList<String> content, Item item) {
 		Book gameBook = (Book) item;
-		// get the gamebook name from content
+		// get the game book name from content
 		String path = content.get(0);
 		for (String line : content) {
 			if (line.contains("#")) {
@@ -30,14 +30,14 @@ public class BookIO implements Loadable {
 		if (files != null) {
 
 			for (File file : files) {
-				String entryname = file.getName();
-				if (entryname.endsWith(".txt") && entryname.startsWith(gameBook.title)) {
-					int spos = gameBook.title.length();
-					int epos = entryname.lastIndexOf('.');
-					if (epos - spos > 0) {
+				String entryName = file.getName();
+				if (entryName.endsWith(".txt") && entryName.startsWith(gameBook.title)) {
+					int startPos = gameBook.title.length();
+					int endPos = entryName.lastIndexOf('.');
+					if (endPos - startPos > 0) {
 						ArrayList<String> entryContent = new ArrayList<>();
-						String secnum = entryname.substring(spos, epos);
-						entryContent.add(secnum);
+						String secNum = entryName.substring(startPos, endPos);
+						entryContent.add(secNum);
 
 						BufferedReader reader;
 						try {
@@ -66,15 +66,15 @@ public class BookIO implements Loadable {
 
 
 	@Override
-	public void load(Loader ff, Item item) {
+	public void load(Loader loader, Item item) {
 		Book gameBook = (Book) item;
-		gameBook.title = ff.getText("title");// Manditory name
-		for (Loader pageFf : ff.getChildren("page")) {
+		gameBook.title = loader.getText("title");// Mandatory name
+		for (Loader pageFf : loader.getChildren("page")) {
 			Page page = new Page();
 			Page.loadable.load(pageFf, page);
 			gameBook.pages.add(page);
 		}
-		for (Loader sectionElement : ff.getChildren("section")) {
+		for (Loader sectionElement : loader.getChildren("section")) {
 			Section section = new Section();
 			Section.loadable.load(sectionElement, section);
 			gameBook.freeSections.add(section);
@@ -82,18 +82,18 @@ public class BookIO implements Loadable {
 	}
 
 	@Override
-	public void save(Loader ff, Item item) {
+	public void save(Loader loader, Item item) {
 		Book gameBook = (Book) item;
 		if (gameBook.title != null) {
-			ff.setText("title", gameBook.title);
+			loader.setText("title", gameBook.title);
 		}
 		for (Page page : gameBook.pages) {
-			Loader pageff = ff.create("page"); 
-			Page.loadable.save(pageff, page);
+			Loader pageLoader = loader.create("page");
+			Page.loadable.save(pageLoader, page);
 		}
 		for (Section section : gameBook.freeSections) {
-			Loader sectionff = ff.create("section"); 
-			Section.loadable.save(sectionff, section);
+			Loader sectionLoader = loader.create("section");
+			Section.loadable.save(sectionLoader, section);
 		}		
 	}
 }

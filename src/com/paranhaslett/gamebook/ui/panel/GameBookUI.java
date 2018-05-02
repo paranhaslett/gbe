@@ -68,7 +68,7 @@ public class GameBookUI extends PanelUI {
 		JLabel lblGameBook = new JLabel("Game Book");
 		lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblGameBook.setIcon(new ImageIcon(GameBookUI.class
-				.getResource("/icons/tree/gamebook.png")));
+				.getResource("/icons/tree/book.png")));
 		
 		JScrollPane scrollPane = new JScrollPane();
 		GroupLayout groupLayout = new GroupLayout(this);

@@ -52,7 +52,7 @@ public class FormTool extends Tool{
 		JLabel lblGameBook = new JLabel("Game Book");
 		lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblGameBook.setIcon(new ImageIcon(FormTool.class
-				.getResource("/icons/tree/gamebook.png")));
+				.getResource("/icons/tree/book.png")));
 		GroupLayout groupLayout = new GroupLayout(this);
 		groupLayout.setHorizontalGroup(
 			groupLayout.createParallelGroup(Alignment.LEADING)

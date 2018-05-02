@@ -7,7 +7,7 @@ import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Fragment;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
-import com.paranhaslett.gamebook.model.fragment.Goto;
+import com.paranhaslett.gamebook.model.fragment.GoTo;
 import com.paranhaslett.gamebook.model.fragment.Set;
 import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.model.fragment.branch.Chance;
@@ -36,7 +36,7 @@ public class SectionIO implements Loadable {
 	@Override
 	public void load(Loader ff, Item item) {
 			Section section = (Section) item;
-			// Manditory section_id
+			// Mandatory section_id
 			section.id = ff.getText("id");
 			section.title = ff.getText("title");
 
@@ -84,13 +84,13 @@ public class SectionIO implements Loadable {
 			}
 
 			Loader gotoElement = ff.getChild("goto");
-			Goto secgoto = new Goto();
+			GoTo secGoTo = new GoTo();
 			if (gotoElement != null) {
-				Goto.loadable.load(gotoElement, secgoto);
+				GoTo.loadable.load(gotoElement, secGoTo);
 			} else {
-				secgoto.setup();
+				secGoTo.setup();
 			}
-			section.gotoid = secgoto;
+			section.gotoid = secGoTo;
 		
 	}
 
@@ -130,7 +130,7 @@ public class SectionIO implements Loadable {
 
 		if (section.gotoid != null) {
 			Loader gotoElement = ff.create("goto");
-			Goto.loadable.save( gotoElement, section.gotoid);
+			GoTo.loadable.save( gotoElement, section.gotoid);
 		}
 
 		

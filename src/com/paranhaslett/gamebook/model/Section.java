@@ -8,7 +8,7 @@ import javax.swing.tree.TreePath;
 import com.paranhaslett.gamebook.Editor;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.loadable.SectionIO;
-import com.paranhaslett.gamebook.model.fragment.Goto;
+import com.paranhaslett.gamebook.model.fragment.GoTo;
 import com.paranhaslett.gamebook.model.fragment.Text;
 import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.SectionUI;
@@ -17,7 +17,7 @@ public class Section implements ModelContainer {
 
 	public String title;
 	public String id;
-	public Goto gotoid;
+	public GoTo gotoid;
 	public final ArrayList<Fragment> fragments = new ArrayList<>();
 
 	public static final Loadable loadable = new SectionIO();
@@ -38,7 +38,7 @@ public class Section implements ModelContainer {
 		Text desc = new Text();
 		desc.setup();
 		fragments.add(desc);
-		Goto secgoto = new Goto();
+		GoTo secgoto = new GoTo();
 		secgoto.setup();
 		gotoid = secgoto;
 		TreePath path = ed.tree.getSelectLoc();
@@ -68,8 +68,8 @@ public class Section implements ModelContainer {
 			// add newPage to parent of selection
 		}
 		if (added instanceof Fragment) {
-			if (added instanceof Goto) {
-				gotoid = (Goto) added;
+			if (added instanceof GoTo) {
+				gotoid = (GoTo) added;
 			} else {
 				fragments.add((Fragment) added);
 			}
