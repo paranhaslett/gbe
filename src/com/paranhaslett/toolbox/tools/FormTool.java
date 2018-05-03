@@ -1,8 +1,6 @@
 package com.paranhaslett.toolbox.tools;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -41,12 +39,7 @@ public class FormTool extends Tool{
 		textField.setColumns(10);
 
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				populateModel();
-
-			}
-		});
+		btnUpdate.addActionListener(e -> populateModel());
 
 		JLabel lblGameBook = new JLabel("Game Book");
 		lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -83,7 +76,6 @@ public class FormTool extends Tool{
 		setLayout(groupLayout);
 
 	}
-
 
 	@Override
 	public void populateModel() {

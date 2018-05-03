@@ -2,8 +2,6 @@ package com.paranhaslett.toolbox.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -42,10 +40,8 @@ public class EditorUI extends JFrame {
 
 		JMenuItem mntmSave = new JMenuItem("Save");
 		mntmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
-		mntmSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		mntmSave.addActionListener(e -> {
 				//TODO Editor.getEd().library.saveLibrary();
-			}
 		});
 		mnFile.add(mntmSave);
 
@@ -62,10 +58,8 @@ public class EditorUI extends JFrame {
 		menuBar.add(mnHelp);
 		
 		JMenuItem mntmAbout = new JMenuItem("About");
-		mntmAbout.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
+		mntmAbout.addActionListener(arg0 -> {
 				//TODO open dialog
-			}
 		});
 		mnHelp.add(mntmAbout);
 		JPanel contentPane = new JPanel();
@@ -90,8 +84,8 @@ public class EditorUI extends JFrame {
 		scrollPane.setViewportView(tree);
 	}
 
-	public void updatePanel(Tool tool, Artifact artifact) {
-		tool.populatePanel(artifact);
+	public void updatePanel(Tool tool, Artifact item) {
+		tool.populatePanel(item);
 		splitPane.setRightComponent(tool);
 	}
 

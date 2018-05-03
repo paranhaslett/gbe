@@ -56,14 +56,14 @@ class TreeTransferHandler extends TransferHandler {
 		if (selRows == null || selRows.length == 0) {
       return false;
     }
-			for (int selRow : selRows) {
-				if (selRow == dropRow) {
-					return false;
-				}
+		for (int selRow : selRows) {
+			if (selRow == dropRow) {
+				return false;
 			}
+		}
 
-		TreeNodeUI sourceRoot = (TreeNodeUI) tree.getPathForRow(selRows[0]).getLastPathComponent();
-		TreeNodeUI targetRoot = (TreeNodeUI) dl.getPath().getLastPathComponent();
+			TreeNodeUI sourceRoot = (TreeNodeUI) tree.getPathForRow(selRows[0]).getLastPathComponent();
+			TreeNodeUI targetRoot = (TreeNodeUI) dl.getPath().getLastPathComponent();
 		Item sourceComponent = (Item) sourceRoot.getUserObject();
 		Item targetComponent = (Item) targetRoot.getUserObject();
 		System.out.println(sourceComponent + " x " + targetComponent);
@@ -85,8 +85,8 @@ class TreeTransferHandler extends TransferHandler {
 		TreeNodeUI target = (TreeNodeUI) dest.getLastPathComponent();
 		TreePath path = tree.getPathForRow(selRows[0]);
 		TreeNodeUI firstNode = (TreeNodeUI) path.getLastPathComponent();
-    return firstNode.getChildCount() <= 0 || target.getLevel() >= firstNode.getLevel();
-  }
+        return firstNode.getChildCount() <= 0 || target.getLevel() >= firstNode.getLevel();
+    }
 
 	private boolean haveCompleteNode(JTree tree) {
 		int[] selRows = tree.getSelectionRows();

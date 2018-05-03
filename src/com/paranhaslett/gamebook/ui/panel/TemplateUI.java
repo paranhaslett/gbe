@@ -1,8 +1,6 @@
 package com.paranhaslett.gamebook.ui.panel;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -44,12 +42,7 @@ public class TemplateUI extends PanelUI {
 		textField.setColumns(10);
 
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				populateModel();
-
-			}
-		});
+		btnUpdate.addActionListener(e -> populateModel());
 
 		final JComboBox<String> comboBox = new JComboBox<>();
 		comboBox.setModel(new DefaultComboBoxModel<>(
@@ -57,8 +50,7 @@ public class TemplateUI extends PanelUI {
 
 		JButton btnAddPage = new JButton("Add");
 		btnAddPage.setIcon(null);
-		btnAddPage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnAddPage.addActionListener(e -> {
 				String selected = (String) comboBox.getSelectedItem();
 				Item item = null;
 				if (selected != null) {
@@ -98,14 +90,10 @@ public class TemplateUI extends PanelUI {
 					//if (selected.equals("Var")){
 					//	item = new Var();
 					//}
-					if (item != null) {
-						item.changeMainLabel("< New >");
-						model.add(item);
-					}
-				}
-				
-				
-
+	            if (item != null) {
+				item.changeMainLabel("< New >");
+				model.add(item);
+	            }
 			}
 		});
 

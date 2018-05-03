@@ -2,8 +2,6 @@ package com.paranhaslett.toolbox.tree;
 
 import java.awt.Component;
 import java.awt.Point;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -20,33 +18,29 @@ class TreePopupUI extends JPopupMenu {
 
 	public TreePopupUI(final TreeUI tree) {
 		JMenuItem mntmAdd = new JMenuItem("Add");
-		mntmAdd.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree
-						.getLastSelectedPathComponent();
-				if (node == null) {
-					return;
-				} // nothing is selected
+		mntmAdd.addActionListener(e -> {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree
+                    .getLastSelectedPathComponent();
+            if (node == null) {
+                return;
+            } // nothing is selected
 
-				Object nodeInfo = node.getUserObject();
-				if (nodeInfo instanceof Artifact) {
-					Artifact item = (Artifact) nodeInfo;
-					// TODO figure out how to specify items
-					
-				}
+            Object nodeInfo = node.getUserObject();
+            if (nodeInfo instanceof Artifact) {
+                Artifact item = (Artifact) nodeInfo;
+                // TODO figure out how to specify items
 
-			}
-		});
+            }
+
+        });
 		add(mntmAdd);
 
 		JMenu mnAdd = new JMenu("Add");
 		add(mnAdd);
 
 		JMenuItem mntmPage = new JMenuItem("Page");
-		mntmPage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
+		mntmPage.addActionListener(e -> {
+        });
 		mnAdd.add(mntmPage);
 
 		JMenuItem mntmDelete = new JMenuItem("Delete");

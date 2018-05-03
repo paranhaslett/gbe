@@ -1,8 +1,6 @@
 package com.paranhaslett.gamebook.ui.panel;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.GroupLayout;
@@ -42,11 +40,7 @@ public class IfUI extends PanelUI {
 		textLhs.setColumns(10);
 
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				populateModel();
-			}
-		});
+		btnUpdate.addActionListener(e -> populateModel());
 
         JLabel lblHeading = new JLabel("If");
 		lblHeading.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -56,55 +50,45 @@ public class IfUI extends PanelUI {
 		JButton btnDescription = new JButton("Add Description");
 		btnDescription.setIcon(new ImageIcon(IfUI.class
 				.getResource("/icons/tree/desc.png")));
-		btnDescription.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Text chance = new Text();
-				chance.setup();
-				model.add(chance);
-			}
-		});
+		btnDescription.addActionListener(e -> {
+            Text chance = new Text();
+            chance.setup();
+            model.add(chance);
+        });
 
 		JButton btnSet = new JButton("Add Set");
-		btnSet.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Set set = new Set();
-				set.setup();
-				model.add(set);
-			}
-		});
+		btnSet.addActionListener(e -> {
+            Set set = new Set();
+            set.setup();
+            model.add(set);
+        });
 		btnSet.setIcon(new ImageIcon(IfUI.class
 				.getResource("/icons/tree/set.png")));
 
 		JButton btnChance = new JButton("Add Chance");
-		btnChance.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Chance chance = new Chance();
-				chance.setup();
-				chance.add(model);
-			}
-		});
+		btnChance.addActionListener(e -> {
+            Chance chance = new Chance();
+            chance.setup();
+            chance.add(model);
+        });
 		btnChance.setIcon(new ImageIcon(IfUI.class
 				.getResource("/icons/tree/sm_chance.png")));
 
 		JButton btnChoice = new JButton("Add Choice");
-		btnChoice.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Choice choice = new Choice();
-				choice.setup();
-				model.add(choice);
-			}
-		});
+		btnChoice.addActionListener(e -> {
+            Choice choice = new Choice();
+            choice.setup();
+            model.add(choice);
+        });
 		btnChoice.setIcon(new ImageIcon(IfUI.class
 				.getResource("/icons/tree/choice.png")));
 
 		JButton btnIf = new JButton("Add If");
-		btnIf.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				If chance = new If();
-				chance.setup();
-				model.add(chance);
-			}
-		});
+		btnIf.addActionListener(e -> {
+            If chance = new If();
+            chance.setup();
+            model.add(chance);
+        });
 		btnIf.setIcon(new ImageIcon(IfUI.class
 				.getResource("/icons/tree/if.png")));
 

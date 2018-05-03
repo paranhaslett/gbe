@@ -1,8 +1,6 @@
 package com.paranhaslett.gamebook.ui.panel;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -35,34 +33,25 @@ public class GameBookUI extends PanelUI {
 		textField.setColumns(10);
 
 		JButton btnUpdate = new JButton("Update");
-		btnUpdate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				populateModel();
-
-			}
-		});
+		btnUpdate.addActionListener(e -> populateModel());
 
 		JButton btnAddSection = new JButton("Add Section");
 		btnAddSection.setIcon(new ImageIcon(GameBookUI.class
 				.getResource("/icons/tree/section.png")));
-		btnAddSection.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				// Controller controller = model.getController();
-				Section section = new Section();
-				section.setup();
-			}
-		});
+		btnAddSection.addActionListener(e -> {
+            // Controller controller = model.getController();
+            Section section = new Section();
+            section.setup();
+        });
 
 		JButton btnAddPage = new JButton("Add Page");
 		btnAddPage.setIcon(new ImageIcon(GameBookUI.class
 				.getResource("/icons/tree/page.png")));
-		btnAddPage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Page page = new Page();
-				page.setup();
-				model.add(page);
-			}
-		});
+		btnAddPage.addActionListener(e -> {
+            Page page = new Page();
+            page.setup();
+            model.add(page);
+        });
 
 		JLabel lblGameBook = new JLabel("Game Book");
 		lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));

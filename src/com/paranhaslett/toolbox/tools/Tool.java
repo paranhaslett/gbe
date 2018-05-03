@@ -13,6 +13,7 @@ import com.paranhaslett.toolbox.loader.Loader;
 import com.paranhaslett.toolbox.loader.XMLLoader;
 import com.paranhaslett.toolbox.model.Artifact;
 
+
 public abstract class Tool extends JPanel{
 	private Icon icon;
 	private final List<Field> fields = new ArrayList<>();
@@ -51,5 +52,6 @@ public abstract class Tool extends JPanel{
 
 	public abstract void populateModel();
 
+	@SuppressWarnings("EmptyMethod")
 	public abstract void populatePanel(Artifact item);
 }

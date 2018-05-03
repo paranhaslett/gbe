@@ -49,11 +49,10 @@ public class Editor {
 	
 	private void load(Artifact root){
 		File file = new File("./library.xml");
-			Loader loader = getLoader();
-			if (loader != null) {
-            loader.load(file, root.tool());
+		Loader loader = getLoader();
+		if (loader != null) {
+       loader.load(file, root.tool());
 		} 
-		
 	}
 
 	private Loader getLoader() {

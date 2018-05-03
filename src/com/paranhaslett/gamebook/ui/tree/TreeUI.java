@@ -2,8 +2,6 @@ package com.paranhaslett.gamebook.ui.tree;
 
 import javax.swing.DropMode;
 import javax.swing.JTree;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreePath;
 
@@ -28,25 +26,21 @@ public class TreeUI extends JTree {
 		setDragEnabled(true);
 		setTransferHandler(new TreeTransferHandler());
 		setCellRenderer(treeRenderer);
-		addTreeSelectionListener(new TreeSelectionListener() {
-			@Override
-			public void valueChanged(TreeSelectionEvent e) {
-				TreeNodeUI node = (TreeNodeUI) getLastSelectedPathComponent();
-				if (node == null) {
-					return;
-				} // nothing is selected
+		addTreeSelectionListener(e -> {
+            TreeNodeUI node = (TreeNodeUI) getLastSelectedPathComponent();
+            if (node == null) {
+                return;
+            } // nothing is selected
 
-				Object nodeInfo = node.getUserObject();
-				if (nodeInfo instanceof Item) {
-					selectedPath = new TreePath(node.getPath());
-					setSelectionPath(selectedPath);
-					selection = (Item) nodeInfo;
-					selection.update();
+            Object nodeInfo = node.getUserObject();
+            if (nodeInfo instanceof Item) {
+                selectedPath = new TreePath(node.getPath());
+                setSelectionPath(selectedPath);
+                selection = (Item) nodeInfo;
+                selection.update();
 
-				}
-			}
-
-		});
+            }
+        });
 		setEditable(true);
 		new TreePopupUI(this);
 	}

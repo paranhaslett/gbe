@@ -2,8 +2,6 @@ package com.paranhaslett.gamebook.ui;
 
 import java.awt.BorderLayout;
 import java.awt.Toolkit;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -44,11 +42,7 @@ public class EditorUI extends JFrame {
 
 		JMenuItem mntmSave = new JMenuItem("Save");
 		mntmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
-		mntmSave.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Editor.getEd().library.saveLibrary();
-			}
-		});
+		mntmSave.addActionListener(e -> Editor.getEd().library.saveLibrary());
 		mnFile.add(mntmSave);
 
 		JMenu mnEdit = new JMenu("Edit");

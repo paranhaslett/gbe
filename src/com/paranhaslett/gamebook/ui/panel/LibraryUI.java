@@ -1,8 +1,6 @@
 package com.paranhaslett.gamebook.ui.panel;
 
 import java.awt.Font;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -29,22 +27,18 @@ public class LibraryUI extends PanelUI {
 
 		JButton btnAddSection = new JButton("Add Series");
 		btnAddSection.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
-		btnAddSection.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnAddSection.addActionListener(e -> {
 				Series series = new Series();
 				series.setup();
 				model.add(series);
-			}
 		});
 
 		JButton btnAddPage = new JButton("Add Book");
 		btnAddPage.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/book.png")));
-		btnAddPage.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnAddPage.addActionListener(e -> {
 				Book book = new Book();
 				book.setup();
 				model.add(book);
-			}
 		});
 
 		JLabel lblGameBook = new JLabel("Library");
@@ -52,12 +46,10 @@ public class LibraryUI extends PanelUI {
 		lblGameBook.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/library.png")));
 		
 		JButton btnAddTemplate = new JButton("Add Template");
-		btnAddTemplate.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+		btnAddTemplate.addActionListener(e -> {
 				Template template = new Template();
 				template.setup();
 				model.add(template);
-			}
 		});
 		btnAddTemplate.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/template.png")));
 		
@@ -66,9 +58,7 @@ public class LibraryUI extends PanelUI {
 		
 		JButton btnLoadSeries = new JButton("Load Series");
 		btnLoadSeries.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
-		btnLoadSeries.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
+		btnLoadSeries.addActionListener(e -> {
 		});
 		
 		JButton btnLoadTemplate = new JButton("Load Template");
@@ -113,6 +103,11 @@ public class LibraryUI extends PanelUI {
 		);
 		setLayout(groupLayout);
 
+	}
+
+	@SuppressWarnings("EmptyMethod")
+	public void setup(String title) {
+		//no setup
 	}
 
 	public static PanelUI getPanelUI() {

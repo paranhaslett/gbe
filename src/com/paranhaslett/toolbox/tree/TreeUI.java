@@ -2,8 +2,6 @@ package com.paranhaslett.toolbox.tree;
 
 import javax.swing.DropMode;
 import javax.swing.JTree;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
@@ -22,9 +20,7 @@ public class TreeUI extends JTree {
 		setDragEnabled(true);
 		setTransferHandler(new TreeTransferHandler());
 		setCellRenderer(treeRenderer);
-		addTreeSelectionListener(new TreeSelectionListener() {
-			@Override
-			public void valueChanged(TreeSelectionEvent e) {
+		addTreeSelectionListener(e -> {
 				DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
 				if (node == null) {
 					return;
@@ -38,7 +34,6 @@ public class TreeUI extends JTree {
 					((Artifact)nodeInfo).update();
 
 				}
-			}
 		});
 		setEditable(true);
 		new TreePopupUI(this);
