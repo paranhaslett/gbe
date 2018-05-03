@@ -36,12 +36,6 @@ public class Page implements Item {
 
 	@Override
 	public void add(Item to) {
-		if (to instanceof Page) {
-			// merge into series
-			// change to page controller
-			// add newPage to parent of selection
-		}
-
 		if (to instanceof Section) {
 			sections.add((Section) to);
 			ed.tree.addToSel(to);

@@ -19,10 +19,6 @@ public class Template implements Item {
 	private final PanelUI panel = TemplateUI.getPanelUI();
 	private final Editor ed = Editor.getEd();
 
-	public void setName(String name) {
-		this.title = name;
-	}
-
 	public String toString() {
 		return title;
 	}

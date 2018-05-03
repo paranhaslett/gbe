@@ -14,7 +14,6 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 
 public class Choice implements ModelContainer, Fragment {
-	private String text;
 	private final ArrayList<Fragment> fragments = new ArrayList<>();
 	
 	public static final Loadable loadable = new ChoiceIO();
@@ -30,10 +29,6 @@ public class Choice implements ModelContainer, Fragment {
 	@Override
 	public void setup() {
 
-	}
-
-	public String toString() {
-		return text;
 	}
 
 	public ArrayList<Fragment> getFragments() {

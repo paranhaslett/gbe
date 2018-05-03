@@ -4,7 +4,6 @@ import java.awt.BorderLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
@@ -16,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSplitPane;
 import javax.swing.border.EmptyBorder;
 
+import com.paranhaslett.toolbox.model.Artifact;
 import com.paranhaslett.toolbox.tools.Tool;
 import com.paranhaslett.toolbox.tree.TreeUI;
 
@@ -90,8 +90,8 @@ public class EditorUI extends JFrame {
 		scrollPane.setViewportView(tree);
 	}
 
-	public void updatePanel(Tool tool, List<String> data) {
-		tool.populatePanel(data);
+	public void updatePanel(Tool tool, Artifact artifact) {
+		tool.populatePanel(artifact);
 		splitPane.setRightComponent(tool);
 	}
 

@@ -1,6 +1,5 @@
 package com.paranhaslett.gamebook.loadable;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.paranhaslett.gamebook.loader.Loader;
@@ -15,23 +14,6 @@ import com.paranhaslett.gamebook.model.fragment.branch.Choice;
 import com.paranhaslett.gamebook.model.fragment.branch.If;
 
 public class SectionIO implements Loadable {
-
-	@Deprecated
-	public void load(ArrayList<String> content, Item item) {
-		Section section = new Section();
-		section.id = content.get(0);
-		boolean gotTitle = false;
-		for (String line : content) {
-			if (!gotTitle && line.contains("#")) {
-				int pos = line.lastIndexOf('#');
-				section.title = line.substring(pos + 1);
-				gotTitle = true;
-			} else {
-
-			}
-		}
-	}
-
 
 	@Override
 	public void load(Loader ff, Item item) {
@@ -104,7 +86,7 @@ public class SectionIO implements Loadable {
 		if (section.fragments.size() > 0) {
 			
 			for (Fragment fragment : section.fragments) {
-				Loader fragElement = null;
+				Loader fragElement;
 				if (fragment instanceof Text) {
 					fragElement = ff.create("text");
 					Text.loadable.save(fragElement, fragment);

@@ -23,7 +23,6 @@ import com.paranhaslett.gamebook.model.fragment.branch.Choice;
 import com.paranhaslett.gamebook.model.fragment.branch.If;
 
 public class IfUI extends PanelUI {
-	private static final long serialVersionUID = 4882714495642743442L;
 	private final JTextField textLhs;
 	private static PanelUI panelUI;
 	private If model;

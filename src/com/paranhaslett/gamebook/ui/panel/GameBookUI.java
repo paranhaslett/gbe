@@ -21,7 +21,6 @@ import com.paranhaslett.gamebook.model.libraryitem.Book;
 import javax.swing.JScrollPane;
 
 public class GameBookUI extends PanelUI {
-	private static final long serialVersionUID = -6099292917735976714L;
 	private final JTextField textField;
 	private static PanelUI panelUI;
 	private Book model;

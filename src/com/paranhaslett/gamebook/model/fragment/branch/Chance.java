@@ -14,7 +14,6 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 import com.paranhaslett.gamebook.ui.panel.TextUI;
 
 public class Chance implements ModelContainer, Fragment, Item {
-	private String text;
 	private final ArrayList<Fragment> fragments = new ArrayList<>();
 	
 	public static final Loadable loadable = new ChanceIO();
@@ -25,10 +24,6 @@ public class Chance implements ModelContainer, Fragment, Item {
 	public boolean isDropOn(Item mi) {
 		// TODO Auto-generated method stub
 		return false;
-	}
-
-	public String toString() {
-		return text;
 	}
 
 	public ArrayList<Fragment> getFragments() {

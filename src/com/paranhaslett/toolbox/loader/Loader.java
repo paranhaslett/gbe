@@ -8,6 +8,7 @@ import com.paranhaslett.toolbox.tools.Tool;
 
 public interface Loader {
 	
+	@SuppressWarnings("UnusedReturnValue")
 	Artifact load(File file, Tool tool);
 	
 	void save(File file, Artifact item);

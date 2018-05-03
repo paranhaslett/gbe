@@ -98,11 +98,14 @@ public class TemplateUI extends PanelUI {
 					//if (selected.equals("Var")){
 					//	item = new Var();
 					//}
+					if (item != null) {
+						item.changeMainLabel("< New >");
+						model.add(item);
+					}
 				}
 				
 				
-				item.changeMainLabel("< New >");
-				model.add(item);
+
 			}
 		});
 

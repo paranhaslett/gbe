@@ -20,7 +20,6 @@ public class Book implements Item {
   
 	public String title;
 	public final ArrayList<Page> pages = new ArrayList<>();
-	public ArrayList<Section> sections = new ArrayList<>();
 	public final ArrayList<Section> freeSections = new ArrayList<>();
 	public static final Loadable loadable = new BookIO();
 	private final PanelUI panel = GameBookUI.getPanelUI();
@@ -28,11 +27,6 @@ public class Book implements Item {
 
 	@Override
 	public void add(Item added) {
-			if (added instanceof Book) {
-				// merge into series
-				// change to page controller
-				// add newPage to parent of selection
-			}
 			if (added instanceof Page) {
 				pages.add((Page) added);
 				ed.tree.addToSel(added);
@@ -55,10 +49,6 @@ public class Book implements Item {
 	@Override
 	public boolean isDropOn(Item mi) {
 		return (mi instanceof Page || mi instanceof Section);
-	}
-	
-	public void setName(String name) {
-		this.title = name;
 	}
 	
 	@Override

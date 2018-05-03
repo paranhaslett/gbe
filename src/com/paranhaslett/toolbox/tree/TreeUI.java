@@ -39,7 +39,6 @@ public class TreeUI extends JTree {
 
 				}
 			}
-
 		});
 		setEditable(true);
 		new TreePopupUI(this);

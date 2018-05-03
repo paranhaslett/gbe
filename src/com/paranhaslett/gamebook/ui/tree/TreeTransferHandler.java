@@ -53,17 +53,17 @@ class TreeTransferHandler extends TransferHandler {
 		JTree tree = (JTree) support.getComponent();
 		int dropRow = tree.getRowForPath(dl.getPath());
 		int[] selRows = tree.getSelectionRows();
-		if (selRows != null) {
+		if (selRows == null || selRows.length == 0) {
+      return false;
+    }
 			for (int selRow : selRows) {
 				if (selRow == dropRow) {
 					return false;
 				}
 			}
-		}
-		TreeNodeUI sourceRoot = (TreeNodeUI) tree.getPathForRow(selRows[0])
-				.getLastPathComponent();
-		TreeNodeUI targetRoot = (TreeNodeUI) dl.getPath()
-				.getLastPathComponent();
+
+		TreeNodeUI sourceRoot = (TreeNodeUI) tree.getPathForRow(selRows[0]).getLastPathComponent();
+		TreeNodeUI targetRoot = (TreeNodeUI) dl.getPath().getLastPathComponent();
 		Item sourceComponent = (Item) sourceRoot.getUserObject();
 		Item targetComponent = (Item) targetRoot.getUserObject();
 		System.out.println(sourceComponent + " x " + targetComponent);
@@ -73,8 +73,7 @@ class TreeTransferHandler extends TransferHandler {
 		// Do not allow MOVE-action drops if a non-leaf node is
 		// selected unless all of its children are also selected.
 		int action = support.getDropAction();
-		if (targetComponent instanceof GoTo
-				&& sourceComponent instanceof Section) {
+			if (targetComponent instanceof GoTo && sourceComponent instanceof Section) {
 			action = LINK;
 		}
 		if (action == MOVE) {
@@ -86,8 +85,8 @@ class TreeTransferHandler extends TransferHandler {
 		TreeNodeUI target = (TreeNodeUI) dest.getLastPathComponent();
 		TreePath path = tree.getPathForRow(selRows[0]);
 		TreeNodeUI firstNode = (TreeNodeUI) path.getLastPathComponent();
-        return firstNode.getChildCount() <= 0 || target.getLevel() >= firstNode.getLevel();
-    }
+    return firstNode.getChildCount() <= 0 || target.getLevel() >= firstNode.getLevel();
+  }
 
 	private boolean haveCompleteNode(JTree tree) {
 		int[] selRows = tree.getSelectionRows();

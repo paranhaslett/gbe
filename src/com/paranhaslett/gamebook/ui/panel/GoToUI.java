@@ -18,8 +18,6 @@ import com.paranhaslett.gamebook.model.fragment.GoTo;
 public class GoToUI extends PanelUI {
 	private static PanelUI panelUI;
 	private GoTo model;
-
-	private static final long serialVersionUID = -1739742038591872687L;
 	private final JTextField textGoTo;
 	private final JLabel lblHeading;
 	private final JTextField textField;

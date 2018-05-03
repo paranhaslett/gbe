@@ -45,6 +45,7 @@ public class Artifact {
 		return this;
 	}
 
+	@SuppressWarnings("EmptyMethod")
 	public void add(Artifact item){
 		//TODO
 					// merge into series
@@ -53,6 +54,7 @@ public class Artifact {
 		
 	}
 
+    @SuppressWarnings("EmptyMethod")
     public void update(){}
 
 	public void setup(){
@@ -62,11 +64,12 @@ public class Artifact {
 
 	public void changeMainLabel(String newLabel) {
 		data.set(0, newLabel);
-		ed.editorUI.updatePanel(tool, data);
+		ed.editorUI.updatePanel(tool, this);
 		
 	}
 	
 
+	@SuppressWarnings("SameReturnValue")
 	public boolean isDropOn(Artifact item){
 		return false;
 	}

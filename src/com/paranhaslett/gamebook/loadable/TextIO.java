@@ -14,7 +14,7 @@ public class TextIO implements Loadable {
 		boolean lineBlank = false;
 		for (String str : content) {
 			str = str.replace("^\\w*", "");
-			if (lineBlank || str != "") {
+			if (lineBlank || !str.equals("")) {
 				sb.append(str);
 				sb.append('\n');
 				lineBlank = false;

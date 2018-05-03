@@ -18,11 +18,6 @@ public class Series implements Item {
 	public static final Loadable loadable = new SeriesIO();
 	private final PanelUI panel = SeriesUI.getPanelUI();
 	private final Editor ed = Editor.getEd();
-	static Icon seriesIcon;
-
-	public void setName(String name) {
-		this.title = name;
-	}
 
 	public String toString() {
 		return title;

@@ -21,7 +21,6 @@ public class Library implements Item {
 	private static final PanelUI panel = LibraryUI.getPanelUI();
 	private Editor ed = Editor.getEd();
 	public final ArrayList<Item> items = new ArrayList<>();
-	public static Loader loader = new XMLLoader();
 
 	@Override
 	public void add (Item item){

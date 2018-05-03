@@ -1,11 +1,5 @@
 package com.paranhaslett.toolbox;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.filechooser.FileFilter;
-
 import com.paranhaslett.toolbox.loader.Loader;
 import com.paranhaslett.toolbox.model.Artifact;
 import com.paranhaslett.toolbox.tools.Tool;
@@ -15,12 +9,17 @@ import com.paranhaslett.toolbox.ui.FileChooserUI;
 import com.paranhaslett.toolbox.ui.FileChooserUI.EmaFilter;
 import com.paranhaslett.toolbox.ui.FileChooserUI.GameBookFilter;
 
+import javax.swing.filechooser.FileFilter;
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 public class Editor {
 	private static Editor editor = null;
 	public final TreeUI tree;
-	public EditorUI editorUI;
 	private final FileChooserUI fileChooser;
 	private final List<Tool> tools = new ArrayList<>();
+    public EditorUI editorUI;
 	
 	protected Editor(){
 		tree = new TreeUI();
@@ -32,18 +31,16 @@ public class Editor {
 		return editor;
 	}
 	
-	
 	public Editor addTool(Tool tool){
 		tools.add(tool);
 		return this;
 	}
 	
-
+    @SuppressWarnings("SameParameterValue")
 	protected void build(String name, Tool rootTool) {
 		Artifact root = new Artifact(rootTool);
 		editorUI = new EditorUI(name);
 		editorUI.setVisible(true);
-		
 	
 		tree.setup(root);
 		editorUI.updateTree(tree);
@@ -52,11 +49,9 @@ public class Editor {
 	
 	private void load(Artifact root){
 		File file = new File("./library.xml");
-		if (file != null) {
 			Loader loader = getLoader();
 			if (loader != null) {
-				root =  loader.load(file, root.tool());
-			}
+            loader.load(file, root.tool());
 		} 
 		
 	}
@@ -72,7 +67,6 @@ public class Editor {
 		}
 		return loader;
 	}
-
 
 	public void update() {
 		tree.update();

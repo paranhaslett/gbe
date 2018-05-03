@@ -3,7 +3,6 @@ package com.paranhaslett.toolbox.tools;
 import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
@@ -87,12 +86,6 @@ public class FormTool extends Tool{
 
 
 	@Override
-	public void populatePanel(List<String> data) {
-		textField.setText(data.get(0));
-
-	}
-
-	@Override
 	public void populateModel() {
 		//model.title = textField.getText();
 		Editor.getEd().update();
@@ -101,8 +94,7 @@ public class FormTool extends Tool{
 
 	@Override
 	public void populatePanel(Artifact item) {
-		// TODO Auto-generated method stub
-		
+		textField.setText(item.getData(0));
 	}
 
 }

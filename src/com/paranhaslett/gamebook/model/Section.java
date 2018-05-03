@@ -62,11 +62,6 @@ public class Section implements ModelContainer {
 
 	@Override
 	public void add(Item added) {
-		if (added instanceof Section) {
-			// merge into page
-			// change to page controller
-			// add newPage to parent of selection
-		}
 		if (added instanceof Fragment) {
 			if (added instanceof GoTo) {
 				gotoid = (GoTo) added;

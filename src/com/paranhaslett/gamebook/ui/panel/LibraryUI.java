@@ -115,10 +115,6 @@ public class LibraryUI extends PanelUI {
 
 	}
 
-	public void setup(String title) {
-		//no setup
-	}
-
 	public static PanelUI getPanelUI() {
 		if (panelUI == null) {
 			panelUI = new LibraryUI();

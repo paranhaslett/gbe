@@ -95,7 +95,7 @@ public class EmaLoader implements Loader {
 		BufferedReader reader;
 		try {
 			reader = new BufferedReader(new FileReader(file));
-			String line = null;
+			String line;
 			while ((line = reader.readLine()) != null) {
 				result.add(line);
 			}

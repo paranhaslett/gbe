@@ -19,7 +19,6 @@ public class SetUI extends PanelUI {
 	private static PanelUI panelUI;
 	private Set model;
 
-	private static final long serialVersionUID = -1739742038591872687L;
 	private final JTextField textVariable;
 	private final JLabel lblHeading;
 	private final JTextField textValue;

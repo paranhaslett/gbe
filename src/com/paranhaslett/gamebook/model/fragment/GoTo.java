@@ -14,7 +14,6 @@ import com.paranhaslett.gamebook.ui.panel.PanelUI;
 public class GoTo implements Fragment {
 	public String to;
 	public String text;
-	public Null ast;
 	
 	public static final Loadable loadable = new GoToIO();
 	private final PanelUI panel = GoToUI.getPanelUI();
