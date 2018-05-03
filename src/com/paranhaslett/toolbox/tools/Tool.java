@@ -16,7 +16,7 @@ import com.paranhaslett.toolbox.model.Artifact;
 
 public abstract class Tool extends JPanel{
 	private Icon icon;
-	private final List<Field> fields = new ArrayList<>();
+	@SuppressWarnings("MismatchedQueryAndUpdateOfCollection") private final List<Field> fields = new ArrayList<>();
 	private final List<Tool> subTools = new ArrayList<>();
 	
 	@SuppressWarnings("UnusedReturnValue")
@@ -29,6 +29,10 @@ public abstract class Tool extends JPanel{
 	public Tool addTool(Tool tool){
 		subTools.add(tool);
 		return this;
+	}
+
+	public List<Tool> getSubTools(){
+		return subTools;
 	}
 	
 	public Icon icon(){

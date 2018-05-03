@@ -1,30 +1,10 @@
 package com.paranhaslett.gamebook.loadable;
 
-import java.util.ArrayList;
-
 import com.paranhaslett.gamebook.loader.Loader;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.fragment.Text;
 
 public class TextIO implements Loadable {
-
-	public void load(ArrayList<String> content, Item item) {
-		Text desc = (Text) item;
-		StringBuilder sb = new StringBuilder();
-		boolean lineBlank = false;
-		for (String str : content) {
-			str = str.replace("^\\w*", "");
-			if (lineBlank || !str.equals("")) {
-				sb.append(str);
-				sb.append('\n');
-				lineBlank = false;
-			} else {
-				lineBlank = true;
-			}
-		}
-		desc.text = sb.toString();
-
-	}
 
 	@Override
 	public void load(Loader ff, Item item) {

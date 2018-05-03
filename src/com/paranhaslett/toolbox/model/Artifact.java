@@ -45,13 +45,11 @@ public class Artifact {
 		return this;
 	}
 
-	@SuppressWarnings("EmptyMethod")
-	public void add(Artifact item){
-		//TODO
-					// merge into series
-					// change to page controller
-					// add newPage to parent of selection
-		
+	public Artifact add(Artifact item){
+		if (tool.getSubTools().contains(item.tool())) {
+			contents.add(item);
+		}
+		return this;
 	}
 
     @SuppressWarnings("EmptyMethod")
@@ -69,9 +67,8 @@ public class Artifact {
 	}
 	
 
-	@SuppressWarnings("SameReturnValue")
-	public boolean isDropOn(Artifact item){
-		return false;
+	public boolean isDropOn(Artifact item) {
+		return tool != null && tool.getSubTools().contains(item.tool());
 	}
 	
 	public String getData(int ind){
@@ -91,10 +88,6 @@ public class Artifact {
 	
 	public String toString() {
 		return "" + id;
-	}
-	
-	public List <Artifact> contents(){
-		return contents;
 	}
 
 }

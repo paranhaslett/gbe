@@ -14,6 +14,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+@SuppressWarnings("MismatchedQueryAndUpdateOfCollection")
 public class Editor {
 	private static Editor editor = null;
 	public final TreeUI tree;

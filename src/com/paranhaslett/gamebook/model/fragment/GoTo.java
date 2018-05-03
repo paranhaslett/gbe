@@ -3,7 +3,6 @@ package com.paranhaslett.gamebook.model.fragment;
 import javax.swing.Icon;
 
 import com.paranhaslett.gamebook.Editor;
-import com.paranhaslett.gamebook.ast.Null;
 import com.paranhaslett.gamebook.loadable.GoToIO;
 import com.paranhaslett.gamebook.loadable.Loadable;
 import com.paranhaslett.gamebook.model.Fragment;
