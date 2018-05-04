@@ -34,7 +34,7 @@ public class EditorUI extends JFrame {
         menuBar.add(mnFile);
 
         JMenuItem mntmSave = new JMenuItem("Save");
-        mntmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
+        //mntmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
         mntmSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 Editor.getEd().library.saveLibrary();
