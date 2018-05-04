@@ -1,19 +1,19 @@
 package com.paranhaslett.gamebook.model;
 
-import javax.swing.Icon;
+import javax.swing.*;
 
 public interface Item {
 
-	void add(Item to);
+    void add(Item to);
 
-	void update();
+    void update();
 
-	void setup();
+    void setup();
 
-	void changeMainLabel(String newLabel);
+    void changeMainLabel(String newLabel);
 
-	boolean isDropOn(Item item);
+    boolean isDropOn(Item item);
 
-	Icon icon();
+    Icon icon();
 
 }

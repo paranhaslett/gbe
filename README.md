@@ -1,4 +1,4 @@
 Toolbox
 =======
 
-Toolbox library for amoungst other things  Game Book Editor
+Toolbox library for amoung other things  Game Book Editor
