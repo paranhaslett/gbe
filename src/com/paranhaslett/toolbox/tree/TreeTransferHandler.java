@@ -1,7 +1,6 @@
 package com.paranhaslett.toolbox.tree;
 
 import com.paranhaslett.toolbox.model.Artifact;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
@@ -214,7 +213,6 @@ class TreeTransferHandler extends TransferHandler {
             this.nodes = nodes2;
         }
 
-        @NotNull
         public Object getTransferData(DataFlavor flavor)
                 throws UnsupportedFlavorException {
             if (!isDataFlavorSupported(flavor))

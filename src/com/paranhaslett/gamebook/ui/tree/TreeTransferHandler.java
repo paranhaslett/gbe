@@ -3,7 +3,6 @@ package com.paranhaslett.gamebook.ui.tree;
 import com.paranhaslett.gamebook.model.Item;
 import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.fragment.GoTo;
-import org.jetbrains.annotations.NotNull;
 
 import javax.swing.*;
 import javax.swing.tree.DefaultTreeModel;
@@ -215,7 +214,6 @@ class TreeTransferHandler extends TransferHandler {
             this.nodes = nodes;
         }
 
-        @NotNull
         public Object getTransferData(DataFlavor flavor)
                 throws UnsupportedFlavorException {
             if (!isDataFlavorSupported(flavor))
