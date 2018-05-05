@@ -20,7 +20,7 @@ public class EditorUI extends JFrame {
      */
     public EditorUI(String name) {
         setIconImage(Toolkit.getDefaultToolkit().getImage(
-                EditorUI.class.getResource("/icons/book.png")));
+                EditorUI.class.getResource("/icons/app.png")));
         setTitle(name);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setBounds(100, 100, 640, 400);
