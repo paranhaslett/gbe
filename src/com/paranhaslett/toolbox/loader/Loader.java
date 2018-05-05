@@ -1,29 +1,29 @@
 package com.paranhaslett.toolbox.loader;
 
-import java.io.File;
-import java.util.List;
-
 import com.paranhaslett.toolbox.model.Artifact;
 import com.paranhaslett.toolbox.tools.Tool;
 
+import java.io.File;
+import java.util.List;
+
 public interface Loader {
-	
-	@SuppressWarnings("UnusedReturnValue")
-	Artifact load(File file, Tool tool);
-	
-	void save(File file, Artifact item);
-	
+
+    @SuppressWarnings("UnusedReturnValue")
+    Artifact load(File file, Tool tool);
+
+    void save(File file, Artifact item);
+
     String getText(String key);
-	
-	void setText(String key, String value);
-	
-	List<Loader> getChildren(String... childrenKeys);
-	
-	Loader getChild(String childkey);
-	
-	Loader create(String key);
-	
-	String getName();
+
+    void setText(String key, String value);
+
+    List<Loader> getChildren(String... childrenKeys);
+
+    Loader getChild(String childKey);
+
+    Loader create(String key);
+
+    String getName();
 
 
 }
