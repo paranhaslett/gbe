@@ -43,7 +43,7 @@ public class FileChooserUI extends JFileChooser {
 
         @Override
         public String getDescription() {
-            return "Gamebooks (*.gbf, *.xml)";
+            return "Game books (*.gbf, *.xml)";
         }
 
     }

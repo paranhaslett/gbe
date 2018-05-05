@@ -37,14 +37,14 @@ public class Section implements ModelContainer {
         Text desc = new Text();
         desc.setup();
         fragments.add(desc);
-        GoTo secgoto = new GoTo();
-        secgoto.setup();
-        goToId = secgoto;
+        GoTo sectionGoTo = new GoTo();
+        sectionGoTo.setup();
+        goToId = sectionGoTo;
         TreePath path = ed.tree.getSelectLoc();
         ed.tree.addToPath(path, this);
         path = ed.tree.getSelectLoc();
         ed.tree.addToPath(path, desc);
-        ed.tree.addToPath(path, secgoto);
+        ed.tree.addToPath(path, sectionGoTo);
         sectionNum++;
     }
 

@@ -31,14 +31,14 @@ public class EditorUI extends JFrame {
         JMenu mnFile = new JMenu("File");
         menuBar.add(mnFile);
 
-        JMenuItem mntmSave = new JMenuItem("Save");
-        //mntmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
-        mntmSave.addActionListener(new ActionListener() {
+        JMenuItem mnItmSave = new JMenuItem("Save");
+        //mnItmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
+        mnItmSave.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //TODO Editor.getEd().library.saveLibrary();
             }
         });
-        mnFile.add(mntmSave);
+        mnFile.add(mnItmSave);
 
         JMenu mnEdit = new JMenu("Edit");
         menuBar.add(mnEdit);
@@ -52,13 +52,13 @@ public class EditorUI extends JFrame {
         JMenu mnHelp = new JMenu("Help");
         menuBar.add(mnHelp);
 
-        JMenuItem mntmAbout = new JMenuItem("About");
-        mntmAbout.addActionListener(new ActionListener() {
+        JMenuItem mnItmAbout = new JMenuItem("About");
+        mnItmAbout.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent arg0) {
                 //TODO open dialog
             }
         });
-        mnHelp.add(mntmAbout);
+        mnHelp.add(mnItmAbout);
         JPanel contentPane = new JPanel();
         contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
         contentPane.setLayout(new BorderLayout(0, 0));

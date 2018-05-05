@@ -45,13 +45,11 @@ public class Artifact {
         return this;
     }
 
-    @SuppressWarnings("EmptyMethod")
-    public void add(Artifact item) {
-        //TODO
-        // merge into series
-        // change to page controller
-        // add newPage to parent of selection
-
+    public Artifact add(Artifact item) {
+        if (tool.isDropOn(item.tool)) {
+            contents.add(item);
+        }
+        return this;
     }
 
     @SuppressWarnings("EmptyMethod")

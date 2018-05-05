@@ -56,12 +56,12 @@ public class Editor {
     }
 
     public Loader getLoader() {
-        FileFilter filt = fileChooser.getFileFilter();
+        FileFilter filter = fileChooser.getFileFilter();
         Loader loader = null;
-        if (filt instanceof GameBookFilter) {
+        if (filter instanceof GameBookFilter) {
             loader = Loadable.xmlLoader;
         }
-        if (filt instanceof EmaFilter) {
+        if (filter instanceof EmaFilter) {
             loader = Loadable.emaLoader;
         }
         return loader;

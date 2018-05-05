@@ -70,10 +70,10 @@ public class XMLLoader implements Loader {
 
     @Override
     public Loader create(String key) {
-        XMLLoader xmlff = new XMLLoader();
-        xmlff.setElement(Tool.xmlLoader.doc.createElement(key));
-        element.appendChild(xmlff.getElement());
-        return xmlff;
+        XMLLoader xmlLoader = new XMLLoader();
+        xmlLoader.setElement(Tool.xmlLoader.doc.createElement(key));
+        element.appendChild(xmlLoader.getElement());
+        return xmlLoader;
     }
 
     private Element getElement() {
@@ -87,7 +87,7 @@ public class XMLLoader implements Loader {
     @Override
     public String getText(String key) {
         if (key == null) {
-            return beutifyText(element.getTextContent());
+            return beautifyText(element.getTextContent());
         }
         if (element.hasAttribute(key)) {
             return element.getAttribute(key);
@@ -96,13 +96,13 @@ public class XMLLoader implements Loader {
         for (int i = 0; i < nl.getLength(); i++) {
             Node node = nl.item(i);
             if (node.getNodeName().equals(key)) {
-                return beutifyText(node.getTextContent());
+                return beautifyText(node.getTextContent());
             }
         }
         return null;
     }
 
-    private String beutifyText(String text) {
+    private String beautifyText(String text) {
         String result = text.replaceAll("^\\s*", "");
         for (int i = 0; i < 50; i++) {
             result = result.replaceAll("\n\\s*", "\n");

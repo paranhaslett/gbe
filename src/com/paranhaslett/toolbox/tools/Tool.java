@@ -26,6 +26,12 @@ public abstract class Tool extends JPanel {
         return this;
     }
 
+    public boolean isDropOn(Tool tool){
+        return subTools.contains(tool);
+    }
+
+
+
     @SuppressWarnings("UnusedReturnValue")
     public Tool addTool(Tool tool) {
         subTools.add(tool);

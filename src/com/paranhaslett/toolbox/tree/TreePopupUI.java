@@ -15,8 +15,8 @@ class TreePopupUI extends JPopupMenu {
     private static final long serialVersionUID = -3362291340967409194L;
 
     public TreePopupUI(final TreeUI tree) {
-        JMenuItem mntmAdd = new JMenuItem("Add");
-        mntmAdd.addActionListener(new ActionListener() {
+        JMenuItem mnItmAdd = new JMenuItem("Add");
+        mnItmAdd.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree
                         .getLastSelectedPathComponent();
@@ -33,20 +33,20 @@ class TreePopupUI extends JPopupMenu {
 
             }
         });
-        add(mntmAdd);
+        add(mnItmAdd);
 
         JMenu mnAdd = new JMenu("Add");
         add(mnAdd);
 
-        JMenuItem mntmPage = new JMenuItem("Page");
-        mntmPage.addActionListener(new ActionListener() {
+        JMenuItem mnItmPage = new JMenuItem("Page");
+        mnItmPage.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
             }
         });
-        mnAdd.add(mntmPage);
+        mnAdd.add(mnItmPage);
 
-        JMenuItem mntmDelete = new JMenuItem("Delete");
-        add(mntmDelete);
+        JMenuItem mnItmDelete = new JMenuItem("Delete");
+        add(mnItmDelete);
 
         addPopup(tree, this);
     }

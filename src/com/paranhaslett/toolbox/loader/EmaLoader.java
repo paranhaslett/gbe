@@ -49,12 +49,12 @@ public class EmaLoader implements Loader {
         for (String contentItem : content) {
 
             Pattern link = Pattern.compile(".*\\* \\[(.*)\\]\\(ema:(.*)\\).*");
-            Matcher linkmat = link.matcher(contentItem);
-            if (linkmat.matches() && childKey != null) {
+            Matcher linkMatch = link.matcher(contentItem);
+            if (linkMatch.matches() && childKey != null) {
                 EmaLoader subLoad = new EmaLoader();
-                String filename = linkmat.group(1).replace(" ", "_") + ".txt";
-                File newfile = new File(file.getPath() + filename);
-                subLoad.content = getContent(newfile);
+                String filename = linkMatch.group(1).replace(" ", "_") + ".txt";
+                File newFile = new File(file.getPath() + filename);
+                subLoad.content = getContent(newFile);
                 result.add(subLoad);
             } else {
 
@@ -73,7 +73,7 @@ public class EmaLoader implements Loader {
     }
 
     @Override
-    public Loader getChild(String childkey) {
+    public Loader getChild(String childKey) {
         // TODO Auto-generated method stub
         return null;
     }

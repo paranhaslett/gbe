@@ -66,13 +66,13 @@ public class SectionIO implements Loadable {
         }
 
         Loader gotoElement = ff.getChild("goto");
-        GoTo secGoTo = new GoTo();
+        GoTo sectionGoTo = new GoTo();
         if (gotoElement != null) {
-            GoTo.loadable.load(gotoElement, secGoTo);
+            GoTo.loadable.load(gotoElement, sectionGoTo);
         } else {
-            secGoTo.setup();
+            sectionGoTo.setup();
         }
-        section.goToId = secGoTo;
+        section.goToId = sectionGoTo;
 
     }
 

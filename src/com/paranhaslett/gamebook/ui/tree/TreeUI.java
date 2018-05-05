@@ -166,9 +166,9 @@ public class TreeUI extends JTree {
     public void addToSel(Item childValue) {
         TreeNodeUI parent = (TreeNodeUI) selectedPath.getLastPathComponent();
         TreeNodeUI child = new TreeNodeUI(childValue);
-        int lastindex = parent.getChildCount();
+        int lastIndex = parent.getChildCount();
         ((DefaultTreeModel) getModel())
-                .insertNodeInto(child, parent, lastindex);
+                .insertNodeInto(child, parent, lastIndex);
         this.selection = childValue;
         selectedPath = new TreePath(child.getPath());
         ((DefaultTreeModel) this.getModel())
@@ -184,9 +184,9 @@ public class TreeUI extends JTree {
     public void addToPath(TreePath path, Item childValue) {
         TreeNodeUI parent = (TreeNodeUI) path.getLastPathComponent();
         TreeNodeUI child = new TreeNodeUI(childValue);
-        int lastindex = parent.getChildCount();
+        int lastIndex = parent.getChildCount();
         ((DefaultTreeModel) getModel())
-                .insertNodeInto(child, parent, lastindex);
+                .insertNodeInto(child, parent, lastIndex);
         this.selection = childValue;
         selectedPath = new TreePath(child.getPath());
         setSelectionPath(selectedPath);

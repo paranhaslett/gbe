@@ -67,8 +67,8 @@ public class TreeUI extends JTree {
 
     public void addToSel(DefaultMutableTreeNode child) {
         DefaultMutableTreeNode parent = (DefaultMutableTreeNode) selectedPath.getLastPathComponent();
-        int lastindex = parent.getChildCount();
-        ((DefaultTreeModel) getModel()).insertNodeInto(child, parent, lastindex);
+        int lastIndex = parent.getChildCount();
+        ((DefaultTreeModel) getModel()).insertNodeInto(child, parent, lastIndex);
         this.selection = child;
         selectedPath = new TreePath(child.getPath());
         ((DefaultTreeModel) this.getModel()).nodeStructureChanged(parent);
@@ -82,8 +82,8 @@ public class TreeUI extends JTree {
 
     public void addToPath(TreePath path, DefaultMutableTreeNode child) {
         DefaultMutableTreeNode parent = (DefaultMutableTreeNode) path.getLastPathComponent();
-        int lastindex = parent.getChildCount();
-        ((DefaultTreeModel) getModel()).insertNodeInto(child, parent, lastindex);
+        int lastIndex = parent.getChildCount();
+        ((DefaultTreeModel) getModel()).insertNodeInto(child, parent, lastIndex);
         this.selection = child;
         selectedPath = new TreePath(child.getPath());
         setSelectionPath(selectedPath);

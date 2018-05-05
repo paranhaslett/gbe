@@ -19,7 +19,7 @@ public interface Loader {
 
     List<Loader> getChildren(String... childrenKeys);
 
-    Loader getChild(String childkey);
+    Loader getChild(String childKey);
 
     Loader create(String key);
 

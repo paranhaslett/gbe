@@ -50,7 +50,7 @@
       </set>
       <set var="mutation">
         <value>mutation + 1</value>
-        <text>*Add 1 to **mutatation***</text>
+        <text>*Add 1 to **mutation***</text>
       </set>
       <if>
         <var>defense</var>
@@ -95,7 +95,7 @@
     <goto to=""/>
   </section>
   <section id="a13">
-    <title>Cybercity</title>
+    <title>Cyber City</title>
 
     <text>
       *set **hub=a13***
@@ -247,7 +247,7 @@
     <title>Desert</title>
 
     <text>
-      One sandhill blends into another in this vast expanse. The scorching heat beats down upon you.
+      One sand hill blends into another in this vast expanse. The scorching heat beats down upon you.
 
       *Lose 1 defense unless powered*
       *If you lose all defense or energy then you pass out go to {a1}*
@@ -272,7 +272,7 @@
     <title>Dream</title>
 
     <text>
-      Record hub and radiation here and select near random values for each set out of wack to dream
+      Record hub and radiation here and select near random values for each set out of whack to dream
     </text>
     <goto to=""/>
   </section>
@@ -367,8 +367,8 @@
     <text>
       You can buy:
       * Radiation suit (31.0.1.1.1) **9 credits**
-      [ ] If box is unticked you may also deliver a flyer.
-      *Tick the box and subtract 1 from **todeliver***
+      [ ] If box is unticked you may also deliver a flier.
+      *Tick the box and subtract 1 from **deliver***
       *When you are finished go to the page number recorded beside **hub***
     </text>
     <goto to=""/>
@@ -394,8 +394,8 @@
 
     <text>
       * If you have any historic **artifacts** the museum will buy them for **500 credits**
-      * If **todeliver**=0 erase it and gain **4 credits**
-      * You may deliver **flyers** by adding **todeliver**=1 to your adventure sheet
+      * If **toDeliver**=0 erase it and gain **4 credits**
+      * You may deliver **fliers** by adding **deliver**=1 to your adventure sheet
       *When you are finished go to the page number recorded beside **hub***
 
     </text>
@@ -422,7 +422,7 @@
       "I would recommend putting on a radiation suit before venturing out there" comments an old man
       If you want to leave through the airlock
       * To go towards jungle *set **to** = {a4} goto section {a6}*
-      * To go toward cybercity *set **to** {a12} goto section {a6}*
+      * To go toward cyber city *set **to** {a12} goto section {a6}*
       If you want go back into the domed city *goto section {a3}*
     </text>
     <goto to=""/>
