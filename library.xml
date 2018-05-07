@@ -68,7 +68,7 @@
 					<value>1</value>
 					<text>* If you have run out of energy </text>
 					<text>you black out. </text>
-					<goto to="a1">goto {a1}</goto>
+					<goto to="a1">go to {a1}</goto>
 				</if>
 			</if>
 			<goto to="to">*When you are finished go to the page number recorded beside **to**</goto>

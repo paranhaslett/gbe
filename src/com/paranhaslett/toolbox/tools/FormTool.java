@@ -34,12 +34,7 @@ public class FormTool extends Tool {
         textField.setColumns(10);
 
         JButton btnUpdate = new JButton("Update");
-        btnUpdate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                populateModel();
-
-            }
-        });
+        btnUpdate.addActionListener(e -> populateModel());
 
         JLabel lblGameBook = new JLabel("Game Book");
         lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));

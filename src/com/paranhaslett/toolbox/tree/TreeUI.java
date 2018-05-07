@@ -21,22 +21,19 @@ public class TreeUI extends JTree {
         setDragEnabled(true);
         setTransferHandler(new TreeTransferHandler());
         setCellRenderer(treeRenderer);
-        addTreeSelectionListener(new TreeSelectionListener() {
-            @Override
-            public void valueChanged(TreeSelectionEvent e) {
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
-                if (node == null) {
-                    return;
-                } // nothing is selected
+        addTreeSelectionListener(e -> {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
+            if (node == null) {
+                return;
+            } // nothing is selected
 
-                Object nodeInfo = node.getUserObject();
-                if (nodeInfo instanceof Artifact) {
-                    selectedPath = new TreePath(node.getPath());
-                    setSelectionPath(selectedPath);
-                    selection = node;
-                    ((Artifact) nodeInfo).update();
+            Object nodeInfo = node.getUserObject();
+            if (nodeInfo instanceof Artifact) {
+                selectedPath = new TreePath(node.getPath());
+                setSelectionPath(selectedPath);
+                selection = node;
+                ((Artifact) nodeInfo).update();
 
-                }
             }
         });
         setEditable(true);

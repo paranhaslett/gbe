@@ -37,12 +37,7 @@ public class TemplateUI extends PanelUI {
         textField.setColumns(10);
 
         JButton btnUpdate = new JButton("Update");
-        btnUpdate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                populateModel();
-
-            }
-        });
+        btnUpdate.addActionListener(e -> populateModel());
 
         final JComboBox<String> comboBox = new JComboBox<>();
         comboBox.setModel(new DefaultComboBoxModel<>(
@@ -50,55 +45,53 @@ public class TemplateUI extends PanelUI {
 
         JButton btnAddPage = new JButton("Add");
         btnAddPage.setIcon(null);
-        btnAddPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String selected = (String) comboBox.getSelectedItem();
-                Item item = null;
-                if (selected != null) {
-                    if (selected.equals("Book")) {
-                        item = new Book();
-                    }
-                    if (selected.equals("Series")) {
-                        item = new Series();
-                    }
-                    if (selected.equals("Template")) {
-                        item = new Template();
-                    }
-                    if (selected.equals("Page")) {
-                        item = new Page();
-                    }
-                    if (selected.equals("Section")) {
-                        item = new Section();
-                    }
-                    if (selected.equals("Text")) {
-                        item = new Text();
-                    }
-                    if (selected.equals("GoTo")) {
-                        item = new GoTo();
-                    }
-                    if (selected.equals("Set")) {
-                        item = new Set();
-                    }
-                    if (selected.equals("Chance")) {
-                        item = new Chance();
-                    }
-                    if (selected.equals("Choice")) {
-                        item = new Choice();
-                    }
-                    if (selected.equals("If")) {
-                        item = new If();
-                    }
-                    //if (selected.equals("Var")){
-                    //	item = new Var();
-                    //}
-                    if (item != null) {
-                        item.changeMainLabel("< New >");
-                        model.add(item);
-                    }
+        btnAddPage.addActionListener(e -> {
+            String selected = (String) comboBox.getSelectedItem();
+            Item item = null;
+            if (selected != null) {
+                if (selected.equals("Book")) {
+                    item = new Book();
                 }
-
-
+                if (selected.equals("Series")) {
+                    item = new Series();
+                }
+                if (selected.equals("Template")) {
+                    item = new Template();
+                }
+                if (selected.equals("Page")) {
+                    item = new Page();
+                }
+                if (selected.equals("Section")) {
+                    item = new Section();
+                }
+                if (selected.equals("Text")) {
+                    item = new Text();
+                }
+                if (selected.equals("GoTo")) {
+                    item = new GoTo();
+                }
+                if (selected.equals("Set")) {
+                    item = new Set();
+                }
+                if (selected.equals("Chance")) {
+                    item = new Chance();
+                }
+                if (selected.equals("Choice")) {
+                    item = new Choice();
+                }
+                if (selected.equals("If")) {
+                    item = new If();
+                }
+                //if (selected.equals("Var")){
+                //	item = new Var();
+                //}
+                if (item != null) {
+                    item.changeMainLabel("< New >");
+                    model.add(item);
+                }
             }
+
+
         });
 
         JLabel lblGameBook = new JLabel("Template");

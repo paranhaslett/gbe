@@ -30,11 +30,7 @@ public class GoToUI extends PanelUI {
         lblGoTo.setLabelFor(textGoTo);
 
         JButton btnUpdate = new JButton("Update");
-        btnUpdate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                populateModel();
-            }
-        });
+        btnUpdate.addActionListener(e -> populateModel());
 
         textField = new JTextField();
         textField.setColumns(10);

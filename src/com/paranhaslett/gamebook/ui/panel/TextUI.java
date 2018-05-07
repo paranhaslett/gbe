@@ -21,11 +21,7 @@ public class TextUI extends PanelUI {
         JScrollPane scrollPane = new JScrollPane();
 
         JButton btnUpdate = new JButton("Update");
-        btnUpdate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                populateModel();
-            }
-        });
+        btnUpdate.addActionListener(e -> populateModel());
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(groupLayout.createParallelGroup(
                 Alignment.LEADING).addGroup(

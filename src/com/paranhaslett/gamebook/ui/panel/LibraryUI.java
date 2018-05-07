@@ -25,22 +25,18 @@ public class LibraryUI extends PanelUI {
 
         JButton btnAddSection = new JButton("Add Series");
         btnAddSection.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
-        btnAddSection.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Series series = new Series();
-                series.setup();
-                model.add(series);
-            }
+        btnAddSection.addActionListener(e -> {
+            Series series = new Series();
+            series.setup();
+            model.add(series);
         });
 
         JButton btnAddPage = new JButton("Add Book");
         btnAddPage.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/book.png")));
-        btnAddPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Book book = new Book();
-                book.setup();
-                model.add(book);
-            }
+        btnAddPage.addActionListener(e -> {
+            Book book = new Book();
+            book.setup();
+            model.add(book);
         });
 
         JLabel lblGameBook = new JLabel("Library");
@@ -48,12 +44,10 @@ public class LibraryUI extends PanelUI {
         lblGameBook.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/library.png")));
 
         JButton btnAddTemplate = new JButton("Add Template");
-        btnAddTemplate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Template template = new Template();
-                template.setup();
-                model.add(template);
-            }
+        btnAddTemplate.addActionListener(e -> {
+            Template template = new Template();
+            template.setup();
+            model.add(template);
         });
         btnAddTemplate.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/template.png")));
 
@@ -62,9 +56,7 @@ public class LibraryUI extends PanelUI {
 
         JButton btnLoadSeries = new JButton("Load Series");
         btnLoadSeries.setIcon(new ImageIcon(LibraryUI.class.getResource("/icons/tree/series.png")));
-        btnLoadSeries.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
+        btnLoadSeries.addActionListener(e -> {
         });
 
         JButton btnLoadTemplate = new JButton("Load Template");

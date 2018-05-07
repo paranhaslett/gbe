@@ -7,8 +7,7 @@ import com.paranhaslett.gamebook.model.Section;
 import com.paranhaslett.gamebook.model.libraryitem.Book;
 
 public class BookIO implements Loadable {
-
-
+    
     @Override
     public void load(Loader loader, Item item) {
         Book gameBook = (Book) item;

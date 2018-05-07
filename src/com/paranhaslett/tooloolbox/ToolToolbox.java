@@ -32,13 +32,11 @@ class ToolToolbox extends Editor {
     }
 
     public static void main(String args[]) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                try {
-                    new ToolToolbox();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+        EventQueue.invokeLater(() -> {
+            try {
+                new ToolToolbox();
+            } catch (Exception e) {
+                e.printStackTrace();
             }
         });
     }

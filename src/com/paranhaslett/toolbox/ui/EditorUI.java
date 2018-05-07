@@ -33,10 +33,8 @@ public class EditorUI extends JFrame {
 
         JMenuItem mnItmSave = new JMenuItem("Save");
         //mnItmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
-        mnItmSave.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                //TODO Editor.getEd().library.saveLibrary();
-            }
+        mnItmSave.addActionListener(e -> {
+            //TODO Editor.getEd().library.saveLibrary();
         });
         mnFile.add(mnItmSave);
 
@@ -53,10 +51,8 @@ public class EditorUI extends JFrame {
         menuBar.add(mnHelp);
 
         JMenuItem mnItmAbout = new JMenuItem("About");
-        mnItmAbout.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent arg0) {
-                //TODO open dialog
-            }
+        mnItmAbout.addActionListener(arg0 -> {
+            //TODO open dialog
         });
         mnHelp.add(mnItmAbout);
         JPanel contentPane = new JPanel();

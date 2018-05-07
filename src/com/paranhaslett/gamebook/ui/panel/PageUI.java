@@ -26,12 +26,10 @@ public class PageUI extends PanelUI {
         JButton btnAddSection = new JButton("Add Section");
         btnAddSection.setIcon(new ImageIcon(PageUI.class
                 .getResource("/icons/tree/section.png")));
-        btnAddSection.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                // Controller controller = Editor.getEd().getController("Page");
-                Section section = new Section();
-                section.setup();
-            }
+        btnAddSection.addActionListener(e -> {
+            // Controller controller = Editor.getEd().getController("Page");
+            Section section = new Section();
+            section.setup();
         });
 
         lblHeading = new JLabel("Page");

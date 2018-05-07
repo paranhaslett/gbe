@@ -16,22 +16,20 @@ class TreePopupUI extends JPopupMenu {
 
     public TreePopupUI(final TreeUI tree) {
         JMenuItem mnItmAdd = new JMenuItem("Add");
-        mnItmAdd.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree
-                        .getLastSelectedPathComponent();
-                if (node == null) {
-                    return;
-                } // nothing is selected
+        mnItmAdd.addActionListener(e -> {
+            DefaultMutableTreeNode node = (DefaultMutableTreeNode) tree
+                    .getLastSelectedPathComponent();
+            if (node == null) {
+                return;
+            } // nothing is selected
 
-                Object nodeInfo = node.getUserObject();
-                if (nodeInfo instanceof Artifact) {
-                    Artifact item = (Artifact) nodeInfo;
-                    // TODO figure out how to specify items
-
-                }
+            Object nodeInfo = node.getUserObject();
+            if (nodeInfo instanceof Artifact) {
+                Artifact item = (Artifact) nodeInfo;
+                // TODO figure out how to specify items
 
             }
+
         });
         add(mnItmAdd);
 
@@ -39,9 +37,7 @@ class TreePopupUI extends JPopupMenu {
         add(mnAdd);
 
         JMenuItem mnItmPage = new JMenuItem("Page");
-        mnItmPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-            }
+        mnItmPage.addActionListener(e -> {
         });
         mnAdd.add(mnItmPage);
 

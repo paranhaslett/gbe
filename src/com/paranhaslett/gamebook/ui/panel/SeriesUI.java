@@ -27,21 +27,14 @@ public class SeriesUI extends PanelUI {
         textField.setColumns(10);
 
         JButton btnUpdate = new JButton("Update");
-        btnUpdate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                populateModel();
-
-            }
-        });
+        btnUpdate.addActionListener(e -> populateModel());
 
         JButton btnAddPage = new JButton("Add Book");
         btnAddPage.setIcon(new ImageIcon(SeriesUI.class.getResource("/icons/tree/book.png")));
-        btnAddPage.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                Book book = new Book();
-                book.setup();
-                model.add(book);
-            }
+        btnAddPage.addActionListener(e -> {
+            Book book = new Book();
+            book.setup();
+            model.add(book);
         });
 
         JLabel lblGameBook = new JLabel("Series");

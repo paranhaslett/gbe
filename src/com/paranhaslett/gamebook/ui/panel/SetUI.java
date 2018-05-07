@@ -31,11 +31,7 @@ public class SetUI extends PanelUI {
         lblVar.setLabelFor(textVariable);
 
         JButton btnUpdate = new JButton("Update");
-        btnUpdate.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                populateModel();
-            }
-        });
+        btnUpdate.addActionListener(e -> populateModel());
 
         textValue = new JTextField();
         textValue.setColumns(10);
