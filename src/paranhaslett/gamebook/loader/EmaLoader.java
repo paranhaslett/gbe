@@ -1,5 +1,11 @@
 package paranhaslett.gamebook.loader;
 
+import paranhaslett.gamebook.model.Item;
+import paranhaslett.gamebook.model.Library;
+import paranhaslett.gamebook.model.libraryitem.Book;
+import paranhaslett.gamebook.model.libraryitem.Series;
+import paranhaslett.gamebook.model.libraryitem.Template;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,12 +16,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import paranhaslett.gamebook.model.Item;
-import paranhaslett.gamebook.model.Library;
-import paranhaslett.gamebook.model.libraryitem.Book;
-import paranhaslett.gamebook.model.libraryitem.Series;
-import paranhaslett.gamebook.model.libraryitem.Template;
 
 public class EmaLoader implements Loader {
 

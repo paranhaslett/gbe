@@ -1,5 +1,8 @@
 package paranhaslett.toolbox.loader;
 
+import paranhaslett.toolbox.model.Artifact;
+import paranhaslett.toolbox.tools.Tool;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,9 +13,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.tools.Tool;
 
 public class EmaLoader implements Loader {
 

@@ -1,8 +1,5 @@
 package paranhaslett.gamebook.model;
 
-import javax.swing.*;
-import javax.swing.tree.TreePath;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.SectionIO;
@@ -11,6 +8,8 @@ import paranhaslett.gamebook.model.fragment.Text;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 import paranhaslett.gamebook.ui.panel.SectionUI;
 
+import javax.swing.*;
+import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 
 public class Section implements ModelContainer {

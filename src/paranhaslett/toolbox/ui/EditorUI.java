@@ -1,15 +1,12 @@
 package paranhaslett.toolbox.ui;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.tools.Tool;
 import paranhaslett.toolbox.tree.TreeUI;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class EditorUI extends JFrame {
     private static final long serialVersionUID = 6198693420541435623L;

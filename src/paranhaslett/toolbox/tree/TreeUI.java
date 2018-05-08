@@ -1,14 +1,12 @@
 package paranhaslett.toolbox.tree;
 
+import paranhaslett.toolbox.model.Artifact;
+
 import javax.swing.*;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
-
-import paranhaslett.toolbox.model.Artifact;
 
 public class TreeUI extends JTree {
     private static final long serialVersionUID = -4252742793844024659L;

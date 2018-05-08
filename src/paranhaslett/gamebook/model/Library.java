@@ -1,7 +1,5 @@
 package paranhaslett.gamebook.model;
 
-import javax.swing.*;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.loadable.LibraryIO;
 import paranhaslett.gamebook.loadable.Loadable;
@@ -12,6 +10,7 @@ import paranhaslett.gamebook.model.libraryitem.Template;
 import paranhaslett.gamebook.ui.panel.LibraryUI;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 
+import javax.swing.*;
 import java.io.File;
 import java.util.ArrayList;
 

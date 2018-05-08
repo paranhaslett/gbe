@@ -1,8 +1,5 @@
 package paranhaslett.gamebook.model.libraryitem;
 
-import javax.swing.*;
-import javax.swing.tree.TreePath;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.loadable.BookIO;
 import paranhaslett.gamebook.loadable.Loadable;
@@ -14,6 +11,8 @@ import paranhaslett.gamebook.ui.panel.PageUI;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 import paranhaslett.gamebook.ui.panel.SectionUI;
 
+import javax.swing.*;
+import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 
 public class Book implements Item {

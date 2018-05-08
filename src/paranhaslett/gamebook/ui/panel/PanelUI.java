@@ -1,8 +1,8 @@
 package paranhaslett.gamebook.ui.panel;
 
-import javax.swing.*;
-
 import paranhaslett.gamebook.model.Item;
+
+import javax.swing.*;
 
 public abstract class PanelUI extends JPanel {
 

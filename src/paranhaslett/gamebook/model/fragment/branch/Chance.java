@@ -1,7 +1,5 @@
 package paranhaslett.gamebook.model.fragment.branch;
 
-import javax.swing.*;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.loadable.ChanceIO;
 import paranhaslett.gamebook.loadable.Loadable;
@@ -11,6 +9,7 @@ import paranhaslett.gamebook.model.ModelContainer;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 import paranhaslett.gamebook.ui.panel.TextUI;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Chance implements ModelContainer, Fragment, Item {

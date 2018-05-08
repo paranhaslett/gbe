@@ -1,14 +1,13 @@
 package paranhaslett.gamebook.ui.tree;
 
-import javax.swing.*;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
-
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.Section;
 import paranhaslett.gamebook.model.fragment.GoTo;
 
+import javax.swing.*;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.datatransfer.UnsupportedFlavorException;

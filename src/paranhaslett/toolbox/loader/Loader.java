@@ -1,10 +1,10 @@
 package paranhaslett.toolbox.loader;
 
-import java.io.File;
-import java.util.List;
-
 import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.tools.Tool;
+
+import java.io.File;
+import java.util.List;
 
 public interface Loader {
 

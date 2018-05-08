@@ -1,7 +1,5 @@
 package paranhaslett.gamebook;
 
-import javax.swing.filechooser.FileFilter;
-
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loader.Loader;
 import paranhaslett.gamebook.model.Library;
@@ -11,6 +9,7 @@ import paranhaslett.gamebook.ui.FileChooserUI.EmaFilter;
 import paranhaslett.gamebook.ui.FileChooserUI.GameBookFilter;
 import paranhaslett.gamebook.ui.tree.TreeUI;
 
+import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 
 public class Editor {

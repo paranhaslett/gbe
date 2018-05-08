@@ -1,16 +1,13 @@
 package paranhaslett.toolbox.tools;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import paranhaslett.toolbox.Editor;
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
 
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class FormTool extends Tool {
 

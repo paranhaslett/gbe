@@ -1,16 +1,13 @@
 package paranhaslett.gamebook.ui;
 
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 import paranhaslett.gamebook.ui.tree.TreeUI;
 
+import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class EditorUI extends JFrame {
     private static final long serialVersionUID = 6198693420541435623L;

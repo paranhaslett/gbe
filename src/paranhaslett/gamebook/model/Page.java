@@ -1,13 +1,12 @@
 package paranhaslett.gamebook.model;
 
-import javax.swing.*;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.PageIO;
 import paranhaslett.gamebook.ui.panel.PageUI;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 
+import javax.swing.*;
 import java.util.ArrayList;
 
 public class Page implements Item {

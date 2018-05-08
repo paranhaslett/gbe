@@ -1,8 +1,8 @@
 package paranhaslett.gamebook.ui.tree;
 
-import javax.swing.tree.DefaultMutableTreeNode;
-
 import paranhaslett.gamebook.model.Item;
+
+import javax.swing.tree.DefaultMutableTreeNode;
 
 class TreeNodeUI extends DefaultMutableTreeNode {
     private static final long serialVersionUID = 9020576980406733512L;
