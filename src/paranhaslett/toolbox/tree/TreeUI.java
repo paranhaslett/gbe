@@ -1,7 +1,8 @@
 package paranhaslett.toolbox.tree;
 
-import javax.swing.DropMode;
-import javax.swing.JTree;
+import javax.swing.*;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.TreeNode;
@@ -47,7 +48,6 @@ public class TreeUI extends JTree {
     public void setup(Artifact art) {
         DefaultMutableTreeNode lib = art.getTreeNode();
         DefaultTreeModel model = new DefaultTreeModel(lib);
-        model.setRoot(lib);
         setModel(model);
         setSelectionPath(new TreePath(lib.getPath()));
         selection = lib;

@@ -1,17 +1,14 @@
 package paranhaslett.gamebook.ui.panel;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.libraryitem.Book;
 import paranhaslett.gamebook.model.libraryitem.Series;
 
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class SeriesUI extends PanelUI {
     private static PanelUI panelUI;

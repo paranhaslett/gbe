@@ -1,7 +1,5 @@
 package paranhaslett.gamebook.model.fragment;
 
-import javax.swing.*;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.SetIO;
@@ -9,6 +7,8 @@ import paranhaslett.gamebook.model.Fragment;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 import paranhaslett.gamebook.ui.panel.SetUI;
+
+import javax.swing.*;
 
 public class Set implements Fragment {
     public static final Loadable loadable = new SetIO();

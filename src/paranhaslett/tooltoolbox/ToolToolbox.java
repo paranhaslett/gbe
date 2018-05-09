@@ -1,11 +1,11 @@
-package paranhaslett.tooloolbox;
-
-import java.awt.*;
+package paranhaslett.tooltoolbox;
 
 import paranhaslett.toolbox.Editor;
 import paranhaslett.toolbox.fields.TextField;
 import paranhaslett.toolbox.tools.FormTool;
 import paranhaslett.toolbox.tools.Tool;
+
+import java.awt.*;
 
 class ToolToolbox extends Editor {
 

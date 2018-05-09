@@ -1,15 +1,12 @@
 package paranhaslett.gamebook.ui.panel;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.fragment.Text;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class TextUI extends PanelUI {
     private static final long serialVersionUID = -1739742038591872687L;

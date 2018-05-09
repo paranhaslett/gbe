@@ -1,11 +1,10 @@
 package paranhaslett.toolbox.model;
 
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreePath;
-
 import paranhaslett.toolbox.Editor;
 import paranhaslett.toolbox.tools.Tool;
 
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 import java.util.List;
 

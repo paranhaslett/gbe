@@ -1,9 +1,9 @@
 package paranhaslett.gamebook.loader;
 
+import paranhaslett.gamebook.model.Item;
+
 import java.io.File;
 import java.util.List;
-
-import paranhaslett.gamebook.model.Item;
 
 public interface Loader {
 

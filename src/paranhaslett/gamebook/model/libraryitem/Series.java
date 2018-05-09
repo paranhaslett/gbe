@@ -1,8 +1,5 @@
 package paranhaslett.gamebook.model.libraryitem;
 
-import javax.swing.*;
-import javax.swing.tree.TreePath;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.SeriesIO;
@@ -10,6 +7,8 @@ import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 import paranhaslett.gamebook.ui.panel.SeriesUI;
 
+import javax.swing.*;
+import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 
 public class Series implements Item {

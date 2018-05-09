@@ -1,7 +1,5 @@
 package paranhaslett.toolbox.tools;
 
-import javax.swing.*;
-
 import paranhaslett.toolbox.Editor;
 import paranhaslett.toolbox.fields.Field;
 import paranhaslett.toolbox.loader.EmaLoader;
@@ -9,6 +7,7 @@ import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.loader.XMLLoader;
 import paranhaslett.toolbox.model.Artifact;
 
+import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 

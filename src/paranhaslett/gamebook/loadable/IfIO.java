@@ -1,7 +1,5 @@
 package paranhaslett.gamebook.loadable;
 
-import java.util.List;
-
 import paranhaslett.gamebook.loader.Loader;
 import paranhaslett.gamebook.model.Fragment;
 import paranhaslett.gamebook.model.Item;
@@ -11,6 +9,8 @@ import paranhaslett.gamebook.model.fragment.Text;
 import paranhaslett.gamebook.model.fragment.branch.Chance;
 import paranhaslett.gamebook.model.fragment.branch.Choice;
 import paranhaslett.gamebook.model.fragment.branch.If;
+
+import java.util.List;
 
 public class IfIO implements Loadable {
 

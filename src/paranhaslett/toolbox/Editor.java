@@ -1,7 +1,5 @@
 package paranhaslett.toolbox;
 
-import javax.swing.filechooser.FileFilter;
-
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.tools.Tool;
@@ -11,6 +9,7 @@ import paranhaslett.toolbox.ui.FileChooserUI;
 import paranhaslett.toolbox.ui.FileChooserUI.EmaFilter;
 import paranhaslett.toolbox.ui.FileChooserUI.GameBookFilter;
 
+import javax.swing.filechooser.FileFilter;
 import java.io.File;
 
 public class Editor {

@@ -1,11 +1,10 @@
 package paranhaslett.gamebook.ui.tree;
 
+import paranhaslett.gamebook.model.Item;
+
 import javax.swing.*;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
-
-import paranhaslett.gamebook.model.Item;
-
 import java.awt.*;
 
 public class TreeRendererUI extends DefaultTreeCellRenderer {

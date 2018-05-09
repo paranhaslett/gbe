@@ -12,9 +12,11 @@ import paranhaslett.toolbox.fields.Field;
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
 
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 public class FormTool extends Tool {
-	public FormTool() {
-	}
 
     private JTextField textField;
 

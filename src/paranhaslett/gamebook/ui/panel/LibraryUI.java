@@ -1,18 +1,15 @@
 package paranhaslett.gamebook.ui.panel;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.Library;
 import paranhaslett.gamebook.model.libraryitem.Book;
 import paranhaslett.gamebook.model.libraryitem.Series;
 import paranhaslett.gamebook.model.libraryitem.Template;
 
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class LibraryUI extends PanelUI {
     private static final long serialVersionUID = -6099292917735976714L;

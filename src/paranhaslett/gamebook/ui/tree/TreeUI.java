@@ -1,15 +1,18 @@
 package paranhaslett.gamebook.ui.tree;
 
-import javax.swing.*;
-import javax.swing.event.TreeSelectionEvent;
-import javax.swing.event.TreeSelectionListener;
-import javax.swing.tree.DefaultTreeModel;
-import javax.swing.tree.TreePath;
-
-import paranhaslett.gamebook.model.*;
+import paranhaslett.gamebook.model.Fragment;
+import paranhaslett.gamebook.model.Item;
+import paranhaslett.gamebook.model.Library;
+import paranhaslett.gamebook.model.ModelContainer;
+import paranhaslett.gamebook.model.Page;
+import paranhaslett.gamebook.model.Section;
 import paranhaslett.gamebook.model.libraryitem.Book;
 import paranhaslett.gamebook.model.libraryitem.Series;
 import paranhaslett.gamebook.model.libraryitem.Template;
+
+import javax.swing.*;
+import javax.swing.tree.DefaultTreeModel;
+import javax.swing.tree.TreePath;
 
 public class TreeUI extends JTree {
     private static final long serialVersionUID = -4252742793844024659L;

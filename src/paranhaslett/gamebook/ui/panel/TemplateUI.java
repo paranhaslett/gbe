@@ -1,9 +1,5 @@
 package paranhaslett.gamebook.ui.panel;
 
-import javax.swing.*;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.LayoutStyle.ComponentPlacement;
-
 import paranhaslett.gamebook.Editor;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.Page;
@@ -18,9 +14,10 @@ import paranhaslett.gamebook.model.libraryitem.Book;
 import paranhaslett.gamebook.model.libraryitem.Series;
 import paranhaslett.gamebook.model.libraryitem.Template;
 
+import javax.swing.*;
+import javax.swing.GroupLayout.Alignment;
+import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class TemplateUI extends PanelUI {
     private static final long serialVersionUID = 5259672660377230929L;
