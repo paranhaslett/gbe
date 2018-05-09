@@ -29,7 +29,6 @@ public class Editor {
         return editor;
     }
 
-    @SuppressWarnings("SameParameterValue")
     protected void build(String name, Tool rootTool) {
         Artifact root = new Artifact(rootTool);
         editorUI = new EditorUI(name);

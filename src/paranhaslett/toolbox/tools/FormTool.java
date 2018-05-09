@@ -1,18 +1,20 @@
 package paranhaslett.toolbox.tools;
 
-import javax.swing.*;
+import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JTextField;
 import javax.swing.LayoutStyle.ComponentPlacement;
 
 import paranhaslett.toolbox.Editor;
+import paranhaslett.toolbox.fields.Field;
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class FormTool extends Tool {
+	public FormTool() {
+	}
 
     private JTextField textField;
 
@@ -29,6 +31,9 @@ public class FormTool extends Tool {
     }
 
     public void init() {
+    	for (Field field: fields){
+    	
+    	}
         JLabel lblNewLabel = new JLabel("Title");
 
         textField = new JTextField();
@@ -37,17 +42,12 @@ public class FormTool extends Tool {
         JButton btnUpdate = new JButton("Update");
         btnUpdate.addActionListener(e -> populateModel());
 
-        JLabel lblGameBook = new JLabel("Game Book");
-        lblGameBook.setFont(new Font("Tahoma", Font.BOLD, 11));
-        lblGameBook.setIcon(new ImageIcon(FormTool.class
-                .getResource("/icons/tree/book.png")));
         GroupLayout groupLayout = new GroupLayout(this);
         groupLayout.setHorizontalGroup(
                 groupLayout.createParallelGroup(Alignment.LEADING)
                         .addGroup(groupLayout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(groupLayout.createParallelGroup(Alignment.LEADING)
-                                        .addComponent(lblGameBook)
                                         .addGroup(groupLayout.createSequentialGroup()
                                                 .addComponent(lblNewLabel)
                                                 .addPreferredGap(ComponentPlacement.RELATED)
@@ -60,8 +60,6 @@ public class FormTool extends Tool {
                 groupLayout.createParallelGroup(Alignment.LEADING)
                         .addGroup(groupLayout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(lblGameBook)
-                                .addPreferredGap(ComponentPlacement.RELATED)
                                 .addGroup(groupLayout.createParallelGroup(Alignment.BASELINE)
                                         .addComponent(lblNewLabel)
                                         .addComponent(textField, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
