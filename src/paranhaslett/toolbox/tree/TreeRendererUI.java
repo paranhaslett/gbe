@@ -26,7 +26,7 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
         if (nodeInfo instanceof Artifact) {
             Artifact item = (Artifact) nodeInfo;
             setIcon(item.tool().icon());
-            setText(item.getTitle());
+            setText(item.getData(0));
         }
 
         return this;

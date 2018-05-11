@@ -4,6 +4,7 @@ import paranhaslett.toolbox.Editor;
 import paranhaslett.toolbox.tools.Tool;
 
 import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +15,7 @@ public class Artifact {
     private final Tool tool;
     private final long id;
     private final List<Artifact> contents = new ArrayList<>();
-    private List<String> data;
+    private List<String> data = new ArrayList<>();
 
     public Artifact(Tool tool) {
         this.tool = tool;
@@ -41,19 +42,27 @@ public class Artifact {
     }
 
     public Artifact addData(String name) {
+    	if (name == null){
+    		throw new NullPointerException();
+    	}
         data.add(name);
         return this;
     }
 
     public Artifact add(Artifact item) {
+    	if (item == null){
+    		throw new NullPointerException();
+    	}
         if (tool.isDropOn(item.tool)) {
             contents.add(item);
         }
         return this;
     }
 
-    @SuppressWarnings("EmptyMethod")
     public void update() {
+    	if(data.size() == 0){
+    		addData(ed.tree.getSelection().getText());
+    	}
     }
 
     public void setup() {
@@ -68,9 +77,8 @@ public class Artifact {
     }
 
 
-    @SuppressWarnings("SameReturnValue")
     public boolean isDropOn(Artifact item) {
-        return false;
+        return tool.isDropOn(item.tool);
     }
 
     public String getData(int ind) {
@@ -81,19 +89,9 @@ public class Artifact {
         return id;
     }
 
-    public String getTitle() {
-        if (data == null || data.size() == 0) {
-            return tool.toString();
-        }
-        return data.get(0);
-    }
-
     public String toString() {
         return "" + id;
     }
 
-    public List<Artifact> contents() {
-        return contents;
-    }
 
 }
