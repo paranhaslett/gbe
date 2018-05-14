@@ -54,7 +54,7 @@ public class ArtifactTest {
 		}
 		Artifact correctsubArtifact = new Artifact(subTool);
 		artifact.add(correctsubArtifact);
-		// Assert.assertSame(correctsubArtifact,artifact.)
+	    //Assert.assertSame(correctsubArtifact,artifact.get)
 
 	}
 
@@ -68,6 +68,16 @@ public class ArtifactTest {
 
 	@Test
 	public void isDropOn() {
+		Artifact dropOn = new Artifact(subTool);
+		Assert.assertTrue(artifact.isDropOn(dropOn));
+		try {
+			artifact.isDropOn(null);
+			Assert.fail("Needs to throw NPE if null");
+		} catch (NullPointerException npe){
+			//do nothing
+		}
+		dropOn = new Artifact(artifact.tool());
+		Assert.assertFalse(artifact.isDropOn(dropOn));
 	}
 
 	@Test

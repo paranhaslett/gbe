@@ -61,7 +61,8 @@ public class Artifact {
 
     public void update() {
     	if(data.size() == 0){
-    		addData(ed.tree.getSelection().getText());
+    		Artifact selected = (Artifact)ed.tree.getSelection().getUserObject();
+    		// TODO addData(selected.tool);
     	}
     }
 
