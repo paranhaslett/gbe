@@ -12,10 +12,6 @@ import paranhaslett.toolbox.fields.Field;
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class FormTool extends Tool {
 
     private JTextField textField;
@@ -34,7 +30,7 @@ public class FormTool extends Tool {
 
     public void init() {
     	for (Field field: fields){
-    	
+    	//TODO
     	}
         JLabel lblNewLabel = new JLabel("Title");
 

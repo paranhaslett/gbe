@@ -4,7 +4,6 @@ import paranhaslett.toolbox.Editor;
 import paranhaslett.toolbox.tools.Tool;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,7 @@ public class Artifact {
     private final Tool tool;
     private final long id;
     private final List<Artifact> contents = new ArrayList<>();
-    private List<String> data = new ArrayList<>();
+    private final List<String> data = new ArrayList<>();
 
     public Artifact(Tool tool) {
         this.tool = tool;

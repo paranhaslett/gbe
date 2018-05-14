@@ -12,7 +12,7 @@ import paranhaslett.toolbox.tools.Tool;
 public class ArtifactTest {
 	private Artifact artifact;
 	private Tool subTool;
-	Tool rootTool;
+	private Tool rootTool;
 
 	@Before
 	public void setUp() throws Exception {
@@ -25,9 +25,9 @@ public class ArtifactTest {
 
 	@Test
 	public void getTreeNodeTest() {
-		DefaultMutableTreeNode dmtn = artifact.getTreeNode();
-		Assert.assertNotNull(dmtn);
-		Assert.assertEquals(artifact, dmtn.getUserObject());
+		DefaultMutableTreeNode treeNode = artifact.getTreeNode();
+		Assert.assertNotNull(treeNode);
+		Assert.assertEquals(artifact, treeNode.getUserObject());
 	}
 
 	@Test
@@ -39,7 +39,7 @@ public class ArtifactTest {
 			artifact.addData(null);
 			Assert.fail("Needs to throw NPE if null");
 		} catch (NullPointerException npe) {
-			// sucess
+			// success
 		}
 
 	}
@@ -50,11 +50,11 @@ public class ArtifactTest {
 			artifact.add(null);
 			Assert.fail("Needs to throw NPE if null");
 		} catch (NullPointerException npe) {
-			// sucess
+			// success
 		}
-		Artifact correctsubArtifact = new Artifact(subTool);
-		artifact.add(correctsubArtifact);
-	    //Assert.assertSame(correctsubArtifact,artifact.get)
+		Artifact correctSubArtifact = new Artifact(subTool);
+		artifact.add(correctSubArtifact);
+	    //Assert.assertSame(correctSubArtifact,artifact.get)
 
 	}
 
@@ -74,7 +74,7 @@ public class ArtifactTest {
 			artifact.isDropOn(null);
 			Assert.fail("Needs to throw NPE if null");
 		} catch (NullPointerException npe){
-			//do nothing
+			// success
 		}
 		dropOn = new Artifact(artifact.tool());
 		Assert.assertFalse(artifact.isDropOn(dropOn));
@@ -84,9 +84,9 @@ public class ArtifactTest {
 	public void getData() {
 		try {
 			artifact.getData(10);
-			Assert.fail("Needs to throw OutOfBounds when accesed beyond scope");
+			Assert.fail("Needs to throw OutOfBounds when accessed beyond scope");
 		} catch (IndexOutOfBoundsException x) {
-			x.printStackTrace();
+			// success
 
 		}
 	}

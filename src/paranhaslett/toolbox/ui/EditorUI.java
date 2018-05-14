@@ -20,7 +20,7 @@ public class EditorUI extends JFrame {
         setIconImage(Toolkit.getDefaultToolkit().getImage(
                 EditorUI.class.getResource("/icons/app.png")));
         setTitle(name);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setBounds(100, 100, 640, 400);
 
         JMenuBar menuBar = new JMenuBar();
