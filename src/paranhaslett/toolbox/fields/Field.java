@@ -1,6 +1,8 @@
 package paranhaslett.toolbox.fields;
 
-public interface Field {
+import java.awt.Container;
 
+public interface Field {
+	Container getGui();
 
 }

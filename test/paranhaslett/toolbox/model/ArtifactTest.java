@@ -16,14 +16,19 @@ public class ArtifactTest {
 
 	@Before
 	public void setUp() throws Exception {
-		subTool = new FormTool();
-		rootTool = new FormTool();
+		subTool = new FormTool("sub-tool");		
+		rootTool = new FormTool("root tool");
 		rootTool.addTool(subTool);
 		artifact = new Artifact(rootTool);
 
 	}
-
 	@Test
+	public void hasTool(){
+		Assert.assertNotNull(artifact.tool());
+		Assert.assertNotNull(artifact.tool().icon());
+	}
+
+	@Test 
 	public void getTreeNodeTest() {
 		DefaultMutableTreeNode dmtn = artifact.getTreeNode();
 		Assert.assertNotNull(dmtn);
@@ -82,14 +87,8 @@ public class ArtifactTest {
 
 	@Test
 	public void getData() {
-		try {
 			artifact.getData(10);
-			Assert.fail("Needs to throw OutOfBounds when accesed beyond scope");
-		} catch (IndexOutOfBoundsException x) {
-			x.printStackTrace();
-
-		}
-	}
+	}		
 
 	@Test
 	public void getId() {

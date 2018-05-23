@@ -60,7 +60,7 @@ public class TreeUI extends JTree {
      }
 
     public void update() {
-        Artifact node = (Artifact) selectedPath.getLastPathComponent();
+        TreeNodeUI node = (TreeNodeUI) selectedPath.getLastPathComponent();
         ((DefaultTreeModel) this.getModel()).nodeChanged((TreeNode) node);
     }
 

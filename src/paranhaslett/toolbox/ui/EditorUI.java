@@ -75,9 +75,9 @@ public class EditorUI extends JFrame {
         scrollPane.setViewportView(tree);
     }
 
-    public void updatePanel(Tool tool, Artifact artifact) {
-        tool.populatePanel(artifact);
-        splitPane.setRightComponent(tool);
+    public void updatePanel(Artifact artifact) {
+        artifact.tool().populatePanel(artifact);
+        splitPane.setRightComponent(artifact.tool());
     }
 
 }

@@ -2,6 +2,7 @@ package paranhaslett.toolbox.tools;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
+import javax.swing.GroupLayout.SequentialGroup;
 import javax.swing.JButton;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -12,11 +13,14 @@ import paranhaslett.toolbox.fields.Field;
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
 
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 public class FormTool extends Tool {
+	public FormTool(String name) {
+		this(name, name);
+	}
+	
+	public FormTool(String name,String iconStr) {
+		super(name, iconStr);
+	}
 
     private JTextField textField;
 
@@ -33,9 +37,8 @@ public class FormTool extends Tool {
     }
 
     public void init() {
-    	for (Field field: fields){
     	
-    	}
+    	
         JLabel lblNewLabel = new JLabel("Title");
 
         textField = new JTextField();
@@ -45,6 +48,12 @@ public class FormTool extends Tool {
         btnUpdate.addActionListener(e -> populateModel());
 
         GroupLayout groupLayout = new GroupLayout(this);
+        SequentialGroup seqHorizGroup = groupLayout.createSequentialGroup();
+       
+        for (Field field:fields){
+          //seqHorizGroup.addComponent(field.getGui());
+          //.addPreferredGap(ComponentPlacement.RELATED);
+        }
         groupLayout.setHorizontalGroup(
                 groupLayout.createParallelGroup(Alignment.LEADING)
                         .addGroup(groupLayout.createSequentialGroup()
@@ -83,7 +92,9 @@ public class FormTool extends Tool {
 
     @Override
     public void populatePanel(Artifact item) {
-        textField.setText(item.getData(0));
+    	init();
+        //textField.setText(item.getData(0));
+        
     }
 
 }

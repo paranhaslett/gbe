@@ -28,8 +28,8 @@ public class Editor {
         return editor;
     }
 
-    protected void build(String name, Tool rootTool) {
-        Artifact root = new Artifact(rootTool);
+    protected void build(String name, Artifact root) {
+       
         editorUI = new EditorUI(name);
         editorUI.setVisible(true);
 

@@ -17,10 +17,16 @@ public abstract class Tool extends JPanel {
     final List<Field> fields = new ArrayList<>();
     private final List<Tool> subTools = new ArrayList<>();
     private Icon icon;
-
-    public Tool addIcon(String iconStr) {
-        icon = Editor.getEd().tree.getTreeRenderer().createImageIcon("/icons/tree/" + iconStr + ".png");
-        return this;
+    private String name;
+    private String iconStr;
+    
+    public Tool(String name, String iconStr){
+    	this.name = name;
+    	this.iconStr = iconStr;
+    }
+    
+    public String name(){
+    	return name;
     }
 
     public boolean isDropOn(Tool tool){
@@ -33,6 +39,9 @@ public abstract class Tool extends JPanel {
     }
 
     public Icon icon() {
+    	if (icon == null){
+    		 icon = Editor.getEd().tree.getTreeRenderer().createImageIcon("/icons/tree/" + iconStr + ".png");
+    	}
         return icon;
     }
 

@@ -1,13 +1,13 @@
 package paranhaslett.toolbox.model;
 
-import paranhaslett.toolbox.Editor;
-import paranhaslett.toolbox.tools.Tool;
-
-import javax.swing.tree.DefaultMutableTreeNode;
-import javax.swing.tree.TreeNode;
-import javax.swing.tree.TreePath;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.tree.TreePath;
+
+import paranhaslett.toolbox.Editor;
+import paranhaslett.toolbox.tools.Tool;
+import paranhaslett.toolbox.tree.TreeNodeUI;
 
 public class Artifact {
     private static final Editor ed = Editor.getEd();
@@ -28,8 +28,8 @@ public class Artifact {
         return tool;
     }
 
-    public DefaultMutableTreeNode getTreeNode() {
-        DefaultMutableTreeNode treeNode = new DefaultMutableTreeNode();
+    public TreeNodeUI getTreeNode() {
+        TreeNodeUI treeNode = new TreeNodeUI(this);
         treeNode.setUserObject(this);
 
         if (contents.size() > 0) {
@@ -73,8 +73,7 @@ public class Artifact {
 
     public void changeMainLabel(String newLabel) {
         data.set(0, newLabel);
-        ed.editorUI.updatePanel(tool, this);
-
+        ed.editorUI.updatePanel(this);
     }
 
 
@@ -83,6 +82,9 @@ public class Artifact {
     }
 
     public String getData(int ind) {
+    	if (data.size() <= ind){
+    		return tool.name() + id;
+    	}
         return data.get(ind);
     }
 
@@ -91,7 +93,7 @@ public class Artifact {
     }
 
     public String toString() {
-        return "" + id;
+        return getData(0);
     }
 
 
