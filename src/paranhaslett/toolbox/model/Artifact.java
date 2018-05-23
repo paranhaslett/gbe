@@ -1,13 +1,14 @@
 package paranhaslett.toolbox.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import javax.swing.tree.TreePath;
-
 import paranhaslett.toolbox.Editor;
 import paranhaslett.toolbox.tools.Tool;
 import paranhaslett.toolbox.tree.TreeNodeUI;
+
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.TreeNode;
+import javax.swing.tree.TreePath;
+import java.util.ArrayList;
+import java.util.List;
 
 public class Artifact {
     private static final Editor ed = Editor.getEd();
@@ -15,7 +16,7 @@ public class Artifact {
     private final Tool tool;
     private final long id;
     private final List<Artifact> contents = new ArrayList<>();
-    private List<String> data = new ArrayList<>();
+    private final List<String> data = new ArrayList<>();
 
     public Artifact(Tool tool) {
         this.tool = tool;
@@ -74,6 +75,7 @@ public class Artifact {
     public void changeMainLabel(String newLabel) {
         data.set(0, newLabel);
         ed.editorUI.updatePanel(this);
+
     }
 
 
