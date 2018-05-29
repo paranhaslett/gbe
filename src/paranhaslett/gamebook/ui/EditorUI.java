@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.ui;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.ui.panel.PanelUI;
 import paranhaslett.gamebook.ui.tree.TreeUI;
@@ -33,7 +33,7 @@ public class EditorUI extends JFrame {
 
         JMenuItem mnItmSave = new JMenuItem("Save");
         //mnItmSave.setIcon(new ImageIcon(EditorUI.class.getResource("/com/sun/java/swing/plaf/windows/icons/FloppyDrive.gif")));
-        mnItmSave.addActionListener(e -> Editor.getEd().library.saveLibrary());
+        mnItmSave.addActionListener(e -> Config.getEd().library.saveLibrary());
         mnFile.add(mnItmSave);
 
         JMenu mnEdit = new JMenu("Edit");

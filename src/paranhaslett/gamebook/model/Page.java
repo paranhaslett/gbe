@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.PageIO;
 import paranhaslett.gamebook.ui.panel.PageUI;
@@ -14,7 +14,7 @@ public class Page implements Item {
     private static Icon icon;
     public final ArrayList<Section> sections = new ArrayList<>();
     private final PanelUI panel = PageUI.getPanelUI();
-    private final Editor ed = Editor.getEd();
+    private final Config ed = Config.getEd();
     public String id;
     private int pageNum = 1;
 

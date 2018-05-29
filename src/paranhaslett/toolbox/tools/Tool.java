@@ -1,22 +1,27 @@
 package paranhaslett.toolbox.tools;
 
-import paranhaslett.toolbox.Editor;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
+import javax.swing.JPanel;
+import javax.swing.tree.DefaultTreeCellRenderer;
+import javax.swing.tree.TreeCellRenderer;
+
+import paranhaslett.toolbox.Config;
 import paranhaslett.toolbox.fields.Field;
 import paranhaslett.toolbox.loader.EmaLoader;
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.loader.XMLLoader;
 import paranhaslett.toolbox.model.Artifact;
 
-import javax.swing.*;
-import java.util.ArrayList;
-import java.util.List;
-
 public abstract class Tool extends JPanel {
     public static final XMLLoader xmlLoader = new XMLLoader();
     public static final EmaLoader emaLoader = new EmaLoader();
     final List<Field> fields = new ArrayList<>();
     private final List<Tool> subTools = new ArrayList<>();
-    private Icon icon;
+    private DefaultTreeCellRenderer tcr;
     private String name;
     private String iconStr;
     
@@ -38,18 +43,25 @@ public abstract class Tool extends JPanel {
         return this;
     }
 
-    public Icon icon() {
-    	if (icon == null){
-    		 icon = Editor.getEd().tree.getTreeRenderer().createImageIcon("/icons/tree/" + iconStr + ".png");
+    public TreeCellRenderer icon() {
+    	if (tcr != null){
+    		return tcr;
     	}
-        return icon;
+    	
+    	ImageIcon icon = createImageIcon("/icons/tree/" + iconStr + ".png");
+    	if (icon != null) {
+    	    tcr = 
+    	        new DefaultTreeCellRenderer();
+    	    tcr.setIcon(icon);
+    	    return tcr;
+    	}
+        return null;
     }
 
     public abstract Artifact load(Loader ff);
 
     public abstract void save(Loader ff, Artifact item);
 
-    @SuppressWarnings("UnusedReturnValue")
     public Tool addField(Field field) {
         fields.add(field);
         return this;
@@ -58,4 +70,14 @@ public abstract class Tool extends JPanel {
     public abstract void populateModel();
 
     public abstract void populatePanel(Artifact item);
+    
+    private ImageIcon createImageIcon(String path) {
+        java.net.URL imgURL = getClass().getResource(path);
+        if (imgURL != null) {
+            return new ImageIcon(imgURL);
+        } else {
+            System.err.println("Couldn't find file: " + path);
+            return null;
+        }
+    }
 }

@@ -10,7 +10,6 @@ import paranhaslett.toolbox.model.Artifact;
 
 public class TreeUI extends JTree {
     private static final long serialVersionUID = -4252742793844024659L;
-    private final TreeRendererUI treeRenderer = new TreeRendererUI();
     private DefaultMutableTreeNode selection;
     private TreePath selectedPath;
 
@@ -18,7 +17,6 @@ public class TreeUI extends JTree {
         setDropMode(DropMode.ON_OR_INSERT);
         setDragEnabled(true);
         setTransferHandler(new TreeTransferHandler());
-        setCellRenderer(treeRenderer);
         addTreeSelectionListener(e -> {
             DefaultMutableTreeNode node = (DefaultMutableTreeNode) getLastSelectedPathComponent();
             if (node == null) {
@@ -38,13 +36,9 @@ public class TreeUI extends JTree {
         new TreePopupUI(this);
     }
 
-    public TreeRendererUI getTreeRenderer() {
-        return treeRenderer;
-    }
-
-
     public void setup(Artifact art) {
         DefaultMutableTreeNode lib = art.getTreeNode();
+        setCellRenderer(art.tool().icon());
         DefaultTreeModel model = new DefaultTreeModel(lib);
         setModel(model);
         setSelectionPath(new TreePath(lib.getPath()));

@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.ui.panel;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.fragment.Text;
 
@@ -67,7 +67,7 @@ public class TextUI extends PanelUI {
     @Override
     public void populateModel() {
         model.text = txtDesc.getText();
-        Editor.getEd().update();
+        Config.getEd().update();
 
     }
 }

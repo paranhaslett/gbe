@@ -1,9 +1,11 @@
 package paranhaslett.toolbox.model;
 
-import paranhaslett.toolbox.Editor;
+import paranhaslett.toolbox.Config;
 import paranhaslett.toolbox.tools.Tool;
 import paranhaslett.toolbox.tree.TreeNodeUI;
 
+import javax.swing.Icon;
+import javax.swing.ImageIcon;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreeNode;
 import javax.swing.tree.TreePath;
@@ -11,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Artifact {
-    private static final Editor ed = Editor.getEd();
+    private static final Config ed = Config.getEd();
     private static long nextId = 1;
     private final Tool tool;
     private final long id;
@@ -32,7 +34,6 @@ public class Artifact {
     public TreeNodeUI getTreeNode() {
         TreeNodeUI treeNode = new TreeNodeUI(this);
         treeNode.setUserObject(this);
-
         if (contents.size() > 0) {
             treeNode.setAllowsChildren(true);
             for (Artifact art : contents) {
@@ -62,14 +63,14 @@ public class Artifact {
 
     public void update() {
     	if(data.size() == 0){
-    		Artifact selected = (Artifact)ed.tree.getSelection().getUserObject();
+    		Artifact selected = (Artifact)ed.tree().getSelection().getUserObject();
     		// TODO addData(selected.tool);
     	}
     }
 
     public void setup() {
-        TreePath path = ed.tree.getSelectLoc();
-        ed.tree.addToPath(path, getTreeNode());
+        TreePath path = ed.tree().getSelectLoc();
+        ed.tree().addToPath(path, getTreeNode());
     }
 
     public void changeMainLabel(String newLabel) {

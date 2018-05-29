@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model.libraryitem;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.TemplateIO;
 import paranhaslett.gamebook.model.Item;
@@ -16,7 +16,7 @@ public class Template implements Item {
     private static Icon icon;
     public final ArrayList<Item> items = new ArrayList<>();
     private final PanelUI panel = TemplateUI.getPanelUI();
-    private final Editor ed = Editor.getEd();
+    private final Config ed = Config.getEd();
     public String title;
 
     public String toString() {

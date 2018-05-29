@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.ui.panel;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.libraryitem.Book;
 import paranhaslett.gamebook.model.libraryitem.Series;
@@ -96,6 +96,6 @@ public class SeriesUI extends PanelUI {
     @Override
     public void populateModel() {
         model.title = textField.getText();
-        Editor.getEd().update();
+        Config.getEd().update();
     }
 }

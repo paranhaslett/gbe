@@ -12,23 +12,24 @@ import paranhaslett.gamebook.ui.tree.TreeUI;
 import javax.swing.filechooser.FileFilter;
 import java.awt.*;
 
-public class Editor {
-    private static Editor editor = null;
+public class Config {
+    private static Config config = null;
     public Library library;
     public TreeUI tree;
     public EditorUI editorUI;
     private FileChooserUI fileChooser;
 
-    private Editor() {
+    private Config() {
+        
+       
     }
 
-    public static Editor getEd() {
-        if (editor == null) {
-            editor = new Editor();
-            editor.init();
-
+    public static Config getEd() {
+        if (config == null) {
+            config = new Config();
+            config.init();
         }
-        return editor;
+        return config;
     }
 
     /**
@@ -50,7 +51,7 @@ public class Editor {
         editorUI = new EditorUI();
         editorUI.setVisible(true);
         library = new Library();
-        library.setup(editor);
+        library.setup(config);
     }
 
     public Loader getLoader() {

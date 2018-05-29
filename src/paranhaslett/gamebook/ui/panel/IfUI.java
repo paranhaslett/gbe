@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.ui.panel;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.fragment.Set;
 import paranhaslett.gamebook.model.fragment.Text;
@@ -281,6 +281,6 @@ public class IfUI extends PanelUI {
                     + comboBox.getSelectedItem() + textRhs.getText());
         }
         model.text = textField.getText();
-        Editor.getEd().update();
+        Config.getEd().update();
     }
 }

@@ -6,9 +6,9 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import paranhaslett.toolbox.Config;
 import paranhaslett.toolbox.tools.FormTool;
 import paranhaslett.toolbox.tools.Tool;
-import paranhaslett.toolbox.tree.TreeNodeUI;
 
 public class ArtifactTest {
 	private Artifact artifact;
@@ -17,19 +17,21 @@ public class ArtifactTest {
 
 	@Before
 	public void setUp() throws Exception {
-		subTool = new FormTool("sub-tool");		
-		rootTool = new FormTool("root tool");
+		Config ttb = new Config();
+		subTool = new FormTool("sub-tool", "set");
+		rootTool = new FormTool("root tool","book");
 		rootTool.addTool(subTool);
 		artifact = new Artifact(rootTool);
 
 	}
+
 	@Test
-	public void hasTool(){
+	public void hasTool() {
 		Assert.assertNotNull(artifact.tool());
 		Assert.assertNotNull(artifact.tool().icon());
 	}
 
-	@Test 
+	@Test
 	public void getTreeNodeTest() {
 		DefaultMutableTreeNode treeNode = artifact.getTreeNode();
 		Assert.assertNotNull(treeNode);
@@ -38,7 +40,7 @@ public class ArtifactTest {
 
 	@Test
 	public void addDataTest() {
-		
+
 		artifact.addData("test data");
 		Assert.assertSame("test data", artifact.getData(0));
 		try {
@@ -60,7 +62,7 @@ public class ArtifactTest {
 		}
 		Artifact correctSubArtifact = new Artifact(subTool);
 		artifact.add(correctSubArtifact);
-	    //Assert.assertSame(correctSubArtifact,artifact.get)
+		// Assert.assertSame(correctSubArtifact,artifact.get)
 
 	}
 
@@ -79,7 +81,7 @@ public class ArtifactTest {
 		try {
 			artifact.isDropOn(null);
 			Assert.fail("Needs to throw NPE if null");
-		} catch (NullPointerException npe){
+		} catch (NullPointerException npe) {
 			// success
 		}
 		dropOn = new Artifact(artifact.tool());
@@ -88,8 +90,8 @@ public class ArtifactTest {
 
 	@Test
 	public void getData() {
-			artifact.getData(10);
-	}		
+		artifact.getData(10);
+	}
 
 	@Test
 	public void getId() {

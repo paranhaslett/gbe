@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.ui.panel;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.model.Item;
 import paranhaslett.gamebook.model.Section;
 import paranhaslett.gamebook.model.fragment.Set;
@@ -220,6 +220,6 @@ public class SectionUI extends PanelUI {
     @Override
     public void populateModel() {
         model.title = textTitle.getText();
-        Editor.getEd().update();
+        Config.getEd().update();
     }
 }

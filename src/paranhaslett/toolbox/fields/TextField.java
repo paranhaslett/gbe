@@ -15,6 +15,7 @@ public class TextField implements Field {
         textField = new JTextField();
         label = new JLabel();
         label.setText(name);
+        textField.setSize(50,12);
     }
 
     public void populate(String value) {

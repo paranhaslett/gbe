@@ -1,6 +1,6 @@
 package paranhaslett.tooltoolbox;
 
-import paranhaslett.toolbox.Editor;
+import paranhaslett.toolbox.Config;
 import paranhaslett.toolbox.fields.TextField;
 import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.tools.FormTool;
@@ -8,11 +8,13 @@ import paranhaslett.toolbox.tools.Tool;
 
 import java.awt.*;
 
-class ToolToolbox extends Editor {
+class ToolToolbox extends Config {
 
     private ToolToolbox() {
         super();
-
+    }
+    
+    protected void init(){
         Tool fieldTool = new FormTool("Field");
         fieldTool.addField(new TextField("Name"));
         fieldTool.addField(new TextField("Type"));
@@ -29,12 +31,11 @@ class ToolToolbox extends Editor {
         toolBoxTool.addField(new TextField("Icon"));
         
         //setUp
-        Artifact tool = new Artifact(toolTool);
-        
+        Artifact tool = new Artifact(toolTool);   
         Artifact root = new Artifact(toolBoxTool);
         root.add(tool);
 
-        build("Toolbox", root);
+        super.build("Toolbox", root);
         
         editorUI.updatePanel(root);
     }
@@ -42,7 +43,8 @@ class ToolToolbox extends Editor {
     public static void main(String args[]) {
         EventQueue.invokeLater(() -> {
             try {
-                new ToolToolbox();
+                ToolToolbox ttb = new ToolToolbox();
+                ttb.init();
             } catch (Exception e) {
                 e.printStackTrace();
             }

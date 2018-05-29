@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model.libraryitem;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.BookIO;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.model.Item;
@@ -22,7 +22,7 @@ public class Book implements Item {
     public final ArrayList<Page> pages = new ArrayList<>();
     public final ArrayList<Section> freeSections = new ArrayList<>();
     private final PanelUI panel = GameBookUI.getPanelUI();
-    private final Editor ed = Editor.getEd();
+    private final Config ed = Config.getEd();
     public String title;
 
     @Override

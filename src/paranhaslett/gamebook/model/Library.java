@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.LibraryIO;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loader.Loader;
@@ -19,7 +19,7 @@ public class Library implements Item {
     private static final PanelUI panel = LibraryUI.getPanelUI();
     private static Icon icon;
     public final ArrayList<Item> items = new ArrayList<>();
-    private Editor ed = Editor.getEd();
+    private Config ed = Config.getEd();
 
     @Override
     public void add(Item item) {
@@ -30,23 +30,23 @@ public class Library implements Item {
 
     public void saveLibrary() {
         File file = new File("./library-save.xml");
-        Loader loader = Editor.getEd().getLoader();
+        Loader loader = Config.getEd().getLoader();
         if (loader != null) {
-            loader.save(file, Editor.getEd().library);
+            loader.save(file, Config.getEd().library);
         } else {
             throw new RuntimeException(
                     "Bad Programmer: File chooser selected wrong file type");
         }
     }
 
-    public void setup(Editor editor) {
+    public void setup(Config editor) {
         ed = editor;
         setup();
     }
 
     public void setup() {
         File file = new File("./library.xml");
-        Loader loader = Editor.getEd().getLoader();
+        Loader loader = Config.getEd().getLoader();
         if (loader != null) {
             ed.library = new Library();
             loader.load(file, ed.library);

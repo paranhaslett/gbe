@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model.fragment.branch;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.ChanceIO;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.model.Fragment;
@@ -17,7 +17,7 @@ public class Chance implements ModelContainer, Fragment, Item {
     private static Icon icon;
     private final ArrayList<Fragment> fragments = new ArrayList<>();
     private final PanelUI panel = TextUI.getPanelUI();
-    private final Editor ed = Editor.getEd();
+    private final Config ed = Config.getEd();
 
     @Override
     public boolean isDropOn(Item mi) {

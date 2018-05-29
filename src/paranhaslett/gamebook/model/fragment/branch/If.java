@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model.fragment.branch;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.IfIO;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.model.Fragment;
@@ -17,7 +17,7 @@ public class If implements ModelContainer, Fragment, Item {
     private static Icon icon;
     public final ArrayList<Fragment> trueBranch = new ArrayList<>();
     private final PanelUI panel = IfUI.getPanelUI();
-    private final Editor ed = Editor.getEd();
+    private final Config ed = Config.getEd();
     public String lhs;
     public String op;
     public String rhs;

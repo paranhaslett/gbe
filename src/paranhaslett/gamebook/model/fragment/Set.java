@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model.fragment;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.SetIO;
 import paranhaslett.gamebook.model.Fragment;
@@ -14,7 +14,7 @@ public class Set implements Fragment {
     public static final Loadable loadable = new SetIO();
     private static Icon icon;
     private final PanelUI panel = SetUI.getPanelUI();
-    private final Editor ed = Editor.getEd();
+    private final Config ed = Config.getEd();
     public String var;
     public String value;
     public String text;

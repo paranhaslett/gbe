@@ -1,6 +1,6 @@
 package paranhaslett.gamebook.model;
 
-import paranhaslett.gamebook.Editor;
+import paranhaslett.gamebook.Config;
 import paranhaslett.gamebook.loadable.Loadable;
 import paranhaslett.gamebook.loadable.SectionIO;
 import paranhaslett.gamebook.model.fragment.GoTo;
@@ -19,7 +19,7 @@ public class Section implements ModelContainer {
     private static Icon icon;
     public final ArrayList<Fragment> fragments = new ArrayList<>();
     private final PanelUI panel = SectionUI.getPanelUI();
-    private final Editor ed = Editor.getEd();
+    private final Config ed = Config.getEd();
     public String title;
     public String id;
     public GoTo goToId;
