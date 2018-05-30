@@ -32,13 +32,13 @@ public class TreeUI extends JTree {
 
             }
         });
+        setCellRenderer(new TreeRendererUI());
         setEditable(true);
         new TreePopupUI(this);
     }
 
     public void setup(Artifact art) {
-        DefaultMutableTreeNode lib = art.getTreeNode();
-        setCellRenderer(art.tool().icon());
+        DefaultMutableTreeNode lib = art.getTreeNode(); 
         DefaultTreeModel model = new DefaultTreeModel(lib);
         setModel(model);
         setSelectionPath(new TreePath(lib.getPath()));

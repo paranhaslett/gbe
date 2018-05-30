@@ -15,17 +15,17 @@ class ToolToolbox extends Config {
     }
     
     protected void init(){
-        Tool fieldTool = new FormTool("Field");
+        Tool fieldTool = new FormTool("Field","page");
         fieldTool.addField(new TextField("Name"));
         fieldTool.addField(new TextField("Type"));
 
-        Tool toolTool = new FormTool("Tool","book");
+        Tool toolTool = new FormTool("Tool","tool");
         toolTool.addField(new TextField("Name"));
         toolTool.addField(new TextField("Type"));
         toolTool.addField(new TextField("Icon"));
         toolTool.addTool(fieldTool);
 
-        Tool toolBoxTool = new FormTool("Toolbox","set");
+        Tool toolBoxTool = new FormTool("Toolbox","toolbox");
         toolBoxTool.addTool(toolTool);
         toolBoxTool.addField(new TextField("Root Name"));
         toolBoxTool.addField(new TextField("Icon"));
@@ -50,6 +50,5 @@ class ToolToolbox extends Config {
             }
         });
     }
-
 
 }
