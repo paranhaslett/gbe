@@ -1,16 +1,17 @@
 package paranhaslett.toolbox;
 
+import java.io.File;
+
+import javax.swing.filechooser.FileFilter;
+
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.tools.Tool;
+import paranhaslett.toolbox.model.Tool;
 import paranhaslett.toolbox.tree.TreeUI;
 import paranhaslett.toolbox.ui.EditorUI;
 import paranhaslett.toolbox.ui.FileChooserUI;
 import paranhaslett.toolbox.ui.FileChooserUI.EmaFilter;
 import paranhaslett.toolbox.ui.FileChooserUI.GameBookFilter;
-
-import javax.swing.filechooser.FileFilter;
-import java.io.File;
 
 public class Config {
     private static Config editor = null;
@@ -41,6 +42,8 @@ public class Config {
 
         tree.setup(root);
         editorUI.updateTree(tree);
+        
+    
 
     }
 

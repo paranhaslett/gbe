@@ -56,32 +56,36 @@ public class RefactorHints {
 	public static void main(String[] args) {
 		if (args.length == 1) {
 			List<Blob> blobs = new ArrayList<>();
-			File file = new File(args[0]);
-			if (file.exists()) {
+			getFiles(args[0], blobs);
+			new RefactorHints(blobs);
+		}
+	}
 
-				if (file.isDirectory()) {
-					File[] files = file.listFiles();
-					for (File nfile : files) {
+	private static void getFiles(String filename, List<Blob> blobs) {
+		File file = new File(filename);
+		if (file.exists()) {
 
-					}
-				} else {
-					try {
-						BufferedReader bfr = new BufferedReader(new FileReader(file));
-						StringBuilder content = new StringBuilder();
-					    String line = bfr.readLine();
-						while (line !=null) {
-					    	content.append(line).append("/n");
-					    }
-						TerminatingBlob blob = new TerminatingBlob();
-						blob.name = file.getAbsolutePath();
-						blob.content = content.toString();
-						blobs.add(blob);
-					} catch (IOException ioex) {
+			if (file.isDirectory()) {
+				File[] files = file.listFiles();
+				for (File nfile : files) {
+					getFiles(nfile.getName(), blobs);
+				}
+			} else {
+				try {
+					BufferedReader bfr = new BufferedReader(new FileReader(file));
+					StringBuilder content = new StringBuilder();
+				    String line = bfr.readLine();
+					while (line !=null) {
+				    	content.append(line).append("/n");
+				    }
+					TerminatingBlob blob = new TerminatingBlob();
+					blob.name = file.getAbsolutePath();
+					blob.content = content.toString();
+					blobs.add(blob);
+				} catch (IOException ioex) {
 
-					}
 				}
 			}
-			new RefactorHints(blobs);
 		}
 	}
 	

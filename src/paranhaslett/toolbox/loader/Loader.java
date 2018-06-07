@@ -1,7 +1,7 @@
 package paranhaslett.toolbox.loader;
 
 import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.tools.Tool;
+import paranhaslett.toolbox.model.Tool;
 
 import java.io.File;
 import java.util.List;

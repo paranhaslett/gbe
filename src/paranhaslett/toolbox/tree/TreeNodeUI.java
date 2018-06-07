@@ -2,6 +2,8 @@ package paranhaslett.toolbox.tree;
 
 
 import javax.swing.tree.DefaultMutableTreeNode;
+
+import paranhaslett.toolbox.Config;
 import paranhaslett.toolbox.model.Artifact;
 
 public class TreeNodeUI extends DefaultMutableTreeNode {
@@ -18,7 +20,9 @@ public class TreeNodeUI extends DefaultMutableTreeNode {
             this.userObject = userObject;
             this.previousValue = (Artifact) userObject;
         } else if (userObject instanceof String) {
-            previousValue.changeMainLabel(userObject.toString());
+        	previousValue.getData()[0] = userObject.toString();
+    		Config.getEd().editorUI.updatePanel(previousValue);
+            //
             this.userObject = previousValue;
         }
     }

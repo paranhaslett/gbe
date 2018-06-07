@@ -7,8 +7,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import paranhaslett.toolbox.Config;
-import paranhaslett.toolbox.tools.FormTool;
-import paranhaslett.toolbox.tools.Tool;
 
 public class ArtifactTest {
 	private Artifact artifact;
@@ -36,20 +34,6 @@ public class ArtifactTest {
 		DefaultMutableTreeNode treeNode = artifact.getTreeNode();
 		Assert.assertNotNull(treeNode);
 		Assert.assertEquals(artifact, treeNode.getUserObject());
-	}
-
-	@Test
-	public void addDataTest() {
-
-		artifact.addData("test data");
-		Assert.assertSame("test data", artifact.getData(0));
-		try {
-			artifact.addData(null);
-			Assert.fail("Needs to throw NPE if null");
-		} catch (NullPointerException npe) {
-			// success
-		}
-
 	}
 
 	@Test
@@ -90,7 +74,7 @@ public class ArtifactTest {
 
 	@Test
 	public void getData() {
-		artifact.getData(10);
+		artifact.getData();
 	}
 
 	@Test

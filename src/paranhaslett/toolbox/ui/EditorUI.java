@@ -1,7 +1,7 @@
 package paranhaslett.toolbox.ui;
 
 import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.tools.Tool;
+import paranhaslett.toolbox.model.Tool;
 import paranhaslett.toolbox.tree.TreeUI;
 
 import javax.swing.*;
@@ -76,7 +76,7 @@ public class EditorUI extends JFrame {
     }
 
     public void updatePanel(Artifact artifact) {
-        artifact.tool().populatePanel(artifact);
+       //artifact.tool().initPanel();
         splitPane.setRightComponent(artifact.tool());
     }
 

@@ -5,7 +5,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.tools.Tool;
+import paranhaslett.toolbox.model.Tool;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;

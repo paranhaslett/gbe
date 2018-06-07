@@ -1,4 +1,4 @@
-package paranhaslett.toolbox.tools;
+package paranhaslett.toolbox.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -6,11 +6,9 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import paranhaslett.toolbox.fields.Field;
 import paranhaslett.toolbox.loader.EmaLoader;
 import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.loader.XMLLoader;
-import paranhaslett.toolbox.model.Artifact;
 
 public abstract class Tool extends JPanel {
 	public static final XMLLoader xmlLoader = new XMLLoader();
@@ -58,11 +56,17 @@ public abstract class Tool extends JPanel {
 		return this;
 	}
 
-	public abstract void populateModel();
+	public abstract void fill(String[] data);
+	
+	public int numOfFields(){
+		return fields.size();
+	}
 
-	public abstract void populatePanel(Artifact item);
+	public abstract void build();
+	
+	public abstract String compile(Compiler compiler);
 
-	private ImageIcon createImageIcon(String path) {
+ 	private ImageIcon createImageIcon(String path) {
 		java.net.URL imgURL = getClass().getResource(path);
 		if (imgURL != null) {
 			return new ImageIcon(imgURL);

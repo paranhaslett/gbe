@@ -3,7 +3,6 @@ package paranhaslett.toolbox.tree;
 import java.awt.Color;
 import java.awt.Component;
 
-import javax.swing.ImageIcon;
 import javax.swing.JTree;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.DefaultTreeCellRenderer;
@@ -30,7 +29,11 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
         if (nodeInfo instanceof Artifact) {
             Artifact item = (Artifact) nodeInfo;
             setIcon(item.tool().icon());
-            setText(item.getData(0));
+            String text = item.getData()[0];
+            if (text == null){
+            	text = item.tool().getName() + item.getId();
+            }
+            setText(text);
         }
 
         return this;
