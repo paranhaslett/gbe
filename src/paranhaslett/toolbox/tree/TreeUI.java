@@ -12,6 +12,7 @@ public class TreeUI extends JTree {
     private static final long serialVersionUID = -4252742793844024659L;
     private DefaultMutableTreeNode selection;
     private TreePath selectedPath;
+    private Artifact root;
 
     public TreeUI() {
         setDropMode(DropMode.ON_OR_INSERT);
@@ -38,6 +39,7 @@ public class TreeUI extends JTree {
     }
 
     public void setup(Artifact art) {
+    	this.root = art;
         DefaultMutableTreeNode lib = art.getTreeNode(); 
         DefaultTreeModel model = new DefaultTreeModel(lib);
         setModel(model);
@@ -46,6 +48,9 @@ public class TreeUI extends JTree {
         setVisible(true);
     }
     
+    public Artifact root(){
+    	return root;
+    }
     
     public DefaultMutableTreeNode getSelection() {
       return selection;

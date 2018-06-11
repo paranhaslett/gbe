@@ -78,7 +78,7 @@ public class Artifact {
 	}
 	
 	public String save(){
-		StringBuilder ssb = new StringBuilder("<artifact id=\"")
+		StringBuilder ssb = new StringBuilder("<art id=\"")
 				.append(id).append("\" tool=\"").append(tool.getName())
 				.append("\">\n");
 		for (String datum:data){
@@ -88,7 +88,7 @@ public class Artifact {
 		for (Artifact subArt: contents){
 			ssb.append(subArt.save());                                                                                                     
 		}
-		ssb.append("</artifact>\n");
+		ssb.append("</art>\n");
 		
 		return ssb.toString();	
 	}

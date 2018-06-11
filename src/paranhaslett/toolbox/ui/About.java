@@ -11,7 +11,7 @@ class About extends JDialog {
     /**
      * Create the dialog.
      */
-    private About() {
+    About() {
         setBounds(100, 100, 450, 300);
         getContentPane().setLayout(new BorderLayout());
         JPanel contentPanel = new JPanel();
