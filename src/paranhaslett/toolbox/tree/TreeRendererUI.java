@@ -31,7 +31,7 @@ public class TreeRendererUI extends DefaultTreeCellRenderer {
             setIcon(item.tool().icon());
             String text = item.getData()[0];
             if (text == null){
-            	text = item.tool().getName() + item.getId();
+            	text = item.tool().getName() + item;
             }
             setText(text);
         }

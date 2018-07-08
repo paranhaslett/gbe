@@ -1,75 +1,63 @@
 package paranhaslett.toolbox;
 
-import java.io.File;
-
-import javax.swing.filechooser.FileFilter;
-
-import paranhaslett.toolbox.loader.Loader;
 import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.model.Tool;
 import paranhaslett.toolbox.tree.TreeUI;
 import paranhaslett.toolbox.ui.EditorUI;
 import paranhaslett.toolbox.ui.FileChooserUI;
-import paranhaslett.toolbox.ui.FileChooserUI.EmaFilter;
-import paranhaslett.toolbox.ui.FileChooserUI.GameBookFilter;
 
 public class Config {
-    private static Config editor = null;
-    private TreeUI tree = null;
-    private final FileChooserUI fileChooser;
-    public EditorUI editorUI;
+	private static Config editor = null;
+	private TreeUI tree = null;
+	private final FileChooserUI fileChooser;
+	public EditorUI editorUI;
+	private Artifact rootArt;
+	private Tool rootTool;
 
-    public Config() {
-        tree = new TreeUI();
-        fileChooser = new FileChooserUI();
-        editor = this;
-    }
+	public Config() {
+		tree = new TreeUI();
+		fileChooser = new FileChooserUI();
+		editor = this;
+	}
 
-    public TreeUI tree(){
-    	if (tree == null){
-    		tree = new TreeUI();
-    	}
-    	return tree;
-    }
-    public static Config getEd() {
-        return editor;
-    }
+	public TreeUI tree() {
+		if (tree == null) {
+			tree = new TreeUI();
+		}
+		return tree;
+	}
 
-    protected void build(String name, Artifact root) {
-       
-        editorUI = new EditorUI(name);
-        editorUI.setVisible(true);
+	public static Config getEd() {
+		return editor;
+	}
 
-        tree.setup(root);
-        editorUI.updateTree(tree);
-        
-    
+	protected void build(Tool tool) {
+		rootTool = tool;
+	}
 
-    }
+	public void build(Artifact root) {
+		rootArt = root;
+		tree.setup(root);
+		editorUI.updateTree(tree);
+	}
 
-    private void load(Artifact root) {
-        File file = new File("./library.xml");
-        Loader loader = getLoader();
-        if (loader != null) {
-            loader.load(file, root.tool());
-        }
+	protected void build(String name, Artifact root) {
+		rootArt = root;
+		rootTool = root.tool();
+		editorUI = new EditorUI(name);
+		editorUI.setVisible(true);
 
-    }
+		tree.setup(root);
+		editorUI.updateTree(tree);
 
-    private Loader getLoader() {
-        FileFilter filter = fileChooser.getFileFilter();
-        Loader loader = null;
-        if (filter instanceof GameBookFilter) {
-            loader = Tool.xmlLoader;
-        }
-        if (filter instanceof EmaFilter) {
-            loader = Tool.emaLoader;
-        }
-        return loader;
-    }
+	}
 
-    public void update() {
-        tree.update();
-    }
+	public void update() {
+		tree.update();
+	}
+
+	public Tool getRootTool() {
+		return rootTool;
+	}
 
 }

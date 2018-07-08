@@ -32,6 +32,8 @@ class ToolToolbox extends Config {
 		toolBoxTool.addField(new TextField("Root Name"));
 		toolBoxTool.addField(new TextField("Icon"));
 		toolBoxTool.build();
+		
+		super.build(toolBoxTool);
 
 		// setUp
 		Artifact tool = new Artifact(toolTool);

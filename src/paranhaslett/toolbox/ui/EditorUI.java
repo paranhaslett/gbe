@@ -1,26 +1,38 @@
 package paranhaslett.toolbox.ui;
 
-import paranhaslett.toolbox.Config;
-import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.model.Tool;
-import paranhaslett.toolbox.tree.TreeUI;
-
-import javax.swing.*;
-import javax.swing.border.EmptyBorder;
-
-
-import java.awt.*;
+import java.awt.BorderLayout;
+import java.awt.Toolkit;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import java.util.LinkedList;
+import java.util.List;
+
+import javax.swing.JDialog;
+import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSplitPane;
+import javax.swing.WindowConstants;
+import javax.swing.border.EmptyBorder;
+
+import paranhaslett.toolbox.Config;
+import paranhaslett.toolbox.model.Artifact;
+import paranhaslett.toolbox.model.Tool;
+import paranhaslett.toolbox.model.action.ParseAction;
+import paranhaslett.toolbox.model.action.XmlParseAction;
+import paranhaslett.toolbox.model.action.XmlSaveAction;
+import paranhaslett.toolbox.tree.TreeUI;
 
 public class EditorUI extends JFrame {
     private static final long serialVersionUID = 6198693420541435623L;
     private final JSplitPane splitPane;
     private final JScrollPane scrollPane;
+    private final XmlSaveAction saveAct = new XmlSaveAction(null);
 
     /**
      * Create the frame.
@@ -48,7 +60,8 @@ public class EditorUI extends JFrame {
 				fw = new FileWriter(file);
 				fw.write("<tb>\n");
 				Artifact root = Config.getEd().tree().root();
-				fw.write(root.save());
+				
+				fw.write(saveAct.act(root));
 				fw.write("</tb>");
 				fw.flush();
             } catch (Exception e1) {
@@ -75,14 +88,21 @@ public class EditorUI extends JFrame {
         		 FileChooserUI fcu = new FileChooserUI();
                  File file = fcu.load(this);
                  BufferedReader bfr = null;
+                 List<String> tokens = new LinkedList<>();
                  try {
                 	FileReader fr = new FileReader(file);
      				bfr = new BufferedReader(fr);
      				String line = bfr.readLine();
      				if (line.equals("<tb>")){
-     					while (line.equals("</tb>")){
-     						line = bfr.readLine();
+     					line = bfr.readLine();
+     					while (!line.equals("</tb>")){
+     						tokens.add(line);
+        					line = bfr.readLine();
      					}
+     					
+     					ParseAction parse = new XmlParseAction(null);
+     					
+     					Config.getEd().build(parse.act(null, tokens));
      				}
                  } catch (Exception e1){
      				// TODO Auto-generated catch block

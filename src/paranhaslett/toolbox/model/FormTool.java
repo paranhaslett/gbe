@@ -2,10 +2,7 @@ package paranhaslett.toolbox.model;
 
 import java.awt.GridLayout;
 
-import javax.swing.JTextField;
-
 import paranhaslett.toolbox.Config;
-import paranhaslett.toolbox.loader.Loader;
 
 public class FormTool extends Tool {
 	public FormTool(String name) {
@@ -18,20 +15,6 @@ public class FormTool extends Tool {
 	public FormTool(String name,String iconStr) {
 		super(name, iconStr);
 	}
-
-    private JTextField textField;
-
-    @Override
-    public Artifact load(Loader ff) {
-        // TODO Auto-generated method stub
-        return null;
-    }
-
-    @Override
-    public void save(Loader ff, Artifact item) {
-        // TODO Auto-generated method stub
-
-    }
 
 
     @Override

@@ -6,26 +6,27 @@ import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
 
-import paranhaslett.toolbox.loader.EmaLoader;
-import paranhaslett.toolbox.loader.Loader;
-import paranhaslett.toolbox.loader.XMLLoader;
+import paranhaslett.gamebook.loader.EmaLoader;
+import paranhaslett.gamebook.loader.XMLLoader;
 
 public abstract class Tool extends JPanel {
-	public static final XMLLoader xmlLoader = new XMLLoader();
-	public static final EmaLoader emaLoader = new EmaLoader();
 	final List<Field> fields = new ArrayList<>();
 	private final List<Tool> subTools = new ArrayList<>();
 	private ImageIcon icon;;
-	private String name;
+	private String nameStr;
 	private String iconStr;
 
 	public Tool(String name, String iconStr) {
-		this.name = name;
+		this.nameStr = name;
 		this.iconStr = iconStr;
 	}
 
 	public String name() {
-		return name;
+		return nameStr;
+	}
+
+	public List<Tool> getSubTools() {
+		return subTools;
 	}
 
 	public boolean isDropOn(Tool tool) {
@@ -43,13 +44,9 @@ public abstract class Tool extends JPanel {
 		}
 
 		icon = createImageIcon("/icons/tree/" + iconStr + ".png");
-		
+
 		return icon;
 	}
-
-	public abstract Artifact load(Loader ff);
-
-	public abstract void save(Loader ff, Artifact item);
 
 	public Tool addField(Field field) {
 		fields.add(field);
@@ -57,16 +54,16 @@ public abstract class Tool extends JPanel {
 	}
 
 	public abstract void fill(String[] data);
-	
-	public int numOfFields(){
+
+	public int numOfFields() {
 		return fields.size();
 	}
 
 	public abstract void build();
-	
+
 	public abstract String compile(Compiler compiler);
 
- 	private ImageIcon createImageIcon(String path) {
+	private ImageIcon createImageIcon(String path) {
 		java.net.URL imgURL = getClass().getResource(path);
 		if (imgURL != null) {
 			return new ImageIcon(imgURL);

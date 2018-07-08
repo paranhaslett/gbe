@@ -49,12 +49,11 @@ public class Artifact {
 		return this;
 	}
 
-	
-	public void update(){
+	public void update() {
 		tool.fill(data);
-	  Config.getEd().editorUI.updatePanel(this);
+		Config.getEd().editorUI.updatePanel(this);
 	}
-	
+
 	public void setup() {
 		TreePath path = ed.tree().getSelectLoc();
 		ed.tree().addToPath(path, getTreeNode());
@@ -73,31 +72,13 @@ public class Artifact {
 		return this;
 	}
 
-	public long getId() {
-	  return id;
-	}
-	
-	public String save(){
-		StringBuilder ssb = new StringBuilder("<art id=\"")
-				.append(id).append("\" tool=\"").append(tool.getName())
-				.append("\">\n");
-		for (String datum:data){
-			ssb.append("<data>")
-					.append(datum).append("</data>\n");
-		}
-		for (Artifact subArt: contents){
-			ssb.append(subArt.save());                                                                                                     
-		}
-		ssb.append("</art>\n");
-		
-		return ssb.toString();	
+	public List<Artifact> contents() {
+		return contents;
 	}
 
 	public String toString() {
-		if (data[0] == null) {
-			return tool.getName() + id;
-		}
-		return data[0];
+		return "" + id;
 	}
+
 
 }
