@@ -23,6 +23,9 @@ public class TextField implements Field {
 		textField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
+				if (data[idx]==null){
+					data[idx]="<new>";
+				}
 				if (!data[idx].equals(textField.getText())) {
 					data[idx] = textField.getText();
 				}

@@ -18,19 +18,19 @@ public class Artifact {
 
 	public Artifact(Tool tool) {
 		this.tool = tool;
-		id = nextId;
+		this.id = nextId;
 		nextId++;
-		data = new String[tool.numOfFields()];
+		this.data = new String[tool.numOfFields()];
 	}
 
 	public Tool tool() {
-		return tool;
+		return this.tool;
 	}
 
 	public TreeNodeUI getTreeNode() {
 		TreeNodeUI treeNode = new TreeNodeUI(this);
 		treeNode.setUserObject(this);
-		if (contents.size() > 0) {
+		if (this.contents.size() > 0) {
 			treeNode.setAllowsChildren(true);
 			for (Artifact art : contents) {
 				treeNode.add(art.getTreeNode());
@@ -43,14 +43,14 @@ public class Artifact {
 		if (item == null) {
 			throw new NullPointerException();
 		}
-		if (tool.isDropOn(item.tool)) {
-			contents.add(item);
+		if (this.tool.isDropOn(item.tool)) {
+			this.contents.add(item);
 		}
 		return this;
 	}
 
 	public void update() {
-		tool.fill(data);
+		tool.fill(this, this.data);
 		Config.getEd().editorUI.updatePanel(this);
 	}
 
@@ -60,11 +60,11 @@ public class Artifact {
 	}
 
 	public boolean isDropOn(Artifact item) {
-		return tool.isDropOn(item.tool);
+		return this.tool.isDropOn(item.tool);
 	}
 
 	public String[] getData() {
-		return data;
+		return this.data;
 	}
 
 	public Artifact setData(String[] data) {
@@ -73,11 +73,13 @@ public class Artifact {
 	}
 
 	public List<Artifact> contents() {
-		return contents;
+		return this.contents;
 	}
 
+	@Override
 	public String toString() {
-		return "" + id;
+		long id2 = this.id;
+		return ((Long)id2).toString();
 	}
 
 

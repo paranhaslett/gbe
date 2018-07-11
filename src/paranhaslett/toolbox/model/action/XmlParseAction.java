@@ -53,7 +53,9 @@ public class XmlParseAction extends ParseAction {
 						lines.append(line);
 						line = remains.poll();	
 					}
-					data.add(lines.toString());
+					if (lines != null){
+						data.add(lines.toString());
+					}
 				}
 				line = remains.poll();
 			}
