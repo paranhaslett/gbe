@@ -33,11 +33,11 @@ public class XMLLoader implements Loader {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory
                     .newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            doc = dBuilder.parse(file);
-            doc.getDocumentElement().normalize();
-            Node nNode = doc.getDocumentElement();
+            this.doc = dBuilder.parse(file);
+            this.doc.getDocumentElement().normalize();
+            Node nNode = this.doc.getDocumentElement();
             if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-                element = (Element) nNode;
+                this.element = (Element) nNode;
                 if (item instanceof Book) {
                     Book.loadable.load(this, item);
                 }
@@ -66,32 +66,32 @@ public class XMLLoader implements Loader {
             DocumentBuilderFactory dbFactory = DocumentBuilderFactory
                     .newInstance();
             DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            doc = dBuilder.newDocument();
+            this.doc = dBuilder.newDocument();
 
             if (item instanceof Book) {
-                element = doc.createElement("book");
+                this.element = this.doc.createElement("book");
                 Book.loadable.save(this, item);
             }
             if (item instanceof Library) {
-                element = doc.createElement("library");
+                this.element = this.doc.createElement("library");
                 Library.loadable.save(this, item);
             }
             if (item instanceof Series) {
-                element = doc.createElement("series");
+                this.element = this.doc.createElement("series");
                 Series.loadable.save(this, item);
             }
             if (item instanceof Template) {
-                element = doc.createElement("template");
+                this.element = this.doc.createElement("template");
                 Template.loadable.save(this, item);
             }
 
-            doc.appendChild(element);
+            this.doc.appendChild(this.element);
 
             // write the content into xml file
             TransformerFactory transformerFactory = TransformerFactory
                     .newInstance();
             Transformer transformer = transformerFactory.newTransformer();
-            DOMSource source = new DOMSource(doc);
+            DOMSource source = new DOMSource(this.doc);
             StreamResult result = new StreamResult(file);
 
             transformer.transform(source, result);
@@ -105,12 +105,12 @@ public class XMLLoader implements Loader {
     public Loader create(String key) {
         XMLLoader xmlLoader = new XMLLoader();
         xmlLoader.setElement(Loadable.xmlLoader.doc.createElement(key));
-        element.appendChild(xmlLoader.getElement());
+        this.element.appendChild(xmlLoader.getElement());
         return xmlLoader;
     }
 
     private Element getElement() {
-        return element;
+        return this.element;
     }
 
     private void setElement(Element element) {
@@ -120,12 +120,12 @@ public class XMLLoader implements Loader {
     @Override
     public String getText(String key) {
         if (key == null) {
-            return beautifyText(element.getTextContent());
+            return beautifyText(this.element.getTextContent());
         }
-        if (element.hasAttribute(key)) {
-            return element.getAttribute(key);
+        if (this.element.hasAttribute(key)) {
+            return this.element.getAttribute(key);
         }
-        NodeList nl = element.getChildNodes();
+        NodeList nl = this.element.getChildNodes();
         for (int i = 0; i < nl.getLength(); i++) {
             Node node = nl.item(i);
             if (node.getNodeName().equals(key)) {
@@ -135,7 +135,7 @@ public class XMLLoader implements Loader {
         return null;
     }
 
-    private String beautifyText(String text) {
+    private static String beautifyText(String text) {
         String result = text.replaceAll("^\\s*", "");
         for (int i = 0; i < 50; i++) {
             result = result.replaceAll("\n\\s*", "\n");
@@ -147,7 +147,7 @@ public class XMLLoader implements Loader {
     public List<Loader> getChildren(String... childrenKeys) {
         ArrayList<Loader> result = new ArrayList<>();
         HashSet<String> keySet = new HashSet<>(Arrays.asList(childrenKeys));
-        NodeList nodes = element.getChildNodes();
+        NodeList nodes = this.element.getChildNodes();
         for (int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -165,25 +165,25 @@ public class XMLLoader implements Loader {
     @Override
     public void setText(String key, String value) {
         if (key == null) {
-            element.setTextContent(value);
+            this.element.setTextContent(value);
         } else {
             if (key.equals("value") || key.equals("text")) {
                 XMLLoader subLoader = (XMLLoader) create(key);
                 subLoader.getElement().setTextContent(value);
             } else {
-                element.setAttribute(key, value);
+                this.element.setAttribute(key, value);
             }
         }
     }
 
     @Override
     public String getName() {
-        return element.getNodeName();
+        return this.element.getNodeName();
     }
 
     @Override
     public Loader getChild(String childKey) {
-        NodeList nodes = element.getChildNodes();
+        NodeList nodes = this.element.getChildNodes();
         for (int i = 0; i < nodes.getLength(); i++) {
             Node node = nodes.item(i);
             if (node.getNodeType() == Node.ELEMENT_NODE) {

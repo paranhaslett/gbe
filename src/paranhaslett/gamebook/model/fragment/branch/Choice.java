@@ -30,8 +30,9 @@ public class Choice implements ModelContainer, Fragment {
 
     }
 
-    public ArrayList<Fragment> getFragments() {
-        return fragments;
+    @Override
+	public ArrayList<Fragment> getFragments() {
+        return this.fragments;
     }
 
     @Override
@@ -42,7 +43,7 @@ public class Choice implements ModelContainer, Fragment {
 
     @Override
     public void update() {
-        ed.editorUI.updatePanel(panel, this);
+        this.ed.editorUI.updatePanel(this.panel, this);
 
     }
 
@@ -55,7 +56,7 @@ public class Choice implements ModelContainer, Fragment {
     @Override
     public Icon icon() {
         if (icon == null) {
-            icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/choice.png");
+            icon = this.ed.tree.getTreeRenderer().createImageIcon("/icons/tree/choice.png");
         }
         return icon;
     }

@@ -5,8 +5,15 @@ import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.model.FormTool;
 import paranhaslett.toolbox.model.TextField;
 import paranhaslett.toolbox.model.Tool;
+import paranhaslett.toolbox.model.action.ParseAction;
+import paranhaslett.toolbox.model.action.XmlParseAction;
 
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.util.LinkedList;
+import java.util.List;
 
 class ToolToolbox extends Config {
 
@@ -35,16 +42,51 @@ class ToolToolbox extends Config {
 		
 		super.build(toolBoxTool);
 
+		
+		 File file = new File("/root/tools.xml");
+         BufferedReader bfr = null;
+         List<String> tokens = new LinkedList<>();
+         try {
+        	FileReader fr = new FileReader(file);
+				bfr = new BufferedReader(fr);
+				String line = bfr.readLine();
+				if (line.equals("<tb>")){
+					line = bfr.readLine();
+					while (!line.equals("</tb>")){
+						tokens.add(line);
+					line = bfr.readLine();
+					}
+					
+					ParseAction parse = new XmlParseAction(null);
+					
+					Artifact art = parse.act(null, tokens);
+					build(art.getData()[0], art);
+				}
+         } catch (Exception e1){
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			} finally {
+				if (bfr != null){
+					try {
+						bfr.close();
+					} catch (Exception e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
+				}
+			}
+         
 		// setUp
+         /*
 		Artifact tool = new Artifact(toolTool);
 		String[] data = { "Form Tool", "FormTool", "tool" };
 		tool.setData(data);
 		Artifact root = new Artifact(toolBoxTool);
 		String[] rootdata = { "Toolbox", "toolbox" };
 		root.setData(rootdata);
-		root.add(tool);
+		root.add(tool); */
 
-		super.build("Toolbox", root);
+		//super.build("Toolbox", root);
 
 		
 	}

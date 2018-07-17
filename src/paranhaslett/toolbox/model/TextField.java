@@ -9,51 +9,53 @@ import javax.swing.JLabel;
 import javax.swing.JTextField;
 
 public class TextField implements Field {
-    private final JTextField textField;
+    final JTextField textField;
     private final JLabel label;
 
 	public TextField(String name) {
-		textField = new JTextField();
-		label = new JLabel();
-		label.setText(name);
+		this.textField = new JTextField();
+		this.label = new JLabel();
+		this.label.setText(name);
 
 	}
 
-	public Field fill(String[] data, int idx) {
-		textField.addFocusListener(new FocusAdapter() {
+	@Override
+	public Field fill(final String[] data, final int idx) {
+		this.textField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
 				if (data[idx]==null){
 					data[idx]="<new>";
 				}
-				if (!data[idx].equals(textField.getText())) {
-					data[idx] = textField.getText();
+				if (!data[idx].equals(TextField.this.textField.getText())) {
+					data[idx] = TextField.this.textField.getText();
 				}
 			}
 		});
-		textField.setText(data[idx]);
+		this.textField.setText(data[idx]);
 		return this;
 	}
 
 	public TextField populate(String value) {
-		textField.addFocusListener(new FocusAdapter() {
+		this.textField.addFocusListener(new FocusAdapter() {
 			@Override
 			public void focusLost(FocusEvent e) {
-				if (!value.equals(textField.getText())) {
+				if (!value.equals(TextField.this.textField.getText())) {
 
-					System.out.println("Changed from " + value + " to " + textField.getText());
+					System.out.println("Changed from " + value + " to " + TextField.this.textField.getText());
 				}
 			}
 		});
-		textField.setText(value);
+		this.textField.setText(value);
 		return this;
 	}
 
+	@Override
 	public Container getGui() {
 		Container container = new Container();
 		container.setLayout(new FlowLayout());
-		container.add(label);
-		container.add(textField);
+		container.add(this.label);
+		container.add(this.textField);
 		return container;
 	}
 

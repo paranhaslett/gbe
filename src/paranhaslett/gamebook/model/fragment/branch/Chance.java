@@ -12,7 +12,7 @@ import paranhaslett.gamebook.ui.panel.TextUI;
 import javax.swing.*;
 import java.util.ArrayList;
 
-public class Chance implements ModelContainer, Fragment, Item {
+public class Chance implements ModelContainer, Fragment {
     public static final Loadable loadable = new ChanceIO();
     private static Icon icon;
     private final ArrayList<Fragment> fragments = new ArrayList<>();
@@ -25,8 +25,9 @@ public class Chance implements ModelContainer, Fragment, Item {
         return false;
     }
 
-    public ArrayList<Fragment> getFragments() {
-        return fragments;
+    @Override
+	public ArrayList<Fragment> getFragments() {
+        return this.fragments;
     }
 
     @Override
@@ -37,7 +38,7 @@ public class Chance implements ModelContainer, Fragment, Item {
 
     @Override
     public void update() {
-        ed.editorUI.updatePanel(panel, this);
+        this.ed.editorUI.updatePanel(this.panel, this);
     }
 
     @Override
@@ -55,7 +56,7 @@ public class Chance implements ModelContainer, Fragment, Item {
     @Override
     public Icon icon() {
         if (icon == null) {
-            icon = ed.tree.getTreeRenderer().createImageIcon("/icons/tree/chance.png");
+            icon = this.ed.tree.getTreeRenderer().createImageIcon("/icons/tree/chance.png");
         }
         return icon;
     }

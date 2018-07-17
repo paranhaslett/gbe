@@ -25,7 +25,7 @@ public class EmaLoader implements Loader {
     @Override
     public String getText(String key) {
         if (getName().equals("book") && key.equals("title")) {
-            for (String line : content) {
+            for (String line : this.content) {
                 if (line.contains("#")) {
                     int pos = line.lastIndexOf('#');
                     return line.substring(pos + 1);
@@ -39,7 +39,7 @@ public class EmaLoader implements Loader {
     @Override
     public void setText(String key, String value) {
         if (key.equals("title")) {
-            content.add("##" + value);
+            this.content.add("##" + value);
         }
 
     }
@@ -49,14 +49,14 @@ public class EmaLoader implements Loader {
         HashSet<String> keySet = new HashSet<>(Arrays.asList(childrenKeys));
         List<Loader> result = new ArrayList<>();
         String childKey = null;
-        for (String contentItem : content) {
+        for (String contentItem : this.content) {
 
             Pattern link = Pattern.compile(".*\\* \\[(.*)\\]\\(ema:(.*)\\).*");
             Matcher linkMatch = link.matcher(contentItem);
             if (linkMatch.matches() && childKey != null) {
                 EmaLoader subLoad = new EmaLoader();
                 String filename = linkMatch.group(1).replace(" ", "_") + ".txt";
-                File newFile = new File(file.getPath() + filename);
+                File newFile = new File(this.file.getPath() + filename);
                 subLoad.content = getContent(newFile);
                 result.add(subLoad);
             } else {
@@ -113,7 +113,7 @@ public class EmaLoader implements Loader {
     @Override
     public void load(File file, Item item) {
         this.file = file;
-        content = getContent(file);
+        this.content = getContent(file);
 
         if (item instanceof Book) {
             Book.loadable.load(this, item);
