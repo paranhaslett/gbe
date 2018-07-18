@@ -1,5 +1,9 @@
 package paranhaslett.toolbox;
 
+
+import java.util.ArrayList;
+import java.util.List;
+
 import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.model.Tool;
 import paranhaslett.toolbox.tree.TreeUI;
@@ -13,6 +17,7 @@ public class Config {
 	public EditorUI editorUI;
 	private Artifact rootArt;
 	private Tool rootTool;
+	private List<Tool> tools= new ArrayList<>(); 
 
 	public Config() {
 		tree = new TreeUI();
@@ -59,5 +64,5 @@ public class Config {
 	public Tool getRootTool() {
 		return rootTool;
 	}
-
+	
 }
