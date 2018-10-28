@@ -1,11 +1,8 @@
 package paranhaslett.toolbox;
 
 
-import java.util.ArrayList;
-import java.util.List;
-
 import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.model.Tool;
+import paranhaslett.toolbox.model.Menu;
 import paranhaslett.toolbox.tree.TreeUI;
 import paranhaslett.toolbox.ui.EditorUI;
 import paranhaslett.toolbox.ui.FileChooserUI;
@@ -15,9 +12,11 @@ public class Config {
 	private TreeUI tree = null;
 	private final FileChooserUI fileChooser;
 	public EditorUI editorUI;
-	private Artifact rootArt;
-	private Tool rootTool;
-	private List<Tool> tools= new ArrayList<>(); 
+	protected Menu toolChest = new Menu();
+	protected Menu artChest = new Menu();
+	//private List<Tool> tools= new ArrayList<>(); 
+	//private List<Artifact> arts = new ArrayList();
+	
 
 	public Config() {
 		tree = new TreeUI();
@@ -36,19 +35,12 @@ public class Config {
 		return editor;
 	}
 
-	protected void build(Tool tool) {
-		rootTool = tool;
-	}
-
 	public void build(Artifact root) {
-		rootArt = root;
 		tree.setup(root);
 		editorUI.updateTree(tree);
 	}
 
 	protected void build(String name, Artifact root) {
-		rootArt = root;
-		rootTool = root.tool();
 		editorUI = new EditorUI(name);
 		editorUI.setVisible(true);
 
@@ -61,8 +53,14 @@ public class Config {
 		tree.update();
 	}
 
-	public Tool getRootTool() {
-		return rootTool;
+	public Menu getTools(){
+		return toolChest;
 	}
+	
+	public Menu getArts(){
+		return artChest;
+	}
+
+	
 	
 }

@@ -3,8 +3,7 @@ package paranhaslett.toolbox.model.action;
 import java.util.List;
 import java.util.Queue;
 
-import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.model.Tool;
+import paranhaslett.toolbox.model.Item;
 
 public abstract class ParseAction implements Action{
 
@@ -14,7 +13,7 @@ public abstract class ParseAction implements Action{
 		this.objective = objective;
 	}
 	
-    public abstract Artifact act(Artifact to, List<String> lines);
+    public abstract Item act(Integer to, List<String> lines);
 	
-	abstract Artifact act(String line, Queue<String> remains, List<Tool> tools);
+	abstract Item actid(String artStr, Queue<String> remains, List<Integer> tools);
 }

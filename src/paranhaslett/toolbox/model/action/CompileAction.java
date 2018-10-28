@@ -1,6 +1,6 @@
 package paranhaslett.toolbox.model.action;
 
-import paranhaslett.toolbox.model.Artifact;
+import paranhaslett.toolbox.model.Item;
 
 public abstract class CompileAction implements Action{
 
@@ -9,5 +9,5 @@ public abstract class CompileAction implements Action{
 	public CompileAction (Objective objective){
 		this.objective = objective;
 	}
-	abstract String act(Artifact art);
+	abstract String act(Integer artId);
 }

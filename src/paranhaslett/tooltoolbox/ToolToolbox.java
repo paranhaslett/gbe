@@ -3,10 +3,10 @@ package paranhaslett.tooltoolbox;
 import paranhaslett.toolbox.Config;
 import paranhaslett.toolbox.model.Artifact;
 import paranhaslett.toolbox.model.FormTool;
-import paranhaslett.toolbox.model.TextField;
 import paranhaslett.toolbox.model.Tool;
 import paranhaslett.toolbox.model.action.ParseAction;
 import paranhaslett.toolbox.model.action.XmlParseAction;
+import paranhaslett.toolbox.ui.tools.TextFieldUI;
 
 import java.awt.*;
 import java.io.BufferedReader;
@@ -22,25 +22,24 @@ class ToolToolbox extends Config {
 	}
 
 	protected void init() {
-		Tool fieldTool = new FormTool("Field", "page");
-		fieldTool.addField(new TextField("Name"));
-		fieldTool.addField(new TextField("Type"));
+		Tool fieldTool = toolChest.add(toolId, name)("Field", "page");
+		fieldTool.addField(new TextFieldUI("Name"));
+		fieldTool.addField(new TextFieldUI("Type"));
 		fieldTool.build();
 
 		Tool toolTool = new FormTool("Tool");
-		toolTool.addField(new TextField("Name"));
-		toolTool.addField(new TextField("Type"));
-		toolTool.addField(new TextField("Icon"));
+		toolTool.addField(new TextFieldUI("Name"));
+		toolTool.addField(new TextFieldUI("Type"));
+		toolTool.addField(new TextFieldUI("Icon"));
 		toolTool.addTool(fieldTool);
 		toolTool.build();
 
 		Tool toolBoxTool = new FormTool("Toolbox");
 		toolBoxTool.addTool(toolTool);
-		toolBoxTool.addField(new TextField("Root Name"));
-		toolBoxTool.addField(new TextField("Icon"));
+		toolBoxTool.addField(new TextFieldUI("Root Name"));
+		toolBoxTool.addField(new TextFieldUI("Icon"));
 		toolBoxTool.build();
 		
-		super.build(toolBoxTool);
 
 		
 		 File file = new File("/root/tools.xml");

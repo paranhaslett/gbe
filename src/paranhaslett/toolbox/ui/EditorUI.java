@@ -21,12 +21,13 @@ import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
 import paranhaslett.toolbox.Config;
-import paranhaslett.toolbox.model.Artifact;
+import paranhaslett.toolbox.model.Item;
 import paranhaslett.toolbox.model.Tool;
 import paranhaslett.toolbox.model.action.ParseAction;
 import paranhaslett.toolbox.model.action.XmlParseAction;
 import paranhaslett.toolbox.model.action.XmlSaveAction;
-import paranhaslett.toolbox.tree.TreeUI;
+import paranhaslett.toolbox.ui.tools.FormToolUI;
+import paranhaslett.toolbox.ui.tree.TreeUI;
 
 public class EditorUI extends JFrame {
     private static final long serialVersionUID = 6198693420541435623L;
@@ -59,7 +60,7 @@ public class EditorUI extends JFrame {
             try {
 				fw = new FileWriter(file);
 				fw.write("<tb>\n");
-				Artifact root = Config.getEd().tree().root();
+				Item root = Config.getEd().tree().root();
 				
 				fw.write(saveAct.act(root));
 				fw.write("</tb>");
@@ -156,17 +157,22 @@ public class EditorUI extends JFrame {
 
     }
 
-    public void setName(String name) {
-        setTitle(name);
-    }
-
     public void updateTree(TreeUI tree) {
         scrollPane.setViewportView(tree);
     }
 
     public void updatePanel(Artifact artifact) {
        //artifact.tool().initPanel();
-        splitPane.setRightComponent(artifact.tool());
+    	Tool tool = Config.getEd().getTool(artifact.tool());
+        splitPane.setRightComponent(tool);
     }
+
+	public void updatePanel(Item art) {
+		//artifact.tool().initPanel();
+    	Item tool = Config.getEd().getTools().getArt(art.toolId());
+        FormToolUI pane = new FormToolUI();
+    	splitPane.setRightComponent(pane);
+		
+	}
 
 }

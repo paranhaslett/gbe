@@ -1,13 +1,7 @@
 package paranhaslett.toolbox.model.action;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
-import paranhaslett.toolbox.model.Artifact;
-import paranhaslett.toolbox.model.Tool;
+import paranhaslett.toolbox.Config;
+import paranhaslett.toolbox.model.Item;
 
 public class XmlSaveAction extends CompileAction {
 	
@@ -21,15 +15,13 @@ public class XmlSaveAction extends CompileAction {
 	
 	
 	@Override
-	public String act(Artifact art) {
-		Tool tool = art.tool();
+	public String act(Integer artId) {
+		Item art = Config.getEd().getArts().get(artId);
+		Item tool = Config.getEd().getTools().get(art.toolId());
 		StringBuilder ssb = new StringBuilder("<art tool=\"").append(tool.name() + "\" id=\"")
 				.append(art.toString()).append("\">\n");
-		for (String datum : art.getData()) {
-			ssb.append("<data>\n").append(datum).append("\n</data>\n");
-		}
-		for (Artifact subArt : art.contents()){
-			if (objective != null){
+		for (Integer subArt : art.contents()){
+			if (objective != null){	
 				ssb.append(objective.act(subArt));
 			} else {
 				ssb.append(act(subArt));
@@ -39,4 +31,5 @@ public class XmlSaveAction extends CompileAction {
 
 		return ssb.toString();
 	}
+
 }

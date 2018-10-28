@@ -25,8 +25,11 @@ public class ArtifactTest {
 
 	@Test
 	public void hasTool() {
+		
 		Assert.assertNotNull(artifact.tool());
-		Assert.assertNotNull(artifact.tool().icon());
+		Tool tool = Config.getEd().getTool(artifact.tool());
+		Assert.assertNotNull(tool);
+		Assert.assertNotNull(tool.icon());
 	}
 
 	@Test
@@ -68,7 +71,8 @@ public class ArtifactTest {
 		} catch (NullPointerException npe) {
 			// success
 		}
-		dropOn = new Artifact(artifact.tool());
+		Tool tool = Config.getEd().getTool(artifact.tool());
+		dropOn = new Artifact(tool);
 		Assert.assertFalse(artifact.isDropOn(dropOn));
 	}
 

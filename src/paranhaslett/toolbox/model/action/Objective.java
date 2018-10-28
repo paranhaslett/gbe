@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import paranhaslett.toolbox.model.Artifact;
+import paranhaslett.gamebook.model.Item;
 import paranhaslett.toolbox.model.Tool;
 
 public class Objective {
 
-	private Map<Tool, Action> actions = new HashMap<>();
+	private Map<Integer, Action> actions = new HashMap<>();
 	private Action defaultAct;
 	private String name;
 
@@ -21,17 +21,17 @@ public class Objective {
 		defaultAct = act;
 	}
 
-	public void put(Tool tool, Action act) {
-		actions.put(tool, act);
+	public void put(Integer toolid, Action act) {
+		actions.put(toolid, act);
 	}
 
-	public String act(Artifact from){
-		Action action = actions.get(from.tool());
+	public String act(Integer from){
+		Action action = actions.get(from);
 		 return null;
 		//parser.parse();
 	}
 	
-	public Artifact act(Artifact to, List<String> tokens){
+	public Item act(Integer to, List<String> tokens){
 		return null;
 	}
 
